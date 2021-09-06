@@ -47,10 +47,11 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   height: 550px;
   flex-direction: column;
   font-family: "Ubuntu", sans-serif;
+  
 }
 
 .startpage h1 {
@@ -77,9 +78,50 @@ ul {
   background-color: #46a049;
 }
 
-.algo {
+.intro {
   display: flex;
-  border: 2px solid black;
-  height: 250px;
-  
+  /* border: 2px solid black; */
+  height: 300px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.words {
+  width: 80%;
+  /* border: 2px solid red; */
+}
+
+.words h1 {
+  margin: 14px;
+  padding: 17px;
+  font-size: 42px;
+}
+
+.img1 img {
+  height: 255px;
+}
+
+.quote {
+  /* border: 2px solid red; */
+  height: 155px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f1f1f1;
+}
+
+.quote h1 {
+  font-size: 33px;
+  margin: 3px;
+  padding: 15px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.intro1 {
+  display: flex;
+  /* border: 2px solid black; */
+  height: 300px;
+  font-family: "Ubuntu", sans-serif;
+  flex-direction: row-reverse;
+  background-color: #f1f1f1;
 }
