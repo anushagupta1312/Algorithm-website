@@ -283,6 +283,13 @@ ul {
   }
 }
 
+@media (max-width: 967px) {
+  .words {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width: 416px) {
   .quote h1 {
     font-size: 23px;
