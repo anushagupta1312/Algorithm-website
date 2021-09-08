@@ -102,6 +102,7 @@ body {
 
 .img1 img {
   height: 255px;
+  width: 280px;
 }
 
 .quote {
@@ -226,4 +227,70 @@ ul {
   cursor: pointer;
   right: calc(50% - 20px);
   z-index: 1023;
+}
+
+@media (max-width: 967px) {
+  #navul {
+    flex-direction: column;
+  }
+}
+@media (max-width: 967px) {
+  #nav input {
+    float: none;
+    margin-left: 123px;
+  }
+}
+
+@media (max-width: 473px) {
+  #nav ul li a {
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+  }
+}
+
+
+
+@media (min-width: 646px) and (max-width: 1000px) {
+  .intro {
+    flex-direction: column;
+    height: 600px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 646px) and (max-width: 1000px) {
+  .intro1 {
+    flex-direction: column;
+    height: 600px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 646px) {
+  .intro1 {
+    flex-direction: column;
+    height: 900px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 646px) {
+  .intro {
+    flex-direction: column;
+    height: 900px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 416px) {
+  .quote h1 {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 416px) {
+  .startpage h1 {
+    font-size: 47px;
+  }
 }
