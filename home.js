@@ -50,7 +50,7 @@ setInterval(() => {
   fetch('https://api.quotable.io/random?maxLength=50')
   .then(response => response.json())
   .then(data => {
-    quote.innerHTML = `${data.content} —${data.author}`
+    quote.innerHTML = `"${data.content} —${data.author}"`
   })
   },5000);
 
