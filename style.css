@@ -579,7 +579,7 @@ ul {
   height: auto;
   background-color: #002366;
   flex-wrap: wrap;
-  padding-bottom: 10%
+  padding-bottom: 10%;
 
 }
 .heading{
@@ -590,27 +590,32 @@ ul {
   padding-top: 4.5%;
 }
 .heading-title{
-  margin:30px;
+  margin:10%;
   color: white;
   font-family: 'Montserrat-bold',sans-serif;
   font-weight: bold;
   font-size: 3rem;
   margin-top: 0;
-  margin-left: 70px;
-  margin-right: 200px;
-  padding-top: 150px;
+  margin-left: 10%;
+  margin-bottom: 0;
+  padding-top: 20%;
+  padding-bottom:5%;
 }
 .heading-para{
-  margin-left: 70px;
+  margin-left: 10%;
   color: white;
   font-size: 1.5rem;
+  padding-right: 5%;
+  font-weight:bold;
 }
 .heading-image{
   border-radius: 100%;
-  height: 250px;
-  margin-top: 100px;
-  width: 250px;
-  margin-right: 40px;
+      margin-left: 5%;
+      position: absolute;
+      top: 20%;
+      right: 6.5%;
+      width: 28%;
+      height: 60%;
 }
 .container{
   display: flex;
@@ -620,10 +625,9 @@ ul {
 
 }
 .item{
-  list-style:none;
   font-size: 1.1rem;
-  margin-top: 200px;
-  margin-bottom: 100px;
+  margin-top: 20%;
+  margin-bottom: 10%;
   width: 27%;
   border:2px solid white;
   background-color: white;
@@ -655,14 +659,10 @@ ul {
     border-bottom-right-radius: 30px;
 }
 .image1{
-  position: relative;
-  bottom: 3%;
-  margin-top: 20%;
+  margin-top: 15%;
 }
 .image2{
-  position: relative;
-  bottom: -50px;
-  margin-top: 0;
+  margin-top: 15%;
 }
 .con-item-para{
   margin:20px;
@@ -672,17 +672,65 @@ ul {
   padding: 10px;
 
 }
-@media (min-width:1330px){
+.anchor{
+  text-decoration: none;
+}
+@media (min-width:1000px){
   .heading-title{
-    font-size: 4rem;
+    font-size: 3.8rem;
   }
   .heading-para{
     font-size: 2rem;
   }
 }
-@media (max-width: 646px){
+@media (min-width:399px) and (max-width:803px){
+  .heading-title{
+    font-size: 2rem;
+  }
+  .heading-para{
+    font-size: 1rem;
+  }
+}
+@media (max-width:399px){
+  .heading-title{
+    font-size:1.5rem;
+  }
+  .heading-para{
+    font-size: 0.5rem;
+  }
+}
+@media (max-width:490px){
+  .container{
+    flex-direction: column;
+    height:auto;
+  }
+  .item{
+    width:80%;
+    margin: auto;
+    margin-top: 25%;
+    margin-bottom: 10%;
+  }
+  .con-item-head{
+    font-size: 1.5rem;
+  }
+  .head{
+    padding-bottom: 20%;
+  }
+}
+@media (min-width:490px) and (max-width:760px){
   .container{
     flex-direction: column;
     height: auto;
+  }
+  .item{
+    width:50%;
+    margin: auto;
+    margin-top: 25%;
+    margin-bottom: 10%;
+  }
+}
+@media (min-width:761px) and (max-width:950px){
+  .item{
+    width:32%;
   }
 }
