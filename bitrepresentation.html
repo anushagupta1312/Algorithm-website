@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+     <div class="topnav" id="myTopnav">
+        <a href="#" class="active">Home</a>
+        <a href="#">Previous year paper</a>
+        <a href="#">Algorithms</a>
+        <a href="#">Notes</a>
+        <a href="#">About us</a>
+        <input type="text" placeholder="Search Algorithm" />
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+  <div id="main">
+    <div id="heading"><span>Bit Representation</span></div>
+    <div id="container">
+        <div id="box1">
+            <p> In programming, an n bit integer is internally stored as a binary number that
+                consists of n bits. For example, the C++ type <i>int</i> is a 32-bit type, which means
+                that every int number consists of 32 bits. <br>
+                Here is the bit representation of the int number 43:
+            <div class="upcentre">
+                <span>00000000000000000000000000101011</span>
+            </div>
+            The bits in the representation are indexed from right to left. To convert a bit
+            representation b<span class=sup>k</span>...b<span class=sup>2</span>b<span class=sup>1</span>b<span
+                class=sup>0</span> into a number, we can use the formula
+            <div class="upcentre">
+                b<span class=sub>k</span>2<span class=sup>k</span> +...+b<span class=sub>2</span>2<span
+                    class=sup>2</span>+b<span class=sub>1</span>2<span class=sup>1</span> + b<span
+                    class=sub>0</span>2<span class=sup>0</span>.
+            </div>
+            For example,
+            <div class="upcentre">
+                1.2<span class=sup>5</span>+1.2<span class=sup>3</span>+1.2<span class=sup>1</span>+1.2<span
+                    class=sup>0</span> = 43.
+            </div>
+            <div>
+                The bit representation of a number is either <strong>signed</strong> or <strong>unsigned</strong>.
+                Usually a signed representation is used, which means that both negative and positive
+                numbers can be represented. A signed variable of n bits can contain any integer
+                between -2<span class=sup>n-1</span> and 2<span class=sup>n-1</span>-1. For example, the <i>int</i> type
+                in C++ is a signed type,
+                so an <i>int</i> variable can contain any integer between ‒2<span class=sup>31</span> and 2<span
+                    class=sup>31</span> ‒ 1.
+            </div>
+            <div>
+                The first bit in a signed representation is the sign of the number (0 for
+                nonnegative numbers and 1 for negative numbers), and the remaining n-1 bits
+                contain the magnitude of the number. Two’s complement is used, which means
+                that the opposite number of a number is calculated by first inverting all the bits
+                in the number, and then increasing the number by one.
+            </div>
+            <div>
+                For example, the bit representation of the <i>int</i> number ‒43 is
+            </div>
+            <div class="upcentre">
+                11111111111111111111111111010101.
+            </div>
+            <div>
+                In an unsigned representation, only nonnegative numbers can be used, but
+                the upper bound for the values is larger. An unsigned variable of n bits can
+                contain any integer between 0 and 2<span class=sup>n</span> ‒1. For example, in C++, an <i> unsigned int
+                </i>
+                variable can contain any integer between 0 and 2<span class=sup>32</span> ‒ 1.
+            </div>
+            <div>
+                There is a connection between the representations: a signed number ‒x
+                equals an unsigned number 2<span class=sup>n</span> ‒ x. For example, the following code shows that
+                the signed number x = ‒43 equals the unsigned number y = 2<span class=sup>32</span> ‒ 43:
+            </div>
+            <div class="code upcentre">
+                <span class="int">int</span> x = -43; <br>
+                <span class="int">unsigned int</span> y = x; <br>
+                cout &lt;&lt; x &lt;&lt; <span class="new">"\n"</span> ; &nbsp;<span class="comm">// -43 </span><br>
+                cout &lt;&lt; y &lt;&lt;<span class="new">"\n"</span> ; &nbsp;<span class="comm">// 4294967253</span>
+            </div>
+            <div>
+                If a number is larger than the upper bound of the bit representation, the
+                number will overflow. In a signed representation, the next number after 2<span class=sup>n‒1</span>‒1
+                is ‒2<span class=sup>n‒1</span>, and in an unsigned representation, the next number after 2<span
+                    class=sup>n‒1</span> is 0. For
+                example, consider the following code:
+            </div>
+            <div class="code upcentre">
+                <span class="int">int</span> x = 2147483647; <br>
+                cout &lt;&lt; x &lt;&lt; <span class="new">"\n"</span> ; &nbsp;<span class="comm">// 2147483647
+                </span><br>
+                x++; <br>
+                cout &lt;&lt; x &lt;&lt;<span class="new">"\n"</span> ; &nbsp;<span class="comm">// -2147483648</span>
+            </div>
+            <div>
+                Initially, the value of x is 2<span class=sup>31</span>‒1. This is the largest value that can be stored
+                in an <i>int</i> variable, so the next number after 2<span class=sup>31</span>‒1 is ‒2<span class=sup>31</span>.
+            </div>
+            </p>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+</body>
+<script src="home.js"></script>
+</html>
