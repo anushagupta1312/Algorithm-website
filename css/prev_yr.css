@@ -74,10 +74,13 @@
   }
   .right{
     justify-content: center;
-  }
+    
+    }
+  
   .right img{
-      width:400px;
+      width:350px;
       height:400px;
+     
      
   }
   .btn{
@@ -222,7 +225,11 @@
  hr{
      border:2px solid gray;
  }
- 
+ @media (min-width: 961px) {
+  .right img{
+    width: 400px;
+  }
+ }
 @media (min-width:701px) and (max-width: 960px) {
   .top-section{
     height: auto;
@@ -232,6 +239,9 @@
   }
   .quote{
     font-size: 50px;
+  }
+  .right img{
+    width: 350px;
   }
 }
 @media (min-width: 340px) and (max-width: 700px) {
@@ -244,7 +254,9 @@
   .quote{
     font-size: 40px;
   }
-  
+  .right img{
+    width: 280px;
+  }
   
 }
  
