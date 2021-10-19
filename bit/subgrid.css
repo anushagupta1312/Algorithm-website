@@ -513,9 +513,33 @@ body
   list-style-type: disc;
   margin-left: 2rem;
 }
+.l1 img{
+  width: 20%;
+  height: 30vh
+}
+.l2 img{
+  width: 38%;
+  height: 25vh;
+}
 @media (max-width:850px) {
   html {
         font-size: 45%;
+  }
+}
+@media (max-width:850px) {
+  .l1 img {
+        width: 30%;
+  }
+  .l2 img{
+    width: 57%;
+  }
+}
+@media (max-width:600px) {
+  .l1 img {
+        width: 45%;
+  }
+  .l2 img{
+    width: 88%;
   }
 }
 @media (max-width:700px) {
