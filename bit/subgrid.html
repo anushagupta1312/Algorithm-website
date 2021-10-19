@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="subgrid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="#" class="active">Home</a>
+        <a href="#">Previous year paper</a>
+        <a href="#">Algorithms</a>
+        <a href="#">Notes</a>
+        <a href="#">About us</a>
+        <input type="text" placeholder="Search Algorithm" />
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="main">
+        <div id="heading"><span>Counting subgrids</span></div>
+        <div id="container">
+            <div id="box1">
+                <p> As another example, consider the following problem: Given an n x n grid whose
+                    each square is either black (1) or white (0), calculate the number of subgrids
+                    whose all corners are black. For example, the grid
+                    <br>
+                <div>
+                    <img src="1.jpg" alt="">
+                </div>
+                contains two such subgrids:
+                <div>
+                    <img src="2.jpg" alt="">
+                </div>
+                There is an O(n<span class="sup">3</span> ) time algorithm for solving the problem: go through all
+                O(n<span class="sup">2</span>) pairs of rows and for each pair (a,b) calculate the number of columns
+                that
+                contain a black square in both rows in O(n) time. The following code assumes
+                that color[y][x] denotes the color in row y and column x:
+                <div class="code upcentre">
+                    <span class="int">int</span> count = 0; <br>
+                    <span class="int">for</span>(<span class="int">int</span> i = 0; i &lt; n; i++) { <br>
+                    <span class="int">if</span>(color[a][i] == 1 && color[b][i] == 1) count++; <br>
+                    }
+                </div>
+                <div>
+                    Then, those columns account for count(count‒1)/2 subgrids with black corners,
+                    because we can choose any two of them to form a subgrid.
+                </div>
+                <div>
+                    To optimize this algorithm, we divide the grid into blocks of columns such that
+                    each block consists of N consecutive columns. Then, each row is stored as a list
+                    of N-bit numbers that describe the colors of the squares. Now we can process N
+                    columns at the same time using bit operations. In the following code, color[y][k]
+                    represents a block of N colors as bits.
+                </div>
+                <div class="code upcentre">
+                    <span class="int">int</span> count = 0; <br>
+                    <span class="int">for</span>(<span class="int">int</span> i = 0; i &lt;= n/N; i++) { <br>
+                    count += __builtin_popcount(color[a][i]&color[b][i]); <br>
+                    }
+                </div>
+                The resulting algorithm works in O(n<span class="sup">3</span>/N) time.
+                <div>
+                    We generated a random grid of size 2500 x 2500 and compared the original
+                    and bit optimized implementation. While the original code took 29.6 seconds, the
+                    bit optimized version only took 3.1 seconds with N = 32 (int numbers) and 1.7
+                    seconds with N = 64 (long long numbers).
+                </div>
+                </p>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer_div">
+                <div class="footer_row">
+                    <div class="footer_col">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Service</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer_col">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="#">Algorithms</a></li>
+                            <li><a href="#">Data Structures</a></li>
+                            <li><a href="#">Previous Year Papers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer_col">
+                        <h4>Support Us</h4>
+                        <ul>
+                            <li><a href="#">Write an Article</a></li>
+                            <li><a href="#">Write Interview Experience</a></li>
+                            <li><a href="#">Rate Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer_col">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fa fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="scrollTopBtn" title="Scroll to Top" type="button" class="btn btn-success"
+                style="display: inline-block">
+                ▲
+            </button>
+        </footer>
+</body>
+<script src="home.js"></script>
+
+</html>
