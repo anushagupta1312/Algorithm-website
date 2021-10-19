@@ -2,125 +2,276 @@
 <html lang="en" dir="ltr">
 
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arrays</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrays</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
 
 
-  <body>
-    <div class="topnav" id="myTopnav">
-      <a href="#" class="active">Home</a>
-      <a href="#">Previous year paper</a>
-      <a href="#">Algorithms</a>
-      <a href="#">Notes</a>
-      <a href="#">About us</a>
-      <input type="text" placeholder="Search Algorithm" />
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-      </a>
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="#" class="active">Home</a>
+    <a href="#">Previous year paper</a>
+    <a href="#">Algorithms</a>
+    <a href="#">Notes</a>
+    <a href="#">About us</a>
+    <input type="text" placeholder="Search Algorithm" />
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <div class="container">
+    <div class="item left-side">
+      <img class="left-side-image" src="images/datastr.png" alt="">
+      <h3>Quick Links</h3>
+      <h2 class="left-heading"><a class="left-side-heading" href="#">Data Structure</a></h2>
+      <ul>
+        <li class="leftls"><a class="left-side-list" href="#">Array</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">String</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Matrix</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Linked List</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Stack</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Queue</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Binary Tree</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Binary Search Tree</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Heap</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Hashing</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Graph</a></li>
+      </ul>
+      <h2 class="left-heading"><a class="left-side-heading" href="#">Advanced Data Structure</a></h2>
+      <ul>
+        <li class="leftls"><a class="left-side-list" href="#">Trie</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Disjoint Sets</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Segment Tree</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Self Balancing Tree</a></li>
+        <hr>
+      </ul>
+      <h2 class="left-heading"><a class="left-side-heading" href="#">Algorithms</a></h2>
+      <ul>
+        <li class="leftls"><a class="left-side-list" href="#">Analysis of Algorithm</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Searching Algorithm</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Sorting Algorithm</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Graph</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Pattern Searching</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Mathematical</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Bitwise</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Greedy</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Dynamic Programming</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Divide and Conquer</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Backtracking</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Branch & Bound</a></li>
+        <hr>
+      </ul>
     </div>
-    <div class="container">
-        <div class="item left-side">
-          <img class="left-side-image" src="images/datastr.png" alt="">
-          <h3>Quick Links</h3>
-          <h2 class="left-heading"><a class="left-side-heading" href="#">Data Structure</a></h2>
-          <ul>
-            <li class="leftls"><a class="left-side-list" href="#">Array</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">String</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Matrix</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Linked List</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Stack</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Queue</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Binary Tree</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Binary Search Tree</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Heap</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Hashing</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Graph</a></li>
-          </ul>
-          <h2 class="left-heading"><a class="left-side-heading" href="#">Advanced Data Structure</a></h2>
-          <ul>
-            <li class="leftls"><a class="left-side-list" href="#">Trie</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Disjoint Sets</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Segment Tree</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Self Balancing Tree</a></li>
-            <hr>
-          </ul>
-          <h2 class="left-heading"><a class="left-side-heading" href="#">Algorithms</a></h2>
-          <ul>
-            <li class="leftls"><a class="left-side-list" href="#">Analysis of Algorithm</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Searching Algorithm</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Sorting Algorithm</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Graph</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Pattern Searching</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Mathematical</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Bitwise</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Greedy</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Dynamic Programming</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Divide and Conquer</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Backtracking</a></li>
-            <hr>
-            <li class="leftls"><a class="left-side-list" href="#">Branch & Bound</a></li>
-            <hr>
-          </ul>
+
+
+    <div class="item middle">
+      <h1>Arrays</h1>
+      <p>An array is a collection of similar types of items stored in contiguous manner.Position of any element can be calculated directly by simply adding an offset to a base value, i.e., the memory location of the first element of the array
+        (generally denoted by the name of the array). The base value is index 0 and the difference between the two indexes is the offset.
+        <br>Instead of declaring individual variables, such as number0, number1, ..., and number99, you declare one array variable such as numbers and use numbers[0], numbers[1], and ..., numbers[99] to represent individual variables. A specific
+        element in an array is accessed by an index.
+      </p>
+      <img class="array-img" src="images/array.jpg" alt="">
+      <h2>Types of Arrays</h2>
+      <ul style="list-style-type:disc">
+        <li>
+          <p>Single Dimensional Arrays: Single dimensional array or 1-D array is the simplest form of arrays that can be found in C. This type of array consists of elements of similar types and these elements can be accessed through their indices.
+          </p>
+          <img class="array-img" src="images/array_in_C_1.png" alt="">
+        </li>
+        <li>
+          <p>Multi-dimensional Arrays: The most common type of multi-dimensional array that is used in the C language is a 2-D array. However, the number of dimensions can be more than 2 depending upon the compiler of the user’s system. These arrays
+            consist of elements that are array themselves.
+          </p>
+          <img class="array-img" src="images/array_in_C_2.png" alt="">
+        </li>
+      </ul>
+
+
+      <h2>Array Declaration and Initialization</h2>
+      <h3>C/C++</h3>
+      <p><strong>Fixed-Size Array:</strong>Size of the array is fixed and can't be changed accordingly.<br>Various ways to declare fixed size array are as follows:</p>
+      <h3>Static array:Array size is decided at compile time.</h3>
+      <ul style="list-style-type:disc">
+        <li>
+          <p>Array declaration by specifying size :
+            <br>
+            <strong>SYNTAX: int arr1[10];
+              <br>
+              or
+              <br>
+              int n = 10;
+              <br>
+              int arr2[n];
+            </strong>
+          </p>
+        </li>
+        <li>
+          <p>Array declaration by initializing elements:
+            <br>
+            <strong>SYNTAX: int arr[] = { 10, 20, 30, 40 };</strong>
+          </p>
+        </li>
+        <li>
+          <p>Array declaration by specifying size and initializing elements:
+            <br>
+            <strong>SYNTAX: int arr[6] = { 10, 20, 30, 40 };</strong>
+          </p>
+        </li>
+      </ul>
+      <h3>Dynamic Memory Allocation:Array size is decided at run-time.</h3>
+      <p>In C malloc/calloc is used for dynamic memory allocation while in C++ new keyword is used for dynamically allocating array.</p>
+      <p>
+        <strong>
+          SYNTAX:pointer_variable = new data_type;
+        </strong>
+        <br>
+        The pointer_variable is the name of the pointer variable.<br>
+
+        The data_type must be a valid C++ data type.<br>
+
+        The keyword then returns a pointer to the first item. After creating the dynamic array, we can delete it using the delete keyword.<br>
+
+      </p>
+      <p>Deleting the dynamically created array</p>
+      <p>
+        <strong>SYNTAX:int n=10;
+          <br>int *arr = new int(n);
+          <br>
+          delete [] arr;
+        </strong>
+      </p>
+      <p>
+        <strong>Vector:</strong> Vectors are same as dynamic arrays with the ability to resize itself automatically when an element is inserted or deleted, with their storage being handled automatically by the container. Vector elements are placed in
+        contiguous storage so that they can be accessed and traversed using iterators. In vectors, data is inserted at the end. Inserting at the end takes differential time, as sometimes there may be a need of extending the array. Removing the last
+        element takes only constant time because no resizing happens. Inserting and erasing at the beginning or in the middle is linear in time.
+        <br>
+        <strong>To read more about vectors <a href="https://www.geeksforgeeks.org/vector-in-cpp-stl/">Click Here</a></strong>
+      </p>
+      <h2>Practice Problems On Arrays:</h2>
+      <ol>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/largest-element-in-array4009/1/?category[]=Arrays&category[]=Arrays&difficulty[]=-1&page=1&query=category[]Arraysdifficulty[]-1page1category[]Arrays">LARGEST ELEMENT IN AN ARRAY</a>
+
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/rotate-array-by-n-elements/0/?category[]=Arrays&category[]=Arrays&difficulty[]=-1&page=1&query=category[]Arraysdifficulty[]-1page1category[]Arrays">
+            ROTATE ARRRAY
+          </a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/cyclically-rotate-an-array-by-one2614/1/?category[]=Arrays&category[]=Arrays&difficulty[]=-1&page=1&query=category[]Arraysdifficulty[]-1page1category[]Arrays">CYCLICALLY ROTATE AN ARRAY BY ONE</a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/wave-array-1587115621/1/?category[]=Arrays&category[]=Arrays&difficulty[]=0&page=1&query=category[]Arraysdifficulty[]0page1category[]Arrays">WAVE ARRAY</a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/segregate-0s-and-1s5106/1/?category[]=Arrays&category[]=Arrays&difficulty[]=0&page=1&query=category[]Arraysdifficulty[]0page1category[]Arrays">SEGREGATE 0's AND 1'S</a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/find-transition-point-1587115620/1/?category[]=Arrays&category[]=Arrays&difficulty[]=0&page=1&query=category[]Arraysdifficulty[]0page1category[]Arrays">FIND TRANSITION POINT</a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1/?category[]=Arrays&category[]=Arrays&difficulty[]=0&page=1&query=category[]Arraysdifficulty[]0page1category[]Arrays">Sort an array of 0s, 1s and 2s </a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/nuts-and-bolts-problem0431/1/?category[]=Arrays&category[]=Arrays&difficulty[]=1&page=1&query=category[]Arraysdifficulty[]1page1category[]Arrays">Nuts and Bolts Problem</a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1/?category[]=Arrays&category[]=Arrays&difficulty[]=1&page=1&query=category[]Arraysdifficulty[]1page1category[]Arrays">Kadane's Algorithm</a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/max-circular-subarray-sum-1587115620/1/?category[]=Arrays&category[]=Arrays&difficulty[]=2&page=1&query=category[]Arraysdifficulty[]2category[]Arrayspage1">Max Circular Subarray Sum </a>
+        </li>
+        <li>
+          <a href="https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays5135/1/?category[]=Arrays&category[]=Arrays&difficulty[]=2&page=1&query=category[]Arraysdifficulty[]2page1category[]Arrays">Merge Without Extra Space</a>
+        </li>
+      </ol>
+      <a href="#">More problems>>></a>
+    </div>
+
+
+    <div class="item right-side">
+
+    </div>
+  </div>
+
+
+
+
+    <footer class="footer">
+      <div class="footer_div">
+        <div class="footer_row">
+          <div class="footer_col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Our Service</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="#">Algorithms</a></li>
+              <li><a href="#">Data Structures</a></li>
+              <li><a href="#">Previous Year Papers</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Support Us</h4>
+            <ul>
+              <li><a href="#">Write an Article</a></li>
+              <li><a href="#">Write Interview Experience</a></li>
+              <li><a href="#">Rate Us</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="#"><i class="fa fa-facebook-f"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+          </div>
         </div>
+      </div>
+      <button id="scrollTopBtn" title="Scroll to Top" type="button" class="btn btn-success" style="display: inline-block">
+        ▲
+      </button>
+    </footer>
 
+    
+</body>
 
-        <div class="item middle">
-          <h1>Arrays</h1>
-          <p>An array is a collection of similar types of items stored in contiguous manner.Position of any element can be calculated directly by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array). The base value is index 0 and the difference between the two indexes is the offset.
-          <br>Instead of declaring individual variables, such as number0, number1, ..., and number99, you declare one array variable such as numbers and use numbers[0], numbers[1], and ..., numbers[99] to represent individual variables. A specific element in an array is accessed by an index.</p>
-          <img class="array-img" src="images/array.jpg" alt="">
-          <h2>Types of Arrays</h2>
-          <ul style="list-style-type:disc">
-            <li><p>Single Dimensional Arrays: Single dimensional array or 1-D array is the simplest form of arrays that can be found in C. This type of array consists of elements of similar types and these elements can be accessed through their indices.
-            </p>
-            <img class="array-img"src="images/array_in_C_1.png" alt="">
-            </li>
-            <li><p>Multi-dimensional Arrays: The most common type of multi-dimensional array that is used in the C language is a 2-D array. However, the number of dimensions can be more than 2 depending upon the compiler of the user’s system. These arrays consist of elements that are array themselves.
-            </p>
-            <img class="array-img"src="images/array_in_C_2.png" alt="">
-            </li>
-          </ul>
-
-          
-          <h3>Array Declaration</h3>
-          <h4>C/C++</h4>
-          <p><strong>Fixed-Size Array-</strong></p>
-
-        </div>
-
-
-        <div class="item right-side">
-
-        </div>
-        </div>
-  </body>
 </html>

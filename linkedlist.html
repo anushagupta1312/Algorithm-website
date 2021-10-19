@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LINKED LIST</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+
+
+
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <div class="container">
+      <div class="item left-side">
+        <img class="left-side-image" src="images/datastr.png" alt="">
+        <h3>Quick Links</h3>
+        <h2 class="left-heading"><a class="left-side-heading" href="#">Data Structure</a></h2>
+        <ul>
+          <li class="leftls"><a class="left-side-list" href="#">Array</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">String</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Matrix</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Linked List</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Stack</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Queue</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Binary Tree</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Binary Search Tree</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Heap</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Hashing</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Graph</a></li>
+        </ul>
+        <h2 class="left-heading"><a class="left-side-heading" href="#">Advanced Data Structure</a></h2>
+        <ul>
+          <li class="leftls"><a class="left-side-list" href="#">Trie</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Disjoint Sets</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Segment Tree</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Self Balancing Tree</a></li>
+          <hr>
+        </ul>
+        <h2 class="left-heading"><a class="left-side-heading" href="#">Algorithms</a></h2>
+        <ul>
+          <li class="leftls"><a class="left-side-list" href="#">Analysis of Algorithm</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Searching Algorithm</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Sorting Algorithm</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Graph</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Pattern Searching</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Mathematical</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Bitwise</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Greedy</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Dynamic Programming</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Divide and Conquer</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Backtracking</a></li>
+          <hr>
+          <li class="leftls"><a class="left-side-list" href="#">Branch & Bound</a></li>
+          <hr>
+        </ul>
+      </div>
+
+
+        <div class="item middle">
+          <h1>Linked List</h1>
+          <p>A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations. The elements in a linked list are linked using pointers.</p>
+          <img class="array-img" src="images/linkedlist.jpg" alt="">
+          <br>
+          <h2>Need of Linked List</h2>
+        <ul style="list-style-type:disc">
+            <li>
+              <strong>Size: </strong>Since data can only be stored in contiguous blocks of memory in an array, its size cannot be altered at runtime due to the risk of overwriting other data. However, in a linked list, each node points to the next one such that data can exist at scattered (non-contiguous) addresses; this allows for a dynamic size that can change at runtime.
+            </li>
+            <li>
+              <strong>Memory Allocation: </strong> For arrays at compile time and at runtime for linked lists. but, a dynamically allocated array also allocates memory at runtime.
+            </li>
+            <li>
+              <strong>Memory efficiency: </strong>For the same number of elements, linked lists use more memory as a reference to the next node is also stored along with the data. However, size flexibility in linked lists may make them use less memory overall; this is useful when there is uncertainty about size or there are large variations in the size of data elements; memory equivalent to the upper limit on the size has to be allocated (even if not all of it is being used) while using arrays, whereas linked lists can increase their sizes step-by-step proportionately to the amount of data.
+            </li>
+            <li>
+              <strong>Execution time: </strong> Any element in an array can be directly accessed with its index; however in the case of a linked list, all the previous elements must be traversed to reach any element. Also, better cache locality in arrays (due to contiguous memory allocation) can significantly improve performance. As a result, some operations (such as modifying a certain element) are faster in arrays, while some others (such as inserting/deleting an element in the data) are faster in linked lists.
+            </li>
+          </ul>
+          <br>
+          <h2>Types of Linked List</h2>
+          <ol>
+            <li>
+              <strong>Singly Linked List: </strong>The singly linked list is a data structure that contains two parts, i.e., one is the data part, and the other one is the address part, which contains the address of the next or the successor node. The address part in a node is also known as a pointer.
+              <img class="array-img" src="images/Singly-Linked-List1.png" alt="">
+              <br>
+              <strong>Representation of the node in a singly linked list</strong>
+              <br>
+              <p class="structure">struct node  <br>
+{  <br>
+   int data;<br>
+   struct node *next;<br>
+}  </p>
+            </li>
+            <li>
+              <strong>Doubly linked list: </strong>The doubly linked list contains two pointers. We can define the doubly linked list as a linear data structure with three parts: the data part and the other two address part. In other words, a doubly linked list is a list that has three parts in a single node, includes one data part, a pointer to its previous node, and a pointer to the next node.
+              <img class="array-img" src="images/Doubly-Linked-List.png" alt="">
+              <br>
+              <strong>Representation of the node in a doubly linked list</strong>
+              <br>
+              <p class="structure">struct node  <br>
+{  <br>
+  int data;<br>
+  struct node *next;<br>
+ struct node *prev;   <br>
+}   </p>
+            </li>
+          </ol>
+  </body>
+</html>
