@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Algorithm</title>
+    <link rel="stylesheet" href="Combinatorics.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Combinatorics Basics</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          Combinatorics is the branch of Mathematics dealing with the study of
+          finite or countable discrete structures. It includes the enumeration
+          or counting of objects having certain properties. Counting helps us
+          solve several types of problems such as counting the number of
+          available IPv4 or IPv6 addresses.
+        </p>
+      </div>
+      <div class="head">
+        <h4>Counting Principles –</h4>
+      </div>
+      <div class="para1">
+        <p>
+          There are two basic counting principles, sum rule and product rule.
+          <br />
+
+          Sum Rule – If a task can be done in one of n<span class="sub">1</span>
+          ways or one of n<span class="sub">2</span> ways, where none of the set
+          of n<span class="sub">1</span> ways is the same as any of the set of
+          n<span class="sub">2</span> ways, then there are n<span class="sub"
+            >1</span
+          >
+          + n<span class="sub">2</span> ways to do the task. <br />
+
+          Product Rule – If a task can be broken down into a sequence of k
+          subtasks, where each subtask can be performed in n<span class="sub"
+            >1</span
+          >, n<span class="sub">2</span>,.. n<span class="sub">k</span>
+          respectively, then the total number of ways the task can be performed
+          is n<span class="sub">1</span><span class="mul">*</span> n<span
+            class="sub"
+            >2</span
+          >
+          <span class="mul">*</span> ... <span class="mul">*</span> n<span
+            class="sub"
+            >k</span
+          >
+          . <br />
+        </p>
+      </div>
+      <div class="para1">
+        <ul>
+          <li>
+            Example 1 – In how many ways can 3 winning prizes be given to the
+            top 3 players in a game played by 12 players?
+          </li>
+          <br />
+          <li>
+            Solution – We have to distribute 3 prizes among 12 players. This
+            task can be divided into 3 subtasks of assigning a single prize to a
+            certain player. Giving out the first prize can be done in 12
+            different ways. After giving out the first prize, two prizes remain
+            and 11 players remain. Similarly, the second prize and third prize
+            can be given in 11 ways and 10 ways. The total number of ways by the
+            product rule is 12 <span class="mul">*</span> 11
+            <span class="mul">*</span> 10 = 1320.
+          </li>
+          <br />
+          <li>
+            Example 2 – In how many ways can a person choose a project from
+            three lists of projects of sizes 10, 15, and 19 respectively?
+          </li>
+          <br />
+          <li>
+            Solution – The person has a choice of choosing a project from either
+            of the three lists. So the person can choose from either 10 projects
+            or 15 projects or 19 projects. Since choosing from one list is not
+            the same as choosing another list, the total number of ways of
+            choosing a project by the sum-rule is 10 + 15 + 19 = 44.
+          </li>
+          <br />
+          <li>
+            Example 3 – How many distinct license plates are possible in the
+            given format- Two alphabets in uppercase, followed by two digits
+            then a hyphen and finally four digits. Sample- AB12-3456.
+          </li>
+          <br />
+          <li>
+            Solution – There are 26 possibilities for the each of the two
+            letters and 10 possibilities for each of the digits. Therefore the
+            total number of possibilities is – 26 * 26 * 10 * 10 * 10 * 10 * 10
+            * 10 = 676000000.
+          </li>
+          <br />
+          <li>
+            Example 4 – How many variable names of length upto 3 exist if the
+            variable names are alphanumeric and case sensitive with the
+            restriction that the first character has to be an alphabet?
+          </li>
+          <br />
+          <li>
+            Solution – Let N<span class="sub">1</span>, N<span class="sub"
+              >2</span
+            >, and N<span class="sub">3</span> denote the number of possible
+            variable names of length 1, 2, and 3. Therefore, total number of
+            variable names is N<span class="sub">1</span> + N<span class="sub"
+              >2</span
+            >
+            + N<span class="sub">3</span> . For N<span class="sub">1</span>
+            there are only 52 possibilities since the first character has to be
+            an alphabet. For N<span class="sub">2</span> , there are 52
+            <span class="mul">*</span> 62 = 3224 possibilities For N<span
+              class="sub"
+              >1</span
+            >
+            , there are 52 <span class="mul">*</span> 62
+            <span class="mul">*</span> 62 = 199888 possibilities Therefore,
+            total number of variable names = 52 + 3224 + 199888 = 203164
+          </li>
+          <br />
+        </ul>
+      </div>
+      <div class="head">
+        <h4>Principle of Inclusion-Exclusion :</h4>
+      </div>
+      <div class="para1">
+        <p>
+          The sum-rule mentioned above states that if there are multiple sets of
+          ways of doing a task, there shouldn’t be any way that is common
+          between two sets of ways because if there is, it would be counted
+          twice and the enumeration would be wrong. <br />
+          The principle of inclusion-exclusion says that in order to count only
+          unique ways of doing a task, we must add the number of ways to do it
+          in one way and the number of ways to do it in another and then
+          subtract the number of ways to do the task that are common to both
+          sets of ways. <br />
+          The principle of inclusion-exclusion is also known as the subtraction
+          principle. For two sets of ways A<span class="sub">1</span> and A<span
+            class="sub"
+            >2</span
+          >
+          , the enumeration would like- <br />
+        </p>
+      </div>
+      <div class="img">
+        <img src="../images/Combination.JPG" alt="" />
+      </div>
+      <div class="para1">
+        <ul>
+          <li>
+            Example 1 – How many binary strings of length 8 either start with a
+            ‘1’ bit or end with two bits ’00’?
+          </li>
+          <br />
+          <li>
+            Solution – If the string starts with one, there are 7 characters
+            left which can be filled in 2<spam class="sup">7</spam> = 128 ways.
+            If the string ends with ’00’ then 6 characters can be filled in
+            2<spam class="sup">6</spam> = 64 ways. Now if we add the above sets
+            of ways and conclude that it is the final answer, then it would be
+            wrong. This is because there are strings with start with ‘1’ and end
+            with ’00’ both, and since they satisfy both criteria they are
+            counted twice. So we need to subtract such strings to get a correct
+            count. Strings that start with ‘1’ and end with ’00’ have five
+            characters that can be filled in 2<spam class="sup">7</spam> = 32
+            ways. So by the inclusion-exclusion principle we get- Total strings
+            = 128 + 64 – 32 = 160
+          </li>
+          <br />
+          <li>
+            Example 2 – How many numbers between 1 and 1000, including both, are
+            divisible by 3 or 4?
+          </li> <br>
+          <li>Solution – Number of numbers divisible by 3 = |A<span class="sub">1</span>|  =[1000/3] = 333  .  <br>
+            Number of numbers divisible by 4 = |A<span class="sub">2</span>|  = [1000/4] = 250  . <br>
+            Number of numbers divisible by 3 and 4 = |A<span class="sub">1</span> &#x222A; A<span class="sub">2</span>|  = [1000/12] = 83  . <br>
+            Therefore, number of numbers divisible by 3 or 4 = |A<span class="sub">1</span> &#x222A; A<span class="sub">2</span>|  = 333 + 250 – 83 = 500</li> <br> 
+        </ul>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+  </body>
+  <script src="../backtracking/navbar.js"></script>
+</html>

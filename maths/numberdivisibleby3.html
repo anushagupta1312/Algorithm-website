@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Algorithm</title>
+    <link rel="stylesheet" href="numberdivisibleby3.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Check if a number is divisible by 3</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          We are given a number and we want to check if the number is Multiple
+          of 3 or not. The very simple first solution comes in our mind is old
+          school way. We can check if a number is multiple of 3 or not by adding
+          all the digits of number. If the total sum of digits is multiple of 3
+          then the number is also multiple of 3 otherwise it is not. This is
+          simplest way of doing it. We can be more efficient at doing this.
+        </p>
+      </div>
+      <div class="head">
+        <h4>Efficient approach</h4>
+      </div>
+      <div class="para1">
+        <p>
+          They idea here is to look into the binary repersentation of the given
+          number. In binary representation of the number, If difference between
+          count of odd set bits (Bitsets at odd positions) and even set bits is
+          multiple of 3 then the number is also multiple of 3.
+        </p>
+      </div>
+      <div class="head">
+        <h4>Algorithm</h4>
+      </div>
+      <div class="algo">
+        <p>
+          isMutlipleOf3(n): <br />
+          <br />
+
+          Step 1: Make n positive if n is negative. <br />
+          <br />
+
+          Step 2: If number is 0 then return 1 <br />
+          <br />
+
+          Step 3: If number is 1 then return 0 <br />
+          <br />
+
+          Step 4: Initialize: oddsCount = 0, evenCount = 0 <br />
+          <br />
+
+          Step 5: Loop while n != 0 <br />
+          <br />
+          { <br />
+          Increment oddCount if rightmost bit is set <br />
+          <br />
+
+          Right-shift n by 1 bit <br />
+          <br />
+
+          Increment evenCount If rightmost bit is set <br />
+          <br />
+
+          Right-shift n by 1 bit <br />
+          <br />
+          } <br />
+          <br />
+
+          return isMutlipleOf3(oddCount - evenCount) <br />
+        </p>
+      </div>
+      <div class="para1">
+        <p>Time complexity of this approach would be O(log n)</p>
+      </div>
+      <div class="head">
+        <h4>Implementation</h4>
+      </div>
+      <div class="algo">
+        <p>
+          // C++ program to check if n is a multiple of 3 efficiently <br />
+
+          #include <bits/stdc++.h> <br />
+          <br />
+          using namespace std; <br />
+          <br />
+          <br />
+
+          int isMultipleOf3(int n) <br />
+          <br />
+          { <br />
+          int oddCount = 0, evenCount = 0; <br />
+          <br />
+
+          // Make no positive. We are doing this to avoid stack overflow in
+          recursion <br />
+          <br />
+
+          if (n < 0) <br />
+          <br />
+          n = -n; <br />
+          <br />
+          if (n == 0) <br />
+          <br />
+          return 1; <br />
+          <br />
+          if (n == 1) <br />
+          <br />
+          return 0; <br />
+          <br />
+
+          while (n) { <br />
+          <br />
+          /* If odd bit is set then <br />
+          <br />
+          increment odd counter */ <br />
+          <br />
+
+          if (n & 1) <br />
+          <br />
+          oddCount++; <br />
+          <br />
+
+          /* If even bit is set then <br />
+          <br />
+          increment even counter */ <br />
+          <br />
+          if (n & 2) <br />
+          <br />
+          evenCount++; <br />
+          <br />
+          n = n >> 2; <br />
+          <br />
+          } <br />
+          <br />
+
+          return isMultipleOf3(abs(oddCount - evenCount)); <br />
+          <br />
+          } <br />
+          <br />
+
+          // Main function <br />
+          <br />
+
+          int main() <br />
+          <br />
+          { <br />
+          <br />
+          int n = 33; <br />
+          <br />
+          if (isMultipleOf3(n)) <br />
+          <br />
+
+          printf("%d is multiple of 3", num); <br />
+          <br />
+          else <br />
+          <br />
+
+          printf("%d is not a multiple of 3", num); <br />
+          <br />
+          return 0; <br />
+          <br />
+          } <br />
+          <br />
+        </p>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer_div">
+        <div class="footer_row">
+          <div class="footer_col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Our Service</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="#">Algorithms</a></li>
+              <li><a href="#">Data Structures</a></li>
+              <li><a href="#">Previous Year Papers</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Support Us</h4>
+            <ul>
+              <li><a href="#">Write an Article</a></li>
+              <li><a href="#">Write Interview Experience</a></li>
+              <li><a href="#">Rate Us</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="#"><i class="fa fa-facebook-f"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        id="scrollTopBtn"
+        title="Scroll to Top"
+        type="button"
+        class="btn btn-success"
+        style="display: inline-block"
+      >
+        ▲
+      </button>
+    </footer>
+  </body>
+  <script src="../backtracking/navbar.js"></script>
+</html>

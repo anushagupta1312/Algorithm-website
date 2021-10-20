@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Algorithm</title>
+    <link rel="stylesheet" href="luckynumber.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Lucky Number</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          Lucky numbers are subset of integers. Rather than going into much
+          theory, let us see the process of arriving at lucky numbers, Take the
+          set of integers 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,……
+          First, delete every second number, we get following reduced set.
+          1,3,5,7,9,11,13,15,17,19,………… Now, delete every third number, we get
+          1, 3, 7, 9, 13, 15, 19,….…. Continue this process indefinitely…… Any
+          number that does NOT get deleted due to above process is called
+          “lucky”. Therefore, set of lucky numbers is 1, 3, 7, 13,……… Now, given
+          an integer ‘n’, write a function to say whether this number is lucky
+          or not.
+        </p>
+      </div>
+      <div class="algo">
+        <p>bool isLucky(int n)</p>
+        <br />
+        <br />
+      </div>
+      <div class="head">
+        <h4>Algorithm:</h4>
+      </div>
+      <div class="algo">
+        <p>
+          Before every iteration, if we calculate position of the given number,
+          then in a given iteration, we can determine if the number will be
+          deleted. Suppose calculated position for the given number is P before
+          some iteration, and each Ith number is going to be removed in this
+          iteration, if P < I then input number is lucky, <br> <br>
+
+          if P is such that P%I == 0 (I is a divisor of P), then input no is not lucky. <br> <br>
+          
+          How to calculate Next position of  the number: <br> <br>
+          
+          We know that initially the position of the number is nth itself. Now any next position will be equal to the previous position minus the number of elements (or say items) removed. <br> <br>
+          
+          That is,  next_position = current_position – count of numbers removed <br> <br>
+          
+          For example, take the case of n=13. <br> <br>
+          
+          We have: Initial position: n, ie. 13 itself. <br> <br>  
+          
+          1,2,3,4,5,6,7,8,9,10,11,12,13 <br> <br>
+          
+          Now after removing every second elements , we actually removed n/2 elements. So  now the position of 13 will be : n-n/2=13-6=7 (n=13),  i=2 <br> <br>
+          
+          1,3,5,7,9,11,13. <br> <br>
+          
+          After that, we remove n/3 items. Note that n now is n=7. So position of 13 : n-n/3 = 7-7/3 = 7-2 = 5 (n=7),  i=3 <br> <br>
+          
+          1,3,7,9,13 <br> <br>
+          
+          So next it will be : n-n/4 = 5-5/4 = 4 (n=5),  i=4 <br> <br>
+          
+          1,3,7,13 <br> <br>
+          
+          So now i=5, but since position of 13 is 4 only, so it will be saved. Hence a lucky number!  n=4,  i=5 <br> <br>
+        </p>
+      </div>
+      <div class="head">
+          <h4>Recursive Way: </h4>
+      </div>
+      <div class="algo">
+          <p>
+            // C++ program for Lucky Numbers <br><br>
+            #include &lt;bits/stdc++.h&gt; <br><br>
+            using namespace std; <br><br>
+            #define bool int <br><br>
+             
+            /* Returns 1 if n is a lucky no. <br><br>
+            otherwise returns 0*/ <br><br>
+            bool isLucky(int n) <br><br>
+            { <br><br>
+                static int counter = 2; <br><br>
+                 
+                if(counter > n) <br><br>
+                    return 1; <br><br>
+                if(n % counter == 0) <br><br>
+                    return 0; <br><br>
+                 
+                /*calculate next position of input no. <br><br>
+                  Variable "next_position" is just for <br><br>
+                readability of the program we can <br><br>
+                remove it and update in "n" only */ <br><br>
+                int next_position = n - (n/counter); <br><br>
+                 
+                counter++; <br><br>
+                return isLucky(next_position); <br><br>
+            } <br><br>
+             
+            // Driver Code <br><br>
+            int main() <br><br>
+            { <br><br>
+                int x = 5; <br><br>
+                if( isLucky(x) ) <br><br>
+                    cout << x << " is a lucky no."; <br><br>
+                else <br><br>
+                    cout << x << " is not a lucky no."; <br><br>
+            } <br><br>
+             
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output</h4>
+      </div>
+      <div class="para1">
+          <p>5 is not a lucky no.</p>
+      </div>
+      <div class="head">
+          <h4>Time Complexity</h4>
+      </div>
+      <div class="para1">
+          <p>O(n)</p>
+      </div>
+      <div class="head">
+          <h4>Auxiliary Space: </h4>
+      </div>
+      <div class="para1">
+          <p>O(1)</p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+  </body>
+  <script src="../backtracking/navbar.js"></script>
+</html>

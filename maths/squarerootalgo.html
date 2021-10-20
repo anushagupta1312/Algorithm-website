@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Algorithm</title>
+    <link rel="stylesheet" href="squarerootalgo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Square root algorithm</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          The process of finding square root of a number can be divided into two
+          steps. One step is to find integer part and second one is for fraction
+          part.
+        </p>
+      </div>
+      <div class="head">
+          <h4>Algorithm</h4>
+      </div>
+      <div class="para1">
+          <p>
+            We derive an algorithm for finding square root here −
+          </p>
+      </div>
+      <div class="algo">
+          <p>
+            START  <br> <br>
+            Step 1 → Define value n to find square root of  <br> <br>
+            Step 2 → Define variable i and set it to 1 (For integer part)  <br> <br>
+            Step 3 → Define variable p and set it to 0.00001 (For fraction part)  <br> <br>
+            Step 4 → While i*i is less than n, increment i  <br> <br>
+            Step 5 → Step 4 should produce the integer part so far  <br> <br>
+            Step 6 → While i*i is less than n, add p to i  <br> <br>
+            Step 7 → Now i has the square root value of n  <br> <br>
+         STOP  <br> <br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Pseudocode</h4>
+      </div>
+      <div class="para1">
+          <p>The pseudocode of this algorithm can be derived as follows −</p>
+      </div>
+      <div class="algo">
+          <p>
+            procedure square_root( n ) <br> <br>
+   
+            SET precision TO 0.00001 <br> <br>
+            FOR i = 1 TO i*i < n DO <br> <br>
+               i = i + 1 <br> <br>
+            END FOR <br> <br>
+         
+            FOR i = i - 1 TO i*i < n DO <br> <br>
+               i = i + precision <br> <br>
+            END FOR <br> <br>
+            DISPLAY i AS square root <br> <br>
+         
+         end procedure <br> <br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Implementation</h4>
+      </div>
+      <div class="para1">
+          <p>
+            Implementation of this algorithm is given below −
+          </p>
+      </div>
+      <div class="algo">
+          <p>
+            #include &lt;stdio.h&gt; <br> <br> 
+
+                double squareRoot(double n) { <br> <br>
+                   double i, precision = 0.00001; <br> <br>
+                
+                   for(i = 1; i*i <=n; ++i);           //Integer part <br> <br>
+                
+                   for(--i; i*i < n; i += precision);  //Fractional part <br> <br>
+                
+                   return i; <br> <br>
+                } <br> <br>
+                
+                int main() { <br> <br>
+                   int n = 24; <br> <br>
+                
+                   printf("Square root of %d = %lf", n, squareRoot(n)); <br> <br>
+                
+                   return 0; <br> <br>
+                } <br> <br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output</h4>
+      </div>
+      <div class="para1">
+          <p>
+            Output of the program should be − <br><br>
+          </p>
+          <p>
+            Square root of 24 = 4.898980
+          </p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+  </body>
+  <script src="../backtracking/navbar.js"></script>
+</html>

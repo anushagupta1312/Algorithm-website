@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Algorithm</title>
+    <link rel="stylesheet" href="sweeplinealgo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Sweep line Algorithm</span>
+    </div>
+    <div class="main">
+      <div class="head">
+        <h4>Given n line segments, find if any two segments intersect</h4>
+      </div>
+      <div class="para1">
+        <p>
+          We can solve this problem in O(nLogn) time using Sweep Line Algorithm.
+          The algorithm first sorts the end points along the x axis from left to
+          right, then it passes a vertical line through all points from left to
+          right and checks for intersections. Following are detailed steps.
+          <br />
+          1) Let there be n given lines. There must be 2n end points to
+          represent the n lines. Sort all points according to x coordinates.
+          While sorting maintain a flag to indicate whether this point is left
+          point of its line or right point. <br />
+          2) Start from the leftmost point. Do following for every point <br />
+          …..a) If the current point is a left point of its line segment, check
+          for intersection of its line segment with the segments just above and
+          below it. And add its line to active line segments (line segments for
+          which left end point is seen, but right end point is not seen yet).
+          Note that we consider only those neighbors which are still active.
+          <br />
+          ….b) If the current point is a right point, remove its line segment
+          from active list and check whether its two active neighbors (points
+          just above and below) intersect with each other. <br />
+          The step 2 is like passing a vertical line from all points starting
+          from the leftmost point to the rightmost point. That is why this
+          algorithm is called Sweep Line Algorithm. The Sweep Line technique is
+          useful in many other geometric algorithms like calculating the 2D
+          Voronoi diagram <br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>
+          What data structures should be used for efficient implementation?
+        </h4>
+      </div>
+      <div class="para1">
+        <p>
+          In step 2, we need to store all active line segments. We need to do
+          following operations efficiently: <br />
+          a) Insert a new line segment <br />
+          b) Delete a line segment <br />
+          c) Find predecessor and successor according to y coordinate values
+          <br />
+          The obvious choice for above operations is Self-Balancing Binary
+          Search Tree like AVL Tree, Red Black Tree. With a Self-Balancing BST,
+          we can do all of the above operations in O(Logn) time. <br />
+          Also, in step 1, instead of sorting, we can use min heap data
+          structure. Building a min heap takes O(n) time and every extract min
+          operation takes O(Logn) time <br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>PseudoCode:</h4>
+      </div>
+      <div class="para1">
+        <p>
+          The following pseudocode doesn’t use heap. It simply sort the array.
+        </p>
+      </div>
+      <div class="algo">
+        <p>
+          sweepLineIntersection(Points[0..2n-1]): <br /><br />
+          1. Sort Points[] from left to right (according to x coordinate)
+          <br /><br />
+
+          2. Create an empty Self-Balancing BST T. It will contain <br /><br />
+          all active line Segments ordered by y coordinate. <br /><br />
+
+          // Process all 2n points <br /><br />
+          3. for i = 0 to 2n-1 <br /><br />
+
+          // If this point is left end of its line <br /><br />
+          if (Points[i].isLeft) <br /><br />
+          T.insert(Points[i].line()) // Insert into the tree <br /><br />
+
+          // Check if this points intersects with its predecessor and successor
+          <br /><br />
+          if ( doIntersect(Points[i].line(), T.pred(Points[i].line()) )
+          <br /><br />
+          return true <br /><br />
+          if ( doIntersect(Points[i].line(), T.succ(Points[i].line()) )
+          <br /><br />
+          return true <br /><br />
+
+          else // If it's a right end of its line <br /><br />
+          // Check if its predecessor and successor intersect with each other
+          <br /><br />
+          if ( doIntersect(T.pred(Points[i].line(), T.succ(Points[i].line()))
+          <br /><br />
+          return true <br /><br />
+          T.delete(Points[i].line()) // Delete from tree <br /><br />
+
+          4. return False <br /><br />
+        </p>
+      </div>
+      <div class="head">
+          <h4>Implementation</h4>
+      </div>
+      <div class="algo">
+          <p>
+            #include &lt;bits/stdc++.h&gt; <br /><br />
+            using namespace std; <br /><br />
+             
+            // A point in 2D plane <br /><br />
+            struct Point <br /><br />
+            { <br /><br />
+                int x, y; <br /><br />
+            }; <br /><br />
+             
+            // A line segment with left as Point <br /><br />
+            // with smaller x value and right with <br /><br />
+            // larger x value. <br /><br />
+            struct Segment <br /><br />
+            { <br /><br />
+                Point left, right; <br /><br /> 
+            }; <br /><br />
+             
+             
+            // An event for sweep line algorithm <br /><br />
+            // An event has a point, the position <br /><br />
+            // of point (whether left or right) and <br /><br />
+            // index of point in the original input <br /><br />
+            // array of segments. <br /><br />
+            struct Event { <br /><br />
+                int x, y; <br /><br />
+                bool isLeft; <br /><br />
+                int index; <br /><br />
+                Event(int x, int y, bool l, int i) : x(x), y(y), isLeft(l), index(i) {} <br /><br />
+             
+                // This is for maintaining the order in set. <br /><br />
+                bool operator<(const Event& e) const { <br /><br />
+                        if(y==e.y)return x<e.x; <br /><br />
+                        return y < e.y; <br /><br />
+                } <br /><br />
+            }; <br /><br />
+             
+             
+            // Given three collinear points p, q, r, the function checks if <br /><br />
+            // point q lies on line segment 'pr' <br /><br />
+            bool onSegment(Point p, Point q, Point r) <br /><br />
+            { <br /><br />
+                if (q.x <= max(p.x, r.x) && q.x >= min(p.x, r.x) && <br /><br />
+                    q.y <= max(p.y, r.y) && q.y >= min(p.y, r.y)) <br /><br />
+                   return true; <br /><br />
+             
+                return false; <br /><br />
+            } <br /><br />
+             
+            // To find orientation of ordered triplet (p, q, r). <br /><br />
+            // The function returns following values <br /><br />
+            // 0 --> p, q and r are collinear <br /><br />
+            // 1 --> Clockwise <br /><br />
+            // 2 --> Counterclockwise <br /><br />
+            int orientation(Point p, Point q, Point r) <br /><br />
+            { <br /><br />
+                // See https://www.geeksforgeeks.org/orientation-3-ordered-points/ <br /><br />
+                // for details of below formula. <br /><br />
+                int val = (q.y - p.y) * (r.x - q.x) - <br /><br />
+                          (q.x - p.x) * (r.y - q.y); <br /><br />
+             
+                if (val == 0) return 0;  // collinear <br /><br />
+             
+                return (val > 0)? 1: 2; // clock or counterclock wise <br /><br />
+            } <br /><br />
+             
+            // The main function that returns true if line segment 'p1q1' <br /><br />
+            // and 'p2q2' intersect. <br /><br />
+            bool doIntersect(Segment s1, Segment s2) <br /><br />
+            { <br /><br />
+                Point p1 = s1.left, q1 = s1.right, p2 = s2.left, q2 = s2.right; <br /><br />
+             
+                // Find the four orientations needed for general and <br /><br />
+                // special cases <br /><br />
+                int o1 = orientation(p1, q1, p2); <br /><br />
+                int o2 = orientation(p1, q1, q2); <br /><br />
+                int o3 = orientation(p2, q2, p1); <br /><br />
+                int o4 = orientation(p2, q2, q1); <br /><br />
+             
+                // General case <br /><br />
+                if (o1 != o2 && o3 != o4) <br /><br />
+                    return true; <br /><br />
+              
+                // Special Cases <br /><br />
+                // p1, q1 and p2 are collinear and p2 lies on segment p1q1 <br /><br />
+                if (o1 == 0 && onSegment(p1, p2, q1)) return true; <br /><br />
+             
+                // p1, q1 and q2 are collinear and q2 lies on segment p1q1 <br /><br />
+                if (o2 == 0 && onSegment(p1, q2, q1)) return true; <br /><br />
+             
+                // p2, q2 and p1 are collinear and p1 lies on segment p2q2 <br /><br />
+                if (o3 == 0 && onSegment(p2, p1, q2)) return true; <br /><br />
+             
+                 // p2, q2 and q1 are collinear and q1 lies on segment p2q2 <br /><br />
+                if (o4 == 0 && onSegment(p2, q1, q2)) return true; <br /><br />
+             
+                return false; // Doesn't fall in any of the above cases <br /><br />
+            } <br /><br />
+             
+             
+            // Find predecessor of iterator in s. <br /><br />
+             set<Event>::iterator pred(set<Event> &s, set<Event>::iterator it) { <br /><br />
+                return it == s.begin() ? s.end() : --it; <br /><br />
+            } <br /><br />
+             
+            // Find successor of iterator in s. <br /><br />
+            set<Event>::iterator succ(set<Event> &s, set<Event>::iterator it) { <br /><br />
+                return ++it; <br /><br />
+            } <br /><br />
+             
+            // Returns true if any two lines intersect. <br /><br />
+            int isIntersect(Segment arr[], int n) <br /><br />
+            { <br /><br />
+                unordered_map<string,int> mp;  // to note the pair for which intersection is checked already <br /><br />
+                // Pushing all points to a vector of events <br /><br />
+                vector<Event> e; <br /><br />
+                for (int i = 0; i < n; ++i) { <br /><br />
+                    e.push_back(Event(arr[i].left.x, arr[i].left.y, true, i)); <br /><br />
+                    e.push_back(Event(arr[i].right.x, arr[i].right.y, false, i)); <br /><br />
+                } <br /><br />
+             
+                // Sorting all events according to x coordinate. <br /><br />
+                sort(e.begin(), e.end(), [](Event &e1, Event &e2) {return e1.x < e2.x;}); <br /><br />
+             
+                // For storing active segments. <br /><br />
+                set<Event> s; <br /><br />
+                 int ans=0; <br /><br />
+                // Traversing through sorted points <br /><br />
+                for (int i=0; i<2*n; i++) <br /><br />
+                { <br /><br />
+                    Event curr = e[i]; <br /><br />
+                    int index = curr.index; <br /><br />
+             
+                    // If current point is left of its segment <br /><br />
+                    if (curr.isLeft) <br /><br />
+                    { <br /><br />
+                        // Get above and below points <br /><br />
+                        auto next = s.lower_bound(curr); <br /><br />
+                        auto prev = pred(s, next); <br /><br />
+                        // Check if current point intersects with <br /><br />
+                        // any of its adjacent <br /><br />
+                        bool flag=false; <br /><br />
+                        if (next != s.end() && doIntersect(arr[next->index], arr[index])){ <br /><br />
+                            string s=to_string(next->index+1)+" "+to_string(index+1); <br /><br />
+                            if(mp.count(s)==0){mp[s]++;ans++;} //if not already checked we can increase count in map <br /><br />
+                        } <br /><br />
+                        if (prev != s.end() && doIntersect(arr[prev->index], arr[index])){ <br /><br /> 
+                                string s=to_string(prev->index+1)+" "+to_string(index+1); <br /><br />
+                            if(mp.count(s)==0){mp[s]++;ans++;} //if not already checked we can increase count in map <br /><br />
+                        } <br /><br />
+                        // if same line segment is there then decrease answer as it got increased twice <br /><br />
+                        if(prev != s.end() && next != s.end() && next->index==prev->index)ans--; <br /><br />
+             
+             
+                        // Insert current point (or event) <br /><br />
+                        s.insert(curr); <br /><br />
+                    } <br /><br />
+             
+                    // If current point is right of its segment <br /><br />
+                    else <br /><br />
+                    { <br /><br />
+                        // Find the iterator <br /><br />
+                        auto it=s.find(Event(arr[index].left.x, arr[index].left.y, true, index)); <br /><br />
+                        // Find above and below points <br /><br />
+                        auto next = succ(s, it); <br /><br />
+                        auto prev = pred(s, it); <br /><br />
+             
+                        // If above and below point intersect <br /><br />
+                        if (next != s.end() && prev != s.end()) <br /><br />
+                           {  string s=to_string(next->index+1)+" "+to_string(prev->index+1); <br /><br />
+                                string s1=to_string(prev->index+1)+" "+to_string(next->index+1); <br /><br />
+                               if (mp.count(s)==0&&mp.count(s1)==0&&doIntersect(arr[prev->index], arr[next->index])) <br /><br />
+                                ans++; <br /><br />
+                                mp[s]++; <br /><br />
+                              } <br /><br />
+             
+                        // Remove current segment <br /><br />
+                        s.erase(it); <br /><br />
+             
+                    } <br /><br />
+                } <br /><br />
+                //print pair of lines having intersection <br /><br />
+             
+                for(auto &pr:mp){ <br /><br />
+                    cout<< pr.first<<"\n";   <br /><br />
+                }  <br /><br />
+                return ans;  <br /><br />
+            }  <br /><br />
+             
+            // Driver code  <br /><br />
+            int main() {  <br /><br />
+                Segment arr[] = { {{1, 5}, {4, 5}}, {{2, 5}, {10, 1}},{{3, 2}, {10, 3}},{{6, 4}, {9, 4}},{{7, 1}, {8, 1}}};  <br /><br />
+                int n = sizeof(arr)/sizeof(arr[0]);  <br /><br />
+                cout<< isIntersect(arr, n);  <br /><br />
+                return 0;  <br /><br />
+            } <br /><br />
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output: </h4>
+      </div>
+      <div class="para1">
+          <p>0</p>
+      </div>
+      
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+  </body>
+  <script src="../backtracking/navbar.js"></script>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Algorithm</title>
+    <link rel="stylesheet" href="efficientwaytomultiwith7.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Efficient way to multiply with 7</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          Let's derive an expression to multiply a number with 7 using bitwise
+          operator. Let N be the number that we want to multiply with 7. <br />
+          <br />
+
+          N x 7 = N + N + N + N + N + N + N <br />
+          <br />
+          N x 7 = N + N + N + N + N + N + N + (N - N) <br />
+          <br />
+          N x 7 = (N + N + N + N + N + N + N + N) - N <br />
+          <br />
+          N x 7 = 8xN - N <br />
+          <br />
+
+          As we know that, left shifting any number by one bit multiply it by 2.
+          Hence, multiplying any number with 8 is equivalent to right shifting
+          it by 3 bits(For Example : NX3 = N << 3). Replacing 8xN in above
+          statement by 8 << 3. <br />
+          <br />
+
+          N x 7 = (N << 3) - N <br />
+          <br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>WARNING !!!!</h4>
+      </div>
+      <div class="para1">
+        <p>
+          This approach can only be used to multiply integers or char by 7
+          because bitwise Operators can only be applied on char and integer
+          operands. We cannot use bitwise operators with float, double, long
+          double, void and other user define complex data types.
+        </p>
+      </div>
+      <div class="head">
+          <h4>Implementation</h4>
+      </div>
+      <div class="algo">
+          <p>
+            # include &lt; bits/stdc++.h &gt; <br> <br>
+ 
+            using namespace std; <br> <br>
+             //c++ implementation <br> <br>
+            long multiplyBySeven(long n) <br> <br>
+            {  <br> <br>
+                /* Note the inner bracket here. This is needed <br> <br>
+                   because precedence of '-' operator is higher <br> <br>
+                   than '<<' */ <br> <br>
+                return ((n<<3) - n); <br> <br>
+            } <br> <br>
+               
+            /* Driver program to test above function */ <br> <br>
+            int main() <br> <br>
+            { <br> <br>
+                long n = 4; <br> <br>
+                 
+                cout<<multiplyBySeven(n); <br> <br>
+               
+                return 0; <br> <br>
+            } <br> <br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output:</h4>
+      </div>
+      <div class="para1">
+        <p>28</p>
+      </div>
+      <div class="head">
+          <h4>Time Complexity:</h4>
+      </div>
+      <div class="para1">
+          <p>O(1)</p>
+      </div>
+      <div class="head">
+          <h4>Space Complexity:</h4>
+      </div>
+      <div class="para1">
+        <p>O(1)</p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+  </body>
+  <script src="../backtracking/navbar.js"></script>
+</html>

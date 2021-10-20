@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Algorithm</title>
+    <link rel="stylesheet" href="magicsquare.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Magic Square</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        The magic square is a square matrix, whose order is odd and where the
+        sum of the elements for each row or each column or each diagonal is same
+      </div>
+      <div class="img">
+        <img src="../images/MS.JPG" alt="" />
+      </div>
+      <div class="para1">
+        <p>
+          The magic square is a square matrix, whose order is odd and where the
+          sum of the elements for each row or each column or each diagonal is
+          same. <br /><br />
+        </p>
+        <ul>
+          <li>
+            We will start from the middle column of the first row, of the
+            matrix, and always go to the top left corner to place next number
+          </li>
+          <li>
+            If the row exceeds, or the row is not in the matrix, then, change
+            the column as left column and place the number at last row of the
+            matrix, and go for top left corner again.
+          </li>
+          <li>
+            If the column exceeds, or the column is not in the matrix, then
+            change the row as top row and place the number at last column of
+            that matrix, then go to the top left corner again.
+          </li>
+          <li>
+            When the top left corner is not vacant or both row and column
+            exceeds the range, then place the number at the bottom of the
+            last-placed number.
+          </li>
+        </ul>
+      </div>
+      <div class="head">
+        <h4>Input and Output</h4>
+      </div>
+      <div class="algo">
+          <p>
+            Input: <br> <br>
+            The order of the matrix 5 <br> <br>
+            Output: <br> <br>
+            15 8  1  24 17 <br> <br>
+            16 14 7  5  23 <br> <br>
+            22 20 13 6   4 <br> <br>
+            3  21 19 12 10 <br> <br>
+            9  2  25 18 11 <br> <br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Algorithm</h4>
+      </div>
+      <div class="algo">
+          <p>createSquare(mat, r, c)</p> <br>
+      </div>
+      <div class="head">
+          <h4>Input:</h4>
+      </div>
+      <div class="para1">
+          <p>The matrix.</p>
+      </div>
+      <div class="head">
+          <h4>Output: </h4>
+      </div>
+      <div class="para1">
+          <p>Row and Column.</p>
+      </div>
+      <div class="algo">
+          <p>
+            Begin <br> <br>
+            count := 1  <br> <br>
+            fill all elements in mat to 0 <br> <br>
+            range := r * c <br> <br>
+            i := 0 <br> <br>
+            j := c/2 <br> <br>
+            mat[i, j] := count //center of top row <br> <br>
+         
+            while count < range, do <br> <br>
+               increase count by 1 <br> <br>
+               if both i and j crosses the matrix range, then <br> <br>
+                  increase i by 1 <br> <br>
+               else if only i crosses the matrix range, then <br> <br>
+                  i := c – 1 <br> <br>
+                  decrease j by 1 <br> <br>
+               else if only j crosses the matrix range, then <br> <br>
+                  j := c – 1 <br> <br>
+                  decrease i by 1 <br> <br>
+               else if i and j are in the matrix and element in (i, j) ≠ 0, then <br> <br>
+                  increase i by 1 <br> <br>
+               else <br> <br>
+                  decrease i and j by 1 <br> <br>
+               mat[i, j] := count <br> <br>
+            done <br> <br>
+            display the matrix mat <br> <br>
+         End <br> <br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Example</h4>
+      </div>
+      <div class="algo">
+        #include &lt;iostream&gt; <br> <br>
+            #include &lt;iomanip&gt; <br> <br>
+            using namespace std; <br> <br>
+            
+            void createSquare(int **array, int r, int c) {  <br> <br>
+               int i, j, count = 1, range;  <br> <br>
+               for(i = 0; i< r; i++)  <br> <br>
+                  for(j = 0; j< c; j++)  <br> <br>
+                     array[i][j] = 0;    //initialize all elements with 0  <br> <br>
+            
+               range = r*c;  <br> <br>
+               i = 0;  <br> <br>
+               j = c/2;  <br> <br>
+               array[i][j] = count;  <br> <br>
+            
+               while(count < range) {  <br> <br>
+                  count++;  <br> <br>
+                  if((i-1) < 0 && (j-1) < 0)    //when both row and column crosses the range  <br> <br>
+                     i++;    <br> <br>
+                  else if((i-1) < 0) {    //when only row crosses range, set i to last row, and decrease j  <br> <br>
+                     i = r-1;  <br> <br>
+                     j--;  <br> <br>
+                  }else if((j-1) < 0) {    //when only col crosses range, set j to last column, and decrease i  <br> <br>
+                     j = c-1;  <br> <br>
+                     i--;    <br> <br>
+                  }else if(array[i-1][j-1] != 0)    //when diagonal element is not empty, go to next row  <br> <br>
+                     i++;  <br> <br>
+                  else{  <br> <br>
+                     i--;  <br> <br>
+                     j--;  <br> <br>
+                  }  <br> <br>
+                  array[i][j] = count;  <br> <br>
+               }  <br> <br>
+            
+               // Printing the square  <br> <br>
+               for(i = 0; i< r; i++) {  <br> <br>
+                  for(j = 0; j< c; j++)  <br> <br>
+                     cout << setw(3) << array[i][j];  <br> <br>
+                  cout << endl;  <br> <br>
+               }  <br> <br>
+            }  <br> <br>
+            
+            main() {  <br> <br>
+               int** matrix;  <br> <br>
+               int row, col;  <br> <br>
+               cout << "Enter the order(odd) of square matrix :";  <br> <br>
+               cin >> row;  <br> <br>
+               col = row;  <br> <br>
+               
+               matrix = new int*[row];  <br> <br>
+               
+               for(int i = 0; i< row; i++) {  <br> <br>
+                  matrix[i] = new int[col];  <br> <br>
+               }  <br> <br>
+               createSquare(matrix, row, col);  <br> <br>
+            }  <br> <br>
+      </div>
+      <div class="head">
+          <h4>Output</h4>
+      </div>
+      <div class="algo">
+          <p>
+            Enter the order(odd) of square matrix :5 <br> <br> 
+            15  8  1 24 17 <br> <br>
+            16 14  7  5 23 <br> <br>
+            22 20 13  6  4 <br> <br>
+             3 21 19 12 10 <br> <br>
+             9  2 25 18 11 <br> <br>
+          </p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+  </body>
+  <script src="../backtracking/navbar.js"></script>
+</html>
