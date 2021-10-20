@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Algorithm</title>
+    <link rel="stylesheet" href="fdow.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Find day of the week for a given date</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          Write a function that calculates the day of the week for any
+          particular date in the past or future. A typical application is to
+          calculate the day of the week on which someone was born or some other
+          special event occurred.
+        </p>
+      </div>
+      <div class="para1">
+        <p>
+          Following is a simple function suggested by Sakamoto, Lachman, Keith
+          and Craver to calculate day. The following function returns 0 for
+          Sunday, 1 for Monday, etc.
+        </p>
+      </div>
+      <div class="head">
+          <h4>Understanding the Maths:</h4> <br>
+      </div>
+      <div class="algo">
+          <p>
+            14/09/1998 <br> <br>
+            dd=14 <br> <br>
+            mm=09 <br> <br>
+            yyyy=1998 //non-leap year <br> <br>
+            
+            Step 1: Informations to be remembered. <br> <br>
+             Magic Number Month array. <br> <br>
+             For Year: {0,3,3,6,1,4,6,2,5,0,3,5} <br> <br>
+             DAY array starting from 0-6: {Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday} <br> <br>
+             Century Year Value: 1600-1699 = 6 <br> <br>
+                  1700-1799 = 4 <br> <br>
+                  1800-1899 = 2 <br> <br>
+                  1900-1999 = 0 <br> <br>
+                  2000-2099 = 6.. <br> <br>
+            
+            Step 2: Calculations as per the steps <br> <br>
+             
+             Last 2 digits of the year:  98 <br> <br>
+             Divide the above by 4:     24 <br> <br>
+             Take the date(dd):      14 <br> <br>
+             Take month value from array: 5 (for September month number 9) <br> <br>
+             Take century year value:  0  ( 1998 is in the range 1900-1999 thus 0) <br> <br>
+                      ----- <br> <br>
+             Sum:        141 <br> <br>
+             
+             Divide the Sum by 7 and get the remainder: 141 % 7 = 1 <br> <br>
+             
+             Check the Day array starting from index 0: Day[1] = Monday <br> <br>
+            
+            **If leap year it will be the remainder-1 <br> <br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Implementation</h4>
+      </div>
+      <div class="algo">
+          <p>
+            /* A program to find day of a given date */ <br><br>
+            #include &lt;bits/stdc++.h&gt; <br><br>
+            using namespace std; <br><br>
+             
+            int dayofweek(int d, int m, int y) <br><br>
+            {
+                static int t[] = { 0, 3, 2, 5, 0, 3,
+                                   5, 1, 4, 6, 2, 4 }; <br><br>
+                y -= m < 3; <br><br>
+                return ( y + y / 4 - y / 100 +
+                         y / 400 + t[m - 1] + d) % 7; <br><br>
+            }
+             
+            // Driver Code <br><br>
+            int main() <br><br>
+            { <br><br>
+                int day = dayofweek(30, 8, 2010); <br><br>
+                cout << day; <br><br>
+             
+                return 0; <br><br>
+            } <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output : </h4>
+      </div>
+      <div class="para1">
+          <p>1 (Monday)</p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+  </body>
+  <script src="../backtracking/navbar.js"></script>
+</html>
 
