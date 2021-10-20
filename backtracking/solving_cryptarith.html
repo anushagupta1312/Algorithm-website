@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking Algorithm</title>
+    <link rel="stylesheet" href="solving_cryptarith.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Solving Cryptarithmetic Puzzles</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          Newspapers and magazines often have crypt-arithmetic puzzles of the
+          form:
+        </p>
+      </div>
+      <div class="algo">
+        SEND <br />
+        + MORE <br />
+        -------- <br />
+        MONEY <br />
+        -------- <br />
+      </div>
+      <div class="para1">
+        <p>
+          The goal here is to assign each letter a digit from 0 to 9 so that the
+          arithmetic works out correctly. The rules are that all occurrences of
+          a letter must be assigned the same digit, and no digit can be assigned
+          to more than one letter.
+        </p>
+      </div>
+      <div class="para1">
+        <li>
+          First, create a list of all the characters that need assigning to pass
+          to Solve
+        </li>
+        <br />
+        <li>
+          If all characters are assigned, return true if puzzle is solved, false
+          otherwise
+        </li>
+        <br />
+        <li>Otherwise, consider the first unassigned character</li>
+        <br />
+        <li>
+          for (every possible choice among the digits not in use) make that
+          choice and then recursively try to assign the rest of the characters
+          if recursion successful, return true if !successful, unmake assignment
+          and try another digit
+        </li>
+        <br />
+        <li>
+          If all digits have been tried and nothing worked, return false to
+          trigger backtracking
+        </li>
+        <br />
+      </div>
+      <div class="algo">
+        <p>
+          /* ExhaustiveSolve <br /><br />
+          * --------------- <br /><br />
+          * This is the "not-very-smart" version of cryptarithmetic solver. It
+          takes <br /><br />
+          * the puzzle itself (with the 3 strings for the two addends and sum)
+          and a <br /><br />
+          * string of letters as yet unassigned. If no more letters to assign
+          <br /><br />
+          * then we've hit a base-case, if the current letter-to-digit mapping
+          solves <br /><br />
+          * the puzzle, we're done, otherwise we return false to trigger
+          backtracking <br /><br />
+          * If we have letters to assign, we take the first letter from that
+          list, and <br /><br />
+          * try assigning it the digits from 0 to 9 and then recursively working
+          <br /><br />
+          * through solving puzzle from here. If we manage to make a good
+          assignment <br /><br />
+          * that works, we've succeeded, else we need to unassign that choice
+          and try <br /><br />
+          * another digit. This version is easy to write, since it uses a simple
+          <br /><br />
+          * approach (quite similar to permutations if you think about it) but
+          it is <br /><br />
+          * not so smart because it doesn't take into account the structure of
+          the <br /><br />
+          * puzzle constraints (for example, once the two digits for the addends
+          have <br /><br />
+          * been assigned, there is no reason to try anything other than the
+          correct <br /><br />
+          * digit for the sum) yet it tries a lot of useless combos regardless
+          <br /><br />
+          */ <br /><br />
+          bool ExhaustiveSolve(puzzleT puzzle, string lettersToAssign)
+          <br /><br />
+          { <br /><br />
+          if (lettersToAssign.empty()) // no more choices to make <br /><br />
+          return PuzzleSolved(puzzle); // checks arithmetic to see if works
+          <br /><br />
+          for (int digit = 0; digit <= 9; digit++) // try all digits
+          <br /><br />
+          { if (AssignLetterToDigit(lettersToAssign[0], digit)) <br /><br />
+          { if (ExhaustiveSolve(puzzle, lettersToAssign.substr(1))) <br /><br />
+          return true; <br /><br />
+          UnassignLetterFromDigit(lettersToAssign[0], digit); <br /><br />
+          } <br /><br />
+          } <br /><br />
+          return false; // nothing worked, need to backtrack <br /><br />
+          }
+        </p>
+      </div>
+      <div class="para1">
+        <p>
+          The algorithm above actually has a lot in common with the permutations
+          algorithm, it pretty much just creates all arrangements of the mapping
+          from characters to digits and tries each until one works or all have
+          been successfully tried. For a large puzzle, this could take a while.
+          A smarter algorithm could take into account the structure of the
+          puzzle and avoid going down dead-end paths. For example, if we assign
+          the characters starting from the one’s place and moving to the left,
+          at each stage, we can verify the correctness of what we have so far
+          before we continue onwards. This definitely complicates the code but
+          leads to a tremendous improvement in efficiency, making it much more
+          feasible to solve large puzzles.
+        </p>
+      </div>
+      <div class="para1">
+        <p>
+          Below pseudocode, in this case, has more special cases, but the same
+          general design
+        </p>
+      </div>
+      <div class="para1">
+        <li>
+          Start by examining the rightmost digit of the topmost row, with a
+          carry of 0
+        </li>
+        <br />
+        <li>
+          If we are beyond the leftmost digit of the puzzle, return true if no
+          carry, false otherwise
+        </li>
+        <br />
+        <li>
+          If we are currently trying to assign a char in one of the addends If
+          char already assigned, just recur on the row beneath this one, adding
+          value into the sum If not assigned, then
+        </li>
+        <br /><br />
+        <li>
+          for (every possible choice among the digits not in use) make that
+          choice and then on row beneath this one, if successful, return true if
+          !successful, unmake assignment and try another digit
+        </li>
+        <br />
+        <li>return false if no assignment worked to trigger backtracking</li>
+        <br />
+        <li>Else if trying to assign a char in the sum</li>
+        <br />
+        <li>
+          If char assigned & matches correct, recur on next column to the left
+          with carry, if success return true,
+        </li>
+        <br />
+        <li>If char assigned & doesn’t match, return false</li>
+        <br />
+        <li>If char unassigned & correct digit already used, return false</li>
+        <br />
+        <li>
+          If char unassigned & correct digit unused, assign it and recur on next
+          column to left with carry, if success return true
+        </li>
+        <br />
+        <li>return false to trigger backtracking</li>
+        <br />
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking Algorithm</title>
+    <link rel="stylesheet" href="landmine.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Find shortest safe route in a path with landmines</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          Given a path in the form of a rectangular matrix having few landmines
+          arbitrarily placed (marked as 0), calculate length of the shortest
+          safe route possible from any cell in the first column to any cell in
+          the last column of the matrix. We have to avoid landmines and their
+          four adjacent cells (left, right, above and below) as they are also
+          unsafe. We are allowed to move to only adjacent cells which are not
+          landmines. i.e. the route cannot contains any diagonal moves.
+        </p>
+      </div>
+      <div class="head">
+        <h4>Examples:</h4>
+      </div>
+      <div class="algo">
+        Input: <br /><br />
+        A 12 x 10 matrix with landmines marked as 0 <br /><br />
+
+        [ 1 1 1 1 1 1 1 1 1 1 ] <br /><br />
+        [ 1 0 1 1 1 1 1 1 1 1 ] <br /><br />
+        [ 1 1 1 0 1 1 1 1 1 1 ] <br /><br />
+        [ 1 1 1 1 0 1 1 1 1 1 ] <br /><br />
+        [ 1 1 1 1 1 1 1 1 1 1 ] <br /><br />
+        [ 1 1 1 1 1 0 1 1 1 1 ] <br /><br />
+        [ 1 0 1 1 1 1 1 1 0 1 ] <br /><br />
+        [ 1 1 1 1 1 1 1 1 1 1 ] <br /><br />
+        [ 1 1 1 1 1 1 1 1 1 1 ] <br /><br />
+        [ 0 1 1 1 1 0 1 1 1 1 ] <br /><br />
+        [ 1 1 1 1 1 1 1 1 1 1 ] <br /><br />
+        [ 1 1 1 0 1 1 1 1 1 1 ] <br /><br />
+
+        Output: <br /><br />
+        Length of shortest safe route is 13 (Highlighted in Bold) <br /><br />
+      </div>
+      <div class="para1">
+        <p>
+          The idea is to use Backtracking. We first mark all adjacent cells of
+          the landmines as unsafe. Then for each safe cell of first column of
+          the matrix, we move forward in all allowed directions and recursively
+          checks if they leads to the destination or not. If destination is
+          found, we update the value of shortest path else if none of the above
+          solutions work we return false from our function. <br /><br />
+
+          Below is the implementation of above idea –
+        </p>
+      </div>
+      <div class="algo">
+          <p>
+            // C++ program to find shortest safe Route in <br><br>
+            // the matrix with landmines <br><br>
+            #include < bits/stdc++.h > <br><br>
+            using namespace std; <br><br>
+            #define R 12 <br><br>
+            #define C 10 <br><br>
+             
+            // These arrays are used to get row and column <br><br>
+            // numbers of 4 neighbours of a given cell <br><br>
+            int rowNum[] = { -1, 0, 0, 1 }; <br><br>
+            int colNum[] = { 0, -1, 1, 0 }; <br><br>
+             
+            // A function to check if a given cell (x, y) <br><br>
+            // can be visited or not <br><br>
+            bool isSafe(int mat[R][C], int visited[R][C], <br><br>
+                        int x, int y) <br><br>
+            { <br><br>
+                if (mat[x][y] == 0 || visited[x][y]) <br><br>
+                    return false; <br><br>
+             
+                return true; <br><br>
+            } <br><br>
+             
+            // A function to check if a given cell (x, y) is <br><br>
+            // a valid cell or not <br><br>
+            bool isValid(int x, int y) <br><br>
+            { <br><br>
+                if (x < R && y < C && x >= 0 && y >= 0) <br><br>
+                    return true; <br><br>
+             
+                return false; <br><br>
+            } <br><br>
+             
+            // A function to mark all adjacent cells of <br><br>
+            // landmines as unsafe. Landmines are shown with <br><br>
+            // number 0 <br><br>
+            void markUnsafeCells(int mat[R][C]) <br><br>
+            { <br><br>
+                for (int i = 0; i < R; i++) <br><br>
+                { <br><br>
+                    for (int j = 0; j < C; j++) <br><br>
+                    { <br><br>
+                        // if a landmines is found <br><br>
+                        if (mat[i][j] == 0) <br><br>
+                        { <br><br>
+                          // mark all adjacent cells <br><br>
+                          for (int k = 0; k < 4; k++) <br><br>
+                            if (isValid(i + rowNum[k], j + colNum[k])) <br><br>
+                                mat[i + rowNum[k]][j + colNum[k]] = -1; <br><br>
+                        } <br><br>
+                    } <br><br>
+                } <br><br>
+             
+                // mark all found adjacent cells as unsafe <br><br>
+                for (int i = 0; i < R; i++) <br><br>
+                { <br><br>
+                    for (int j = 0; j < C; j++) <br><br>
+                    { <br><br>
+                        if (mat[i][j] == -1) <br><br>
+                            mat[i][j] = 0; <br><br>
+                    } <br><br>
+                } <br><br>
+             
+                // Uncomment below lines to print the path <br><br>
+                /*for (int i = 0; i < R; i++) <br><br>
+                { <br><br>
+                    for (int j = 0; j < C; j++) <br><br>
+                    { <br><br>
+                        cout << std::setw(3) << mat[i][j]; <br><br>
+                    } <br><br>
+                    cout << endl; <br><br>
+                }*/ <br><br>
+            } <br><br>
+             
+            // Function to find shortest safe Route in the <br><br>
+            // matrix with landmines <br><br>
+            // mat[][] - binary input matrix with safe cells marked as 1 <br><br>
+            // visited[][] - store info about cells already visited in <br><br>
+            // current route <br><br>
+            // (i, j) are coordinates of the current cell <br><br>
+            // min_dist --> stores minimum cost of shortest path so far <br><br>
+            // dist --> stores current path cost <br><br>
+            void findShortestPathUtil(int mat[R][C], int visited[R][C], <br><br>
+                                      int i, int j, int &min_dist, int dist) <br><br>
+            { <br><br>
+                // if destination is reached <br><br>
+                if (j == C-1) <br><br>
+                { <br><br>
+                    // update shortest path found so far <br><br>
+                    min_dist = min(dist, min_dist); <br><br>
+                    return; <br><br>
+                } <br><br>
+             
+                // if current path cost exceeds minimum so far <br><br>
+                if (dist > min_dist) <br><br>
+                    return; <br><br>
+             
+                // include (i, j) in current path <br><br>
+                visited[i][j] = 1; <br><br>
+             
+                // Recurse for all safe adjacent neighbours <br><br>
+                for (int k = 0; k < 4; k++) <br><br>
+                { <br><br>
+                    if (isValid(i + rowNum[k], j + colNum[k]) && <br><br>
+                        isSafe(mat, visited, i + rowNum[k], j + colNum[k])) <br><br>
+                    { <br><br>
+                        findShortestPathUtil(mat, visited, i + rowNum[k], <br><br>
+                                       j + colNum[k], min_dist, dist + 1); <br><br>
+                    } <br><br>
+                } <br><br>
+             
+                // Backtrack <br><br>
+                visited[i][j] = 0; <br><br>
+            } <br><br>
+             
+            // A wrapper function over findshortestPathUtil() <br><br>
+            void findShortestPath(int mat[R][C]) <br><br>
+            { <br><br>
+                // stores minimum cost of shortest path so far <br><br>
+                int min_dist = INT_MAX; <br><br>
+             
+                // create a boolean matrix to store info about <br><br>
+                // cells already visited in current route <br><br>
+                int visited[R][C]; <br><br>
+             
+                // mark adjacent cells of landmines as unsafe <br><br>
+                markUnsafeCells(mat); <br><br>
+             
+                // start from first column and take minimum <br><br>
+                for (int i = 0; i < R; i++) <br><br>
+                { <br><br>
+                    // if path is safe from current cell <br><br>
+                    if (mat[i][0] == 1) <br><br>
+                    { <br><br>
+                        // initialize visited to false <br><br>
+                        memset(visited, 0, sizeof visited); <br><br>
+             
+                        // find shortest route from (i, 0) to any <br><br>
+                        // cell of last column (x, C - 1) where <br><br>
+                        // 0 <= x < R <br><br>
+                        findShortestPathUtil(mat, visited, i, 0, <br><br>
+                                             min_dist, 0); <br><br>
+             
+                        // if min distance is already found <br><br>
+                        if(min_dist == C - 1) <br><br>
+                            break; <br><br>
+                    } <br><br>
+                } <br><br>
+             
+                // if destination can be reached <br><br>
+                if (min_dist != INT_MAX) <br><br>
+                    cout << "Length of shortest safe route is " <br><br>
+                         << min_dist; <br><br>
+             
+                else // if the destination is not reachable <br><br>
+                    cout << "Destination not reachable from " <br><br>
+                         << "given source"; <br><br>
+            } <br><br>
+             
+            // Driver code <br><br>
+            int main() <br><br>
+            { <br><br>
+                // input matrix with landmines shown with number 0 <br><br>
+                int mat[R][C] = <br><br>
+                { <br><br>
+                    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, <br><br>
+                    { 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 }, <br><br>
+                    { 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 }, <br><br>
+                    { 1, 1, 1, 1, 0, 1, 1, 1, 1, 1 }, <br><br>
+                    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, <br><br>
+                    { 1, 1, 1, 1, 1, 0, 1, 1, 1, 1 }, <br><br>
+                    { 1, 0, 1, 1, 1, 1, 1, 1, 0, 1 }, <br><br>
+                    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, <br><br>
+                    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, <br><br>
+                    { 0, 1, 1, 1, 1, 0, 1, 1, 1, 1 }, <br><br>
+                    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, <br><br>
+                    { 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 } <br><br>
+                }; <br><br>
+             
+                // find shortest path <br><br>
+                findShortestPath(mat); <br><br>
+             
+                return 0; <br><br>
+            } <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output: </h4>
+      </div>
+      <div class="algo">
+          <p>Length of shortest safe route is 13</p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

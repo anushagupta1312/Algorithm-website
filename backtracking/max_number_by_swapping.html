@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking Algorithm</title>
+    <link rel="stylesheet" href="max_number_by_swapping.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Max Number By Swapping</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          In this problem, one positive integer string is given, we have to find
+          the permutation whose value is maximum by swapping digits’ k times,
+          into different places. <br /><br />
+
+          We will solve this problem by choosing a digit and swap it with digits
+          following it one at a time to find a maximum number. We repeat the
+          process k times. The backtracking strategy is working here because
+          when we find a number which is not greater than the previous value, we
+          backtrack to old value and check again.
+        </p>
+      </div>
+      <div class="head">
+        <h4>Input and Output</h4>
+      </div>
+      <div class="algo">
+        <p>
+          Input: <br /><br />
+          A number of multiple digits. <br /><br />
+          The input is: 129814999 <br /><br />
+          Output: <br /><br />
+          The maximum value from these digits by swapping them. <br /><br />
+          The output is: 999984211 <br /><br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Algorithm</h4>
+        <br />
+        <h5>maxNum(number, swaps, maxNumber)</h5>
+        <br />
+        <h5>
+          Input − The number as a string, the number of swaps and the maxNumber
+          string.
+        </h5>
+        <br />
+        <h5>Output − Update the maxNumber to get the largest value.</h5>
+        <br />
+      </div>
+      <div class="algo">
+        <p>
+          Begin <br /><br />
+          if swaps = 0, then <br /><br />
+          return <br /><br />
+          n := number of digits in the number <br /><br />
+          for i := 0 to n-2, do <br /><br />
+          for j := i+1 to n-1, do <br /><br />
+          if number[i] < number[j], then <br /><br />
+          exchange number[i] and number[j] <br /><br />
+          if number is greater than maxNumber, then <br /><br />
+          maxNumber := number <br /><br />
+          maxNum(number, swaps-1, maxNumber) <br /><br />
+          exchange number[i] and number[j] again for backtrack <br /><br />
+          done <br /><br />
+          done <br /><br />
+          End <br /><br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Example</h4>
+      </div>
+      <div class="algo">
+        <p>
+          #include < iostream > <br /><br />
+          using namespace std; <br /><br />
+
+          void maxNum(string str, int swaps, string &max) { <br /><br />
+          if(swaps == 0) //when no swaps are left <br /><br />
+          return; <br /><br />
+          int n = str.length(); <br /><br />
+
+          for (int i = 0; i < n - 1; i++) { //for every digits og given number
+          <br /><br />
+          for (int j = i + 1; j < n; j++) { <br /><br />
+          if (str[i] < str[j]) { //when ith number smaller than jth number
+          <br /><br />
+          swap(str[i], str[j]); <br /><br />
+          if (str.compare(max) > 0) //when current number is greater, make it
+          maximum <br /><br />
+          max = str; <br /><br />
+          maxNum(str, swaps - 1, max); //go for next swaps <br /><br />
+          swap(str[i], str[j]); //when it fails, reverse the swapping
+          <br /><br />
+          } <br /><br />
+          } <br /><br />
+          } <br /><br />
+          } <br /><br />
+
+          int main() { <br /><br />
+          string str = "129814999"; <br /><br />
+          int swapNumber = 4; <br /><br />
+          string max = str; <br /><br />
+          maxNum(str, swapNumber, max); <br /><br />
+          cout <<"The given number is: " << str << endl; <br /><br />
+          cout <<"The maximum number is: "<< max << endl; <br /><br />
+          } <br /><br />
+        </p>
+      </div>
+      <div class="head">
+          <h4>Output</h4>
+      </div>
+      <div class="algo">
+          <p>
+            The given number is: 129814999 <br><br>
+            The maximum number is: 999984211 <br><br>
+          </p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

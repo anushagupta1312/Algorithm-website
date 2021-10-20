@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking Algorithms</title>
+    <link rel="stylesheet" href="warnsdorffalgo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Warnsdorff’s algorithm for Knight’s tour problem</span>
+    </div>
+
+    <div class="main">
+      <div class="para1">
+        <p>
+          In chess, we know that the knight can jump in a special manner. It can
+          move either two squares horizontally and one square vertically or two
+          squares vertically and one square horizontally in each direction, So
+          the complete movement looks like English letter ‘L’.
+        </p>
+      </div>
+      <div class="img">
+        <img src="../images/warnsdroff.JPG" alt="" />
+      </div>
+      <div class="para1">
+        <p>
+          In this problem, there is an empty chess board, and a knight starting
+          from any location in the board, our task is to check whether the
+          knight can visit all of the squares in the board or not. When It can
+          visit all of the squares, then place the number of jumps needed to
+          reach that location from the starting point. <br />
+
+          This problem can have multiple solutions, but we will try to find one
+          possible solution. <br />
+        </p>
+      </div>
+      <div class="head">
+          <h4>Input and Output</h4>
+      </div>
+      <div class="algo">
+        Input:   <br><br>
+        The size of a chess board. Generally, it is 8. as (8 x 8 is the size of a normal chess board.) <br><br>
+        Output: <br><br>
+        The knight’s moves. Each cell holds a number, that indicates where to start and the knight will reach a cell at which move. <br><br>
+        
+          0  59  38  33  30  17   8  63 <br><br>
+         37  34  31  60   9  62  29  16 <br><br>    
+         58   1  36  39  32  27  18   7 <br><br>    
+         35  48  41  26  61  10  15  28 <br><br>    
+         42  57   2  49  40  23   6  19 <br><br>    
+         47  50  45  54  25  20  11  14 <br><br>    
+         56  43  52   3  22  13  24   5 <br><br>    
+         51  46  55  44  53   4  21  12 <br><br>    
+      </div>
+      <div class="head">
+          <h4>Algorithm</h4> <br>
+          <h5>isValid(x, y, solution)</h5> <br>
+          <h5>Input − Place x and y and the solution matrix.</h5> <br>
+          <h5>Output − Check whether the (x,y) is in place and not assigned yet.</h5> <br>
+      </div>
+      <div class="algo">
+          <p>
+            Begin <br><br>
+            if 0 ≤ x ≤ Board Size and 0 ≤ y ≤ Board Size, and (x, y) is empty, then <br><br>
+               return true <br><br>
+         End <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h5>knightTour(x, y, move, sol, xMove, yMove)</h5>  <br>
+          <h5>Input − (x, y) place, number of moves, solution matrix, and possible x and y movement lists.</h5> <br>
+          <h5>Output − The updated solution matrix if it exists.</h5> <br>
+      </div>
+      <div class="algo">
+          <p>
+            Begin <br><br>
+            if move = Board Size * Board Size, then //when all squares are visited <br><br>
+               return true <br><br>
+            for k := 0 to number of possible xMovement or yMovement, do <br><br>
+               xNext := x + xMove[k] <br><br>
+               yNext := y + yMove[k] <br><br>
+               if isValid(xNext, yNext, sol) is true, then <br><br>
+                  sol[xNext, yMext] := move <br><br>
+                  if knightTour(xNext, yNext, move+1, sol, xMove, yMove), then <br><br>
+                     return true <br><br>
+                  else <br><br>
+                     remove move from the sol[xNext, yNext] to backtrack <br><br>
+            done <br><br>
+            return false <br><br>
+         End <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Example</h4>
+      </div>
+      <div class="algo">
+        #include &lt;iostream&gt; <br><br>
+            #include &lt;iomanip&gt; <br><br>
+            #define N 8  <br><br>
+            
+            using namespace std; <br><br>
+            int sol[N][N]; <br><br>
+            
+            bool isValid(int x, int y, int sol[N][N]) {     //check place is in range and not assigned yet <br><br>
+               return ( x >= 0 && x < N && y >= 0 && y < N && sol[x][y] == -1); <br><br>
+            } <br><br>
+            
+            void displaySolution() { <br><br>
+               for (int x = 0; x < N; x++) { <br><br>
+                  for (int y = 0; y < N; y++) <br><br>
+                     cout << setw(3) << sol[x][y] << " "; <br><br>
+                  cout << endl; <br><br>
+               } <br><br>
+            } <br><br>
+            
+            int knightTour(int x, int y, int move, int sol[N][N], int xMove[N], int yMove[N]) { <br><br>
+               int xNext, yNext; <br><br>
+               if (move == N*N)     //when the total board is covered <br><br>
+                  return true; <br><br>
+            
+               for (int k = 0; k < 8; k++) { <br><br>
+                  xNext = x + xMove[k]; <br><br>
+                  yNext = y + yMove[k]; <br><br>
+                  if (isValid(xNext, yNext, sol)) {     //check room is preoccupied or not <br><br>
+                     sol[xNext][yNext] = move; <br><br>
+                     if (knightTour(xNext, yNext, move+1, sol, xMove, yMove) == true) <br><br>
+                        return true; <br><br>
+                     else <br><br>
+                        sol[xNext][yNext] = -1;// backtracking <br><br>
+                  } <br><br>
+               } <br><br>
+               return false; <br><br>
+            } <br><br>
+            
+            bool findKnightTourSol() { <br><br>
+               for (int x = 0; x < N; x++)     //initially set all values to -1 of solution matrix <br><br>
+                  for (int y = 0; y < N; y++) <br><br>
+                     sol[x][y] = -1; <br><br>
+               //all possible moves for knight <br><br>
+               int xMove[8] = {  2, 1, -1, -2, -2, -1,  1,  2 }; <br><br>
+               int yMove[8] = {  1, 2,  2,  1, -1, -2, -2, -1 }; <br><br>
+               sol[0][0]  = 0;     //starting from room (0, 0) <br><br>
+            
+               if (knightTour(0, 0, 1, sol, xMove, yMove) == false) { <br><br>
+                  cout << "Solution does not exist"; <br><br>
+                  return false; <br><br>
+               } else <br><br>
+                  displaySolution(); <br><br>
+               return true; <br><br>
+            } <br><br>
+            
+            int main() { <br><br>
+               findKnightTourSol(); <br><br>
+            } <br><br>
+      </div>
+      <div class="head">
+          <h4>Output</h4>
+      </div>
+      <div class="algo">
+          <p>
+            0  59  38  33  30  17   8  63 <br><br>
+            37  34  31  60   9  62  29  16 <br><br>
+            58   1  36  39  32  27  18   7 <br><br>
+            35  48  41  26  61  10  15  28 <br><br>
+            42  57   2  49  40  23   6  19 <br><br>
+            47  50  45  54  25  20  11  14 <br><br>
+            56  43  52   3  22  13  24   5 <br><br>
+            51  46  55  44  53   4  21  12 <br><br>
+          </p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

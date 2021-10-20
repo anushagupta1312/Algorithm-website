@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking Algorithm</title>
+    <link rel="stylesheet" href="rat_in_a_maze.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Rat in a Maze</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          A Maze is given as N*N binary matrix of blocks where source block is
+          the upper left most block i.e., maze[0][0] and destination block is
+          lower rightmost block i.e., maze[N-1][N-1]. A rat starts from source
+          and has to reach the destination. The rat can move only in two
+          directions: forward and down. In the maze matrix, 0 means the block is
+          a dead end and 1 means the block can be used in the path from source
+          to destination. Note that this is a simple version of the typical Maze
+          problem. For example, a more complex version can be that the rat can
+          move in 4 directions and a more complex version can be with a limited
+          number of moves.
+        </p>
+      </div>
+      <div class="head">
+        <h4>Following is an example maze.</h4>
+        <br />
+        <h5>Gray blocks are dead ends (value = 0).</h5>
+        <br />
+      </div>
+      <div class="img">
+        <img src="../images/rat_in__a_maze.JPG" alt="" />
+      </div>
+      <div class="para1">
+        <p>Following is a binary matrix representation of the above maze.</p>
+        <br />
+      </div>
+      <div class="img">
+        <img src="../images/rat_in_a_maze2.JPG" alt="" />
+      </div>
+      <div class="para1">
+        <p>
+          Following is the solution matrix (output of program) for the above
+          input matrix.
+        </p>
+        <br />
+      </div>
+      <div class="algo">
+          <p>
+            {1, 0, 0, 0} <br><br>
+            {1, 1, 0, 0} <br><br>
+            {0, 1, 0, 0} <br><br>
+            {0, 1, 1, 1} <br><br>
+            All entries in solution path are marked as 1. <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Algorithm:  </h4>
+      </div>
+      <div class="algo">
+          <p>
+            1. Create a solution matrix, initially filled with 0’s. <br><br>
+            2. Create a recursive function, which takes initial matrix, output matrix and position of rat (i, j). <br><br>
+            3. if the position is out of the matrix or the position is not valid then return. <br><br>
+            4. Mark the position output[i][j] as 1 and check if the current position is destination or not. If destination is reached print the output matrix and return. <br><br>
+            5. Recursively call for position (i+1, j) and (i, j+1). <br><br>
+            6. Unmark position (i, j), i.e output[i][j] = 0. <br><br>
+          </p>
+      </div>
+      <div class="algo">
+          <p>
+            /* C++ program to solve Rat in <br><br>
+            a Maze problem using backtracking */ <br><br>
+            #include < stdio.h > <br><br>
+             
+            // Maze size <br><br>
+            #define N 4 <br><br>
+             
+            bool solveMazeUtil( <br><br>
+                int maze[N][N], int x, <br><br>
+                int y, int sol[N][N]); <br><br>
+             
+            /* A utility function to print <br><br>
+            solution matrix sol[N][N] */ <br><br>
+            void printSolution(int sol[N][N]) <br><br>
+            { <br><br>
+                for (int i = 0; i < N; i++) { <br><br>
+                    for (int j = 0; j < N; j++) <br><br>
+                        printf(" %d ", sol[i][j]); <br><br>
+                    printf("\n"); <br><br>
+                } <br><br>
+            } <br><br>
+             
+            /* A utility function to check if x, <br><br>
+            y is valid index for N*N maze */ <br><br>
+            bool isSafe(int maze[N][N], int x, int y) <br><br>
+            { <br><br>
+                // if (x, y outside maze) return false <br><br>
+                if ( <br><br>
+                    x >= 0 && x < N && y >= 0 <br><br>
+                    && y < N && maze[x][y] == 1) <br><br>
+                    return true; <br><br>
+             
+                return false; <br><br>
+            } <br><br>
+             
+            /* This function solves the Maze problem
+            using Backtracking. It mainly uses
+            solveMazeUtil() to solve the problem.
+            It returns false if no path is possible,
+            otherwise return true and prints the path
+            in the form of 1s. Please note that there
+            may be more than one solutions, this
+            function prints one of the feasible
+            solutions.*/
+            bool solveMaze(int maze[N][N]) <br><br>
+            { <br><br>
+                int sol[N][N] = { { 0, 0, 0, 0 }, <br><br>
+                                { 0, 0, 0, 0 }, <br><br>
+                                { 0, 0, 0, 0 }, <br><br>
+                                { 0, 0, 0, 0 } }; <br><br>
+             
+                if (solveMazeUtil( <br><br>
+                        maze, 0, 0, sol) <br><br>
+                    == false) { <br><br>
+                    printf("Solution doesn't exist"); <br><br>
+                    return false; <br><br>
+                } <br><br>
+             
+                printSolution(sol); <br><br>
+                return true; <br><br>
+            } <br><br>
+             
+            /* A recursive utility function
+            to solve Maze problem */
+            bool solveMazeUtil( <br><br>
+                int maze[N][N], int x, <br><br>
+                int y, int sol[N][N]) <br><br>
+            { <br><br>
+                // if (x, y is goal) return true <br><br>
+                if ( <br><br>
+                    x == N - 1 && y == N - 1 <br><br>
+                    && maze[x][y] == 1) { <br><br>
+                    sol[x][y] = 1; <br><br>
+                    return true; <br><br>
+                } <br><br>
+             
+                // Check if maze[x][y] is valid <br><br>
+                if (isSafe(maze, x, y) == true) { <br><br>
+                      // Check if the current block is already part of solution path.  <br><br>  
+                      if (sol[x][y] == 1) <br><br>
+                          return false; <br><br>
+                   
+                    // mark x, y as part of solution path <br><br>
+                    sol[x][y] = 1; <br><br>
+             
+                    /* Move forward in x direction */ <br><br>
+                    if (solveMazeUtil( <br><br>
+                            maze, x + 1, y, sol) <br><br>
+                        == true) <br><br>
+                        return true; <br><br>
+             
+                    /* If moving in x direction
+                    doesn't give solution then
+                    Move down in y direction */
+                    if (solveMazeUtil( <br><br>
+                            maze, x, y + 1, sol) <br><br>
+                        == true) <br><br>
+                        return true; <br><br>
+                   
+                    /* If none of the above movements
+                    work then BACKTRACK: unmark
+                    x, y as part of solution path */
+                    sol[x][y] = 0; <br><br>
+                    return false; <br><br>
+                } <br><br>
+             
+                return false; <br><br>
+            } <br><br>
+              
+            // driver program to test above function <br><br>
+            int main() <br><br>
+            { <br><br>
+                int maze[N][N] = { { 1, 0, 0, 0 }, <br><br>
+                                { 1, 1, 0, 1 }, <br><br>
+                                { 0, 1, 0, 0 }, <br><br>
+                                { 1, 1, 1, 1 } }; <br><br>
+             
+                solveMaze(maze); <br><br>
+                return 0; <br><br>
+            } <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output: </h4> <br>
+          <h5>The 1 values show the path for rat </h5>
+      </div>
+      <div class="algo">
+          <p>
+            1  0  0  0  <br><br>
+            1  1  0  0  <br><br>
+            0  1  0  0  <br><br>
+            0  1  1  1 <br><br>
+          </p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

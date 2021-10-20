@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking Algorithms</title>
+    <link rel="stylesheet" href="remove_invalid_parant.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <div id="heading">
+      <span>Remove Invalid Parentheses</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          An expression will be given which can contain open and close
+          parentheses and optionally some characters, No other operator will be
+          there in string. We need to remove minimum number of parentheses to
+          make the input string valid. If more than one valid output are
+          possible removing same number of parentheses then print all such
+          output.
+        </p>
+      </div>
+      <div class="head">
+        <h4>Examples:</h4>
+      </div>
+      <div class="algo">
+        <p>
+          Input : str = “()())()” - <br /><br />
+          Output : ()()() (())() <br /><br />
+          There are two possible solutions <br /><br />
+          "()()()" and "(())()" <br /><br /><br />
+
+          Input : str = (v)())() <br /><br />
+          Output : (v)()() (v())() <br /><br />
+        </p>
+      </div>
+      <div class="para1">
+        <p>
+          As we need to generate all possible output we will backtrack among all
+          states by removing one opening or closing bracket and check if they
+          are valid if invalid then add the removed bracket back and go for next
+          state. We will use BFS for moving through states, use of BFS will
+          assure removal of minimal number of brackets because we traverse into
+          states level by level and each level corresponds to one extra bracket
+          removal. Other than this BFS involve no recursion so overhead of
+          passing parameters is also saved. Below code has a method
+          isValidString to check validity of string, it counts open and closed
+          parenthesis at each index ignoring non-parenthesis character. If at
+          any instant count of close parenthesis becomes more than open then we
+          return false else we keep update the count variable.
+        </p>
+      </div>
+      <div class="algo">
+          <p>
+            /*  C/C++ program to remove invalid parenthesis */ <br><br>
+            #include &lt;bits/stdc++.h&gt; <br><br>
+            using namespace std; <br><br>
+             
+            //  method checks if character is parenthesis(open <br><br>
+            // or closed) <br><br>
+            bool isParenthesis(char c) <br><br>
+            { <br><br>
+                return ((c == '(') || (c == ')')); <br><br>
+            } <br><br>
+             
+            //  method returns true if string contains valid <br><br>
+            // parenthesis <br><br>
+            bool isValidString(string str) <br><br>
+            { <br><br>
+                int cnt = 0; <br><br>
+                for (int i = 0; i < str.length(); i++) <br><br>
+                { <br><br>
+                    if (str[i] == '(') <br><br>
+                        cnt++; <br><br>
+                    else if (str[i] == ')') <br><br>
+                        cnt--; <br><br>
+                    if (cnt < 0) <br><br>
+                        return false; <br><br>
+                } <br><br>
+                return (cnt == 0); <br><br>
+            } <br><br>
+             
+            //  method to remove invalid parenthesis <br><br>
+            void removeInvalidParenthesis(string str) <br><br>
+            { <br><br>
+                if (str.empty()) <br><br>
+                    return ; <br><br>
+             
+                //  visit set to ignore already visited string <br><br>
+                set < string > visit; <br><br>
+              
+                //  queue to maintain BFS <br><br>
+                queue < string > q; <br><br>
+                string temp; <br><br>
+                bool level; <br><br>
+             
+                //  pushing given string as starting node into queue <br><br>
+                q.push(str); <br><br>
+                visit.insert(str); <br><br>
+                while (!q.empty()) <br><br>
+                { <br><br>
+                    str = q.front();  q.pop(); <br><br>
+                    if (isValidString(str)) <br><br>
+                    { <br><br>
+                        cout << str << endl; <br><br>
+             
+                        // If answer is found, make level true <br><br>
+                        // so that valid string of only that level <br><br>
+                        // are processed. <br><br>
+                        level = true; <br><br>
+                    } <br><br>
+                    if (level) <br><br>
+                        continue; <br><br>
+                    for (int i = 0; i < str.length(); i++) <br><br>
+                    { <br><br>
+                        if (!isParenthesis(str[i])) <br><br>
+                            continue; <br><br>
+             
+                        // Removing parenthesis from str and <br><br>
+                        // pushing into queue,if not visited already <br><br>
+                        temp = str.substr(0, i) + str.substr(i + 1); <br><br>
+                        if (visit.find(temp) == visit.end()) <br><br>
+                        { <br><br>
+                            q.push(temp); <br><br>
+                            visit.insert(temp); <br><br>
+                        } <br><br>
+                    } <br><br>
+                } <br><br>
+            } <br><br>
+             
+            //  Driver code to check above methods <br><br>
+            int main() <br><br>
+            { <br><br>
+                string expression = "()())()"; <br><br>
+                removeInvalidParenthesis(expression); <br><br>
+             
+                expression = "()v)"; <br><br>
+                removeInvalidParenthesis(expression); <br><br>
+             
+                return 0; <br><br>
+            } <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output:  </h4>
+      </div>
+      <div class="algo">
+          <p>
+            (())() <br><br>
+            ()()() <br><br>
+            (v) <br><br>
+            ()v <br><br>
+          </p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

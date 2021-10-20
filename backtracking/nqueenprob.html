@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking</title>
+    <link rel="stylesheet" href="nqueenprob.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>N Queen Problem</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          This problem is to find an arrangement of N queens on a chess board,
+          such that no queen can attack any other queens on the board. <br />
+          <br />
+
+          The chess queens can attack in any direction as horizontal, vertical,
+          horizontal and diagonal way. <br />
+          <br />
+
+          A binary matrix is used to display the positions of N Queens, where no
+          queens can attack other queens. <br />
+          <br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Input and Output</h4>
+      </div>
+      <div class="algo">
+        <p>
+          Input: <br />
+          <br />
+          The size of a chess board. Generally, it is 8. as (8 x 8 is the size
+          of a normal chess board.) <br />
+          <br />
+          Output: <br />
+          <br />
+          The matrix that represents in which row and column the N Queens can be
+          placed. <br />
+          <br />
+          If the solution does not exist, it will return false. <br />
+          <br />
+
+          1 0 0 0 0 0 0 0 <br />
+          <br />
+          0 0 0 0 0 0 1 0 <br />
+          <br />
+          0 0 0 0 1 0 0 0 <br />
+          <br />
+          0 0 0 0 0 0 0 1 <br />
+          <br />
+          0 1 0 0 0 0 0 0 <br />
+          <br />
+          0 0 0 1 0 0 0 0 <br />
+          <br />
+          0 0 0 0 0 1 0 0 <br />
+          <br />
+          0 0 1 0 0 0 0 0 <br />
+          <br />
+
+          In this output, the value 1 indicates the correct place for the
+          queens. <br />
+          <br />
+          The 0 denotes the blank spaces on the chess board. <br />
+          <br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Algorithm</h4>
+        <br />
+        <h5>isValid(board, row, col)</h5>
+        <br />
+        <h5>Input: The chess board, row and the column of the board.</h5>
+        <br />
+        <h5>
+          Output − True when placing a queen in row and place position is a
+          valid or not.
+        </h5>
+        <br />
+      </div>
+      <div class="algo">
+        <p>
+          Begin <br /><br />
+          if there is a queen at the left of current col, then <br /><br />
+          return false <br /><br />
+          if there is a queen at the left upper diagonal, then <br /><br />
+          return false <br /><br />
+          if there is a queen at the left lower diagonal, then <br /><br />
+          return false; <br /><br />
+          return true //otherwise it is valid place <br /><br />
+          End <br /><br />
+        </p>
+      </div>
+      <div class="head">
+        <h5>solveNQueen(board, col)</h5>
+        <br />
+        <h5>
+          Input − The chess board, the col where the queen is trying to be
+          placed.
+        </h5> <br>
+        <h5>Output − The position matrix where queens are placed.</h5> <br>
+      </div>
+      <div class="algo">
+          <p>
+            Begin <br><br>
+            if all columns are filled, then <br><br>
+               return true <br><br>
+            for each row of the board, do <br><br>
+               if isValid(board, i, col), then <br><br>
+                  set queen at place (i, col) in the board <br><br>
+                  if solveNQueen(board, col+1) = true, then <br><br>
+                     return true <br><br>
+                  otherwise remove queen from place (i, col) from board. <br><br>
+            done <br><br>
+            return false <br><br>
+         End <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Example</h4>
+      </div>
+      <div class="algo">
+          <p>
+            #include&lt;iostream&gt; <br><br>
+                using namespace std; <br><br>
+                #define N 8 <br><br>
+                
+                void printBoard(int board[N][N]) { <br><br>
+                   for (int i = 0; i < N; i++) { <br><br>
+                      for (int j = 0; j < N; j++) <br><br>
+                         cout << board[i][j] << " "; <br><br>
+                      cout << endl; <br><br>
+                   } <br><br>
+                } <br><br>
+                
+                bool isValid(int board[N][N], int row, int col) { <br><br>
+                   for (int i = 0; i < col; i++)    //check whether there is queen in the left or not <br><br>
+                      if (board[row][i]) <br><br>
+                         return false; <br><br>
+                   for (int i=row, j=col; i>=0 && j>=0; i--, j--) <br><br>
+                      if (board[i][j])       //check whether there is queen in the left upper diagonal or not <br><br>
+                         return false; <br><br>
+                   for (int i=row, j=col; j>=0 && i< N; i++, j--) <br><br>
+                      if (board[i][j])      //check whether there is queen in the left lower diagonal or not <br><br>
+                         return false; <br><br>
+                   return true; <br><br>
+                } <br><br>
+                 
+                bool solveNQueen(int board[N][N], int col) { <br><br>
+                   if (col >= N)           //when N queens are placed successfully <br><br>
+                      return true; <br><br>
+                   for (int i = 0; i < N; i++) {     //for each row, check placing of queen is possible or not <br><br>
+                      if (isValid(board, i, col) ) { <br><br>
+                         board[i][col] = 1;      //if validate, place the queen at place (i, col) <br><br>
+                         if ( solveNQueen(board, col + 1))    //Go for the other columns recursively <br><br>
+                            return true; <br><br>
+                                   
+                         board[i][col] = 0;        //When no place is vacant remove that queen <br><br>
+                      } <br><br>
+                   } <br><br>
+                   return false;       //when no possible order is found <br><br>
+                } <br><br>
+                
+                bool checkSolution() { <br><br>
+                   int board[N][N]; <br><br>
+                   for(int i = 0; i< N; i++) <br><br>
+                      for(int j = 0; j< N; j++) <br><br>
+                         board[i][j] = 0;      //set all elements to 0 <br><br>
+                               
+                   if ( solveNQueen(board, 0) == false ) {     //starting from 0th column <br><br>
+                      cout << "Solution does not exist"; <br><br>
+                      return false; <br><br>
+                   } <br><br>
+                   printBoard(board); <br><br>
+                   return true; <br><br>
+                } <br><br>
+                
+                int main() { <br><br>
+                   checkSolution(); <br><br>
+                } <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output</h4>
+      </div>
+      <div class="algo">
+          <p>
+            1 0 0 0 0 0 0 0 <br><br>
+            0 0 0 0 0 0 1 0 <br><br>
+            0 0 0 0 1 0 0 0 <br><br>
+            0 0 0 0 0 0 0 1 <br><br>
+            0 1 0 0 0 0 0 0 <br><br>
+            0 0 0 1 0 0 0 0 <br><br>
+            0 0 0 0 0 1 0 0 <br><br>
+            0 0 1 0 0 0 0 0 <br><br>
+          </p>
+      </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

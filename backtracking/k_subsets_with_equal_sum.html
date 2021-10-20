@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking Algorithm</title>
+    <link rel="stylesheet" href="k_subsets_with_equal_sum.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Partition of a set into K subsets with equal sum</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          Given an integer array of N elements, the task is to divide this array
+          into K non-empty subsets such that the sum of elements in every subset
+          is same. All elements of this array should be part of exactly one
+          partition.
+        </p>
+      </div>
+
+      <div class="head">
+        <h4>Examples:</h4>
+      </div>
+      <div class="algo">
+        <p>
+          Input : arr = [2, 1, 4, 5, 6], K = 3 <br /><br />
+          Output : Yes <br /><br />
+          we can divide above array into 3 parts with equal <br /><br />
+          sum as [[2, 4], [1, 5], [6]] <br /><br />
+
+          Input : arr = [2, 1, 5, 5, 6], K = 3 <br /><br />
+          Output : No <br /><br />
+          It is not possible to divide above array into 3 <br /><br />
+          parts with equal sum <br /><br />
+        </p>
+      </div>
+      <div class="para1">
+        <p>
+          We can solve this problem recursively, we keep an array for sum of
+          each partition and a boolean array to check whether an element is
+          already taken into some partition or not. <br />
+          First we need to check some base cases, <br />
+          If K is 1, then we already have our answer, complete array is only
+          subset with same sum. <br />
+          If N < K, then it is not possible to divide array into subsets with
+          equal sum, because we can’t divide the array into more than N parts.
+          <br />
+          If sum of array is not divisible by K, then it is not possible to
+          divide the array. We will proceed only if k divides sum. Our goal
+          reduces to divide array into K parts where sum of each part should be
+          array_sum/K <br />
+          In below code a recursive method is written which tries to add array
+          element into some subset. If sum of this subset reaches required sum,
+          we iterate for next part recursively, otherwise we backtrack for
+          different set of elements. If number of subsets whose sum reaches the
+          required sum is (K-1), we flag that it is possible to partition array
+          into K parts with equal sum, because remaining elements already have a
+          sum equal to required sum. <br />
+        </p>
+      </div>
+      <div class="algo">
+        <p>
+          // C++ program to check whether an array can be <br /><br />
+          // partitioned into K subsets of equal sum <br /><br />
+          #include < bits/stdc++.h > <br /><br />
+          using namespace std; <br /><br />
+
+          // Recursive Utility method to check K equal sum <br /><br />
+          // subsetition of array <br /><br />
+          /** <br /><br />
+          array - given input array <br /><br />
+          subsetSum array - sum to store each subset of the array <br /><br />
+          taken - boolean array to check whether element <br /><br />
+          is taken into sum partition or not <br /><br />
+          K - number of partitions needed <br /><br />
+          N - total number of element in array <br /><br />
+          curIdx - current subsetSum index <br /><br />
+          limitIdx - lastIdx from where array element should <br /><br />
+          be taken */ <br /><br />
+          bool isKPartitionPossibleRec(int arr[], int subsetSum[], bool taken[],
+          <br /><br />
+          int subset, int K, int N, int curIdx, int limitIdx) <br /><br />
+          { <br /><br />
+          if (subsetSum[curIdx] == subset) <br /><br />
+          { <br /><br />
+          /* current index (K - 2) represents (K - 1) subsets of equal
+          <br /><br />
+          sum last partition will already remain with sum 'subset'*/
+          <br /><br />
+          if (curIdx == K - 2) <br /><br />
+          return true; <br /><br />
+
+          // recursive call for next subsetition <br /><br />
+          return isKPartitionPossibleRec(arr, subsetSum, taken, subset,
+          <br /><br />
+          K, N, curIdx + 1, N - 1); <br /><br />
+          } <br /><br />
+
+          // start from limitIdx and include elements into current partition
+          <br /><br />
+          for (int i = limitIdx; i >= 0; i--) <br /><br />
+          { <br /><br />
+          // if already taken, continue <br /><br />
+          if (taken[i]) <br /><br />
+          continue; <br /><br />
+          int tmp = subsetSum[curIdx] + arr[i]; <br /><br />
+
+          // if temp is less than subset then only include the element
+          <br /><br />
+          // and call recursively <br /><br />
+          if (tmp <= subset) <br /><br />
+          { <br /><br />
+          // mark the element and include into current partition sum
+          <br /><br />
+          taken[i] = true; <br /><br />
+          subsetSum[curIdx] += arr[i]; <br /><br />
+          bool nxt = isKPartitionPossibleRec(arr, subsetSum, taken, <br /><br />
+          subset, K, N, curIdx, i - 1); <br /><br />
+
+          // after recursive call unmark the element and remove from
+          <br /><br />
+          // subsetition sum <br /><br />
+          taken[i] = false; <br /><br />
+          subsetSum[curIdx] -= arr[i]; <br /><br />
+          if (nxt) <br /><br />
+          return true; <br /><br />
+          } <br /><br />
+          } <br /><br />
+          return false; <br /><br />
+          } <br /><br />
+
+          // Method returns true if arr can be partitioned into K subsets
+          <br /><br />
+          // with equal sum <br /><br />
+          bool isKPartitionPossible(int arr[], int N, int K) <br /><br />
+          { <br /><br />
+          // If K is 1, then complete array will be our answer <br /><br />
+          if (K == 1) <br /><br />
+          return true; <br /><br />
+
+          // If total number of partitions are more than N, then <br /><br />
+          // division is not possible <br /><br />
+          if (N < K) <br /><br />
+          return false; <br /><br />
+
+          // if array sum is not divisible by K then we can't divide
+          <br /><br />
+          // array into K partitions <br /><br />
+          int sum = 0; <br /><br />
+          for (int i = 0; i < N; i++) <br /><br />
+          sum += arr[i]; <br /><br />
+          if (sum % K != 0) <br /><br />
+          return false; <br /><br />
+
+          // the sum of each subset should be subset (= sum / K) <br /><br />
+          int subset = sum / K; <br /><br />
+          int subsetSum[K]; <br /><br />
+          bool taken[N]; <br /><br />
+
+          // Initialize sum of each subset from 0 <br /><br />
+          for (int i = 0; i < K; i++) <br /><br />
+          subsetSum[i] = 0; <br /><br />
+
+          // mark all elements as not taken <br /><br />
+          for (int i = 0; i < N; i++) <br /><br />
+          taken[i] = false; <br /><br />
+
+          // initialize first subsubset sum as last element of <br /><br />
+          // array and mark that as taken <br /><br />
+          subsetSum[0] = arr[N - 1]; <br /><br />
+          taken[N - 1] = true; <br /><br />
+
+          // call recursive method to check K-substitution condition
+          <br /><br />
+          return isKPartitionPossibleRec(arr, subsetSum, taken, <br /><br />
+          subset, K, N, 0, N - 1); <br /><br />
+          } <br /><br />
+
+          // Driver code to test above methods <br /><br />
+          int main() <br /><br />
+          { <br /><br />
+          int arr[] = {2, 1, 4, 5, 3, 3}; <br /><br />
+          int N = sizeof(arr) / sizeof(arr[0]); <br /><br />
+          int K = 3; <br /><br />
+
+          if (isKPartitionPossible(arr, N, K)) <br /><br />
+          cout << "Partitions into equal sum is possible.\n"; <br /><br />
+          else <br /><br />
+          cout << "Partitions into equal sum is not possible.\n"; <br /><br />
+          } <br /><br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Output:</h4> <br>
+        <h5>Partitions into equal sum is possible.</h5> <br>
+      </div>
+
+    </div>
+    <footer class="footer">
+      <div class="footer_div">
+        <div class="footer_row">
+          <div class="footer_col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Our Service</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="#">Algorithms</a></li>
+              <li><a href="#">Data Structures</a></li>
+              <li><a href="#">Previous Year Papers</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Support Us</h4>
+            <ul>
+              <li><a href="#">Write an Article</a></li>
+              <li><a href="#">Write Interview Experience</a></li>
+              <li><a href="#">Rate Us</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="#"><i class="fa fa-facebook-f"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        id="scrollTopBtn"
+        title="Scroll to Top"
+        type="button"
+        class="btn btn-success"
+        style="display: inline-block"
+      >
+        ▲
+      </button>
+    </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

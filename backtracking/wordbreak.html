@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backtracking Algorithm</title>
+    <link rel="stylesheet" href="wordbreak.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Word Break Algorithm</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          In the input of this problem, one sentence is given without spaces,
+          another dictionary is also provided of some valid English words. We
+          have to find the possible ways to break the sentence in individual
+          dictionary words. <br />
+
+          We will try to search from the left of the string to find a valid word
+          when a valid word is found, we will search for words in the next part
+          of that string. <br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Input and Output</h4>
+      </div>
+      <div class="algo">
+        <p>
+          Input: A set of valid words as dictionary, and a string where
+          different words are placed without spaces. <br /><br />
+          Dictionary: {mobile, sam, sung, man, mango, icecream, and, go, i,
+          love, ice, cream} <br /><br />
+          Given String: “ilovemangoicecream” <br /><br />
+          Output: All possible ways to break the string into given words.
+          <br /><br />
+          i love man go ice cream <br /><br />
+          i love man go icecream <br /><br />
+          i love mango ice cream <br /><br />
+          i love mango icecream <br /><br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Algorithm</h4>
+        <br />
+        <h5>wordBreak(string, n, result)</h5>
+        <br />
+        <h5>
+          Input − Given string, length of the string, the separated strings.
+        </h5>
+        <br />
+        <h5>Output − Separate string using a dictionary.</h5>
+        <br />
+      </div>
+      <div class="algo">
+        <p>
+          Begin <br /><br />
+          for i := 0 to n, do <br /><br />
+          subStr := substring of given string from (0..i) <br /><br />
+          if subStr is in dictionary, then <br /><br />
+          if i = n, then <br /><br />
+          result := result + subStr <br /><br />
+          display the result <br /><br />
+          return <br /><br />
+          wordBreak(substring from (i..n-i), n-i, result, subStr, ‘space’)
+          <br /><br />
+          done <br /><br />
+          End <br /><br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Example</h4>
+      </div>
+      <div class="algo">
+        #include &lt;iostream&gt; <br /><br />
+        #define N 13 <br /><br />
+        using namespace std; <br /><br />
+
+        string dictionary[N] = {"mobile","samsung","sam","sung","man","mango",
+        "icecream","and", <br /><br />
+        "go","i","love","ice","cream"}; <br /><br />
+
+        int isInDict(string word){ //check whether the word is in dictionary or
+        not <br /><br />
+        for (int i = 0; i < N; i++) <br /><br />
+        if (dictionary[i].compare(word) == 0) <br /><br />
+        return true; <br /><br />
+        return false; <br /><br />
+        } <br /><br />
+
+        void wordBreak(string str, int n, string result) { <br /><br />
+        for (int i=1; i<=n; i++) { <br /><br />
+        string subStr = str.substr(0, i); //get string from 0 to ith location of
+        the string <br /><br />
+        if (isInDict(subStr)) { //if subStr is found in the dictionary
+        <br /><br />
+        if (i == n) { <br /><br />
+        result += subStr; //add substring in the result. <br /><br />
+        cout << result << endl; <br /><br />
+        return; <br /><br />
+        } <br /><br />
+        wordBreak(str.substr(i, n-i), n-i, result + subStr + " "); //otherwise
+        break rest part <br /><br />
+        } <br /><br />
+        } <br /><br />
+        } <br /><br />
+
+        int main() { <br /><br />
+        string str="iloveicecreamandmango"; <br /><br />
+        wordBreak(str, str.size(),""); <br /><br />
+        } <br /><br />
+      </div>
+      <div class="head">Output</div>
+      <div class="algo">
+        <p>
+          i love man go ice cream <br /><br />
+          i love man go icecream <br /><br />
+          i love mango ice cream <br /><br />
+          i love mango icecream <br /><br />
+        </p>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer_div">
+        <div class="footer_row">
+          <div class="footer_col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Our Service</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="#">Algorithms</a></li>
+              <li><a href="#">Data Structures</a></li>
+              <li><a href="#">Previous Year Papers</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Support Us</h4>
+            <ul>
+              <li><a href="#">Write an Article</a></li>
+              <li><a href="#">Write Interview Experience</a></li>
+              <li><a href="#">Rate Us</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="#"><i class="fa fa-facebook-f"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        id="scrollTopBtn"
+        title="Scroll to Top"
+        type="button"
+        class="btn btn-success"
+        style="display: inline-block"
+      >
+        ▲
+      </button>
+    </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>
