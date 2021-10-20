@@ -1,4 +1,4 @@
-
+/* js for navbar */
 function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -44,7 +44,7 @@ const quote = document.getElementById("quotepara");
 fetch('https://api.quotable.io/random?maxLength=50')
 .then(response => response.json())
 .then(data => {
-  quote.innerHTML = `${data.content} —${data.author}` })
+  quote.innerHTML = `"${data.content} —${data.author}"` })
   // for-loop
 setInterval(() => {
   fetch('https://api.quotable.io/random?maxLength=50')
@@ -52,7 +52,5 @@ setInterval(() => {
   .then(data => {
     quote.innerHTML = `"${data.content} —${data.author}"`
   })
-  },5000);
-
-
+  },60*1000*60);
 
