@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Search</title>
+    <link rel="stylesheet" href="bsearch.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="#">Home</a>
+        <a href="#">Previous year paper</a>
+        <a href="#">Algorithms</a>
+        <a href="#">Notes</a>
+        <a href="#" class="active">About us</a>
+        <input type="text" placeholder="Search Algorithm" />
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="main">
+        <div id="heading"><span>Binary Search</span></div>
+        <div id="container">
+            <div id="box1">
+                <p>
+                    Given a sorted array arr[] of n elements, write a function to search a given element x in arr[].
+                    A simple approach is to do a linear search. The time complexity of the above algorithm is O(n).
+                    Another approach to perform the same task is using Binary Search.
+                    <br>
+                    <strong>Binary Search:</strong> Search a sorted array by repeatedly dividing the search interval in
+                    half. Begin with
+                    an interval covering the whole array. If the value of the search key is less than the item in the
+                    middle of the interval, narrow the interval to the lower half. Otherwise, narrow it to the upper
+                    half. Repeatedly check until the value is found or the interval is empty.
+                    <br>
+                    <br>
+                <h4>Example :</h4>
+                <div class="img"><img src="bsearch.jpg" alt=""></div>
+                <br>
+                The idea of binary search is to use the information that the array is sorted and reduce the time
+                complexity to O(Log n).
+                <br>
+                We basically ignore half of the elements just after one comparison.
+                <ol class="bsearch">
+                    <li>Compare x with the middle element.</li>
+                    <li>If x matches with the middle element, we return the mid index.</li>
+                    <li>Else If x is greater than the mid element, then x can only lie in the right half subarray after
+                        the mid element. So we recur for the right half.</li>
+                    <li>Else (x is smaller) recur for the left half.</li>
+                </ol>
+                <div class="code upcentre">
+                    <span class="comm">/* C++ program to implement recursive Binary Search */</span>
+                    #include &lt;bits/stdc++.h&gt; <br>
+                    <span class="int">using namespace</span> std; <br> <br>
+                    <span class="comm">/* A iterative binary search function. It returns
+                        location of x in given array arr[l..r] if present,
+                        otherwise -1 */</span> <br>
+                    <span class="int">int</span> binarySearch(<span class="int">int</span> arr[], <span
+                        class="int">int</span>
+                    l, <span class="int">int</span> r, <span class="int">int</span> x) <br>
+                    { <br>
+                    <span class="int">while</span> (l <= r) { <br>
+                        <span class="int">int</span> m = l + (r - l) / 2; <br> <br>
+                        <span class="comm">/* Check if x is present at mid */</span> <br>
+                        <span class="int">if</span>(arr[m] == x) <br>
+                        <span class="int">return</span> m; <br> <br>
+                        <span class="comm">/* If x greater, ignore left half */</span> <br>
+                        <span class="int">if</span>(arr[m] < x) <br>
+                            l = m + 1; <br> <br>
+                            <span class="comm">/* If x is smaller, ignore right half */</span> <br>
+                            <span class="int">else</span> <br> r = m - 1; <br>
+                            } <br> <br>
+                            <span class="comm">/* if we reach here, then element was
+                                not present */</span> <br>
+                            <span class="int">return</span> -1; <br>
+                            } <br> <br> <br>
+                            <span class="int">int</span> main(<span class="int">void</span>) <br>
+                            { <br>
+                            <span class="int">int</span> arr[] = { 2, 3, 4, 10, 40 }; <br>
+                            <span class="int">int</span> x = 10; <br>
+                            <span class="int">int</span> n = <span class="int">sizeof</span>(arr) / <span
+                                class="int">sizeof</span>(arr[0]); <br>
+                            <span class="int">int</span> result = binarySearch(arr, 0, n - 1, x); <br>
+                            (result == -1) <br>
+                            ? cout &lt;&lt; "<span class="int">Element is not present in array</span>" <br>
+                            : cout &lt;&lt; "<span class="int">Element is present at index </span>" &lt;&lt; result;
+                            <br>
+                            <span class="int">return</span> 0; <br>
+                            }
+                </div>
+                <h4>Output</h4>
+                <div class="code upcentre">
+                    Element is present at index 3
+                </div>
+                <h4>Time Complexity: </h4>
+                The time complexity of Binary Search can be written as <br>
+                <div class="code upcentre">
+                    T(n) = T(n/2) + c
+                </div>
+                <div>
+                    <strong>Auxiliary Space:</strong>  O(1) 
+                </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+            <div class="footer_row">
+                <div class="footer_col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Our Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">Algorithms</a></li>
+                        <li><a href="#">Data Structures</a></li>
+                        <li><a href="#">Previous Year Papers</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Support Us</h4>
+                    <ul>
+                        <li><a href="#">Write an Article</a></li>
+                        <li><a href="#">Write Interview Experience</a></li>
+                        <li><a href="#">Rate Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="scrollTopBtn" title="Scroll to Top" type="button" class="btn btn-success"
+            style="display: inline-block;">▲</button>
+    </footer>
+</body>
+<script src="common.js"></script>
+
+</html>
