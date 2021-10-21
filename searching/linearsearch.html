@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear Search</title>
+    <link rel="stylesheet" href="linearsearch.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="#">Home</a>
+        <a href="#">Previous year paper</a>
+        <a href="#">Algorithms</a>
+        <a href="#">Notes</a>
+        <a href="#" class="active">About us</a>
+        <input type="text" placeholder="Search Algorithm" />
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="main">
+        <div id="heading"><span>Linear Search</span></div>
+        <div id="container">
+            <div id="box1">
+                <p>
+                    A simple approach is to do a <strong>linear search</strong>, i.e
+                <ul class="lsearch">
+                    <li>Start from the leftmost element of arr[] and one by one compare x with each element of arr[]
+                    </li>
+                    <li>If x matches with an element, return the index.</li>
+                    <li>If x doesn’t match with any of elements, return -1.</li>
+                </ul>
+                <br>
+                <div class="img"><img src="Lsearch.jpg" alt=""></div>
+                <br>
+                <h4>Example</h4>
+                <div class="code upcentre">
+                    <span class="comm">/* C++ code to linearly search x in arr[]. If x
+                         is present then return its location, otherwise
+                         return -1 */</span> <br>
+                    #include &lt;iostream&gt; <br>
+                    using namespace std; <br> <br>
+                    <span class="int">int</span> search(<span class="int">int</span> arr[], <span class="int">int</span>
+                    n, <span class="int">int</span> x) <br>
+                    { <br>
+                    <span class="int">int</span> i; <br>
+                    <span class="int">for</span>(i = 0; i &lt; n; i++)  <br>
+                    &nbsp;<span class="int">if</span>(arr[i] == x) <br>
+                    &nbsp;&nbsp;<span class="int">return</span> i; <br>
+                    <span class="int">return</span> -1; <br>
+                    } <br>
+                    <br>
+                    <span class="int">int</span> main(<span class="int">void</span>) <br>
+                    { <br>
+                        <span class="int">int</span> arr[] = { 2, 3, 4, 10, 40 }; <br>
+                        <span class="int">int</span> x = 10; <br>
+                        <span class="int">int</span> n = <span class="int">sizeof</span>(arr) / <span class="int">sizeof</span>(arr[0]); <br>
+                        <br>
+                        <span class="comm">// Function call</span> <br>
+                        <span class="int">int</span> result = search(arr, n, x); <br>
+                        (result == -1) <br>
+                        ? cout &lt;&lt; "<span class="int">Element is not present in array</span>" <br>
+                        : cout &lt;&lt; "<span class="int">Element is present at index </span>" &lt;&lt; result; <br>
+                        <span class="int">return</span> 0; <br>
+                    }
+                </div>
+                <h4>Output</h4>
+                <div class="code upcentre">
+                    Element is present at index 3
+                </div>
+                The <strong>time complexity</strong> of the above algorithm is O(n).
+                <div>
+                    Linear search is rarely used practically because other search algorithms such as the binary search
+                    algorithm and hash tables allow significantly faster-searching comparison to Linear search.
+                </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+            <div class="footer_row">
+                <div class="footer_col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Our Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">Algorithms</a></li>
+                        <li><a href="#">Data Structures</a></li>
+                        <li><a href="#">Previous Year Papers</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Support Us</h4>
+                    <ul>
+                        <li><a href="#">Write an Article</a></li>
+                        <li><a href="#">Write Interview Experience</a></li>
+                        <li><a href="#">Rate Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="scrollTopBtn" title="Scroll to Top" type="button" class="btn btn-success"
+            style="display: inline-block;">▲</button>
+    </footer>
+</body>
+<script src="common.js"></script>
+
+</html>
