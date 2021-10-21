@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jump Search</title>
+    <link rel="stylesheet" href="jumpsearch.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="#">Home</a>
+        <a href="#">Previous year paper</a>
+        <a href="#">Algorithms</a>
+        <a href="#">Notes</a>
+        <a href="#" class="active">About us</a>
+        <input type="text" placeholder="Search Algorithm" />
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="main">
+        <div id="heading"><span>Jump Search</span></div>
+        <div id="container">
+            <div id="box1">
+                <p>
+                    Like Binary Search, Jump Search is a searching algorithm for sorted arrays. The basic idea is to
+                    check fewer elements (than linear search) by jumping ahead by fixed steps or skipping some elements
+                    in place of searching all elements.
+                    <br>
+                    For example, suppose we have an array arr[] of size n and block (to be jumped) size m. Then we
+                    search at the indexes arr[0], arr[m], arr[2m]…..arr[km] and so on. Once we find the interval
+                    (arr[km] &lt; x &lt; arr[(k+1)m]), we perform a linear search operation from the index km to find
+                    the
+                    element x. Let’s consider the following array: (0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144,
+                    233, 377, 610). Length of the array is 16. Jump search will find the value of 55 with the
+                    following steps assuming that the block size to be jumped is 4. <br>
+                    <strong>STEP 1:</strong> Jump from index 0 to index 4; <br>
+                    <strong>STEP 2:</strong> Jump from index 4 to index 8; <br>
+                    <strong>STEP 3:</strong> Jump from index 8 to index 12; <br>
+                    <strong>STEP 4:</strong> Since the element at index 12 is greater than 55 we will jump back a step
+                    to come to index 8. <br>
+                    <strong>STEP 5:</strong> Perform linear search from index 8 to get the element 55. <br>
+                    <strong>What is the optimal block size to be skipped?</strong> <br>
+                    In the worst case, we have to do n/m jumps and if the last checked value is greater than the element
+                    to be searched for, we perform m-1 comparisons more for linear search. Therefore the total number of
+                    comparisons in the worst case will be ((n/m) + m-1). The value of the function ((n/m) + m-1) will be
+                    minimum when m = √n. Therefore, the best step size is m = √n. <br>
+                    <br>
+                <div class="code upcentre">
+                    <span class="comm">/* C++ program to implement Jump Search */</span> <br>
+                    #include &lt;bits/stdc++.h&gt; <br>
+                    <span class="int">using namespace</span> std; <br> 
+                    <span class="int">int</span> jumpSearch(<span class="int">int</span> arr[], <span class="int">int</span>
+                    x, <span class="int">int</span> n) <br>
+                    { <br>
+                        <span class="comm">/* Finding block size to be jumped */</span> <br>
+                    <span class="int">int</span> step = <span class="inblt">sqrt</span>(n); <br>
+                    <span class="comm">/* Finding the block where element is
+                        present (if it is present) */</span> <br>
+                        <span class="int">int</span> prev = 0; <br>
+                    <span class="int">while</span> (arr[min(step, n)-1] &lt; x) <br>
+                    { <br>
+                        prev = step; <br>
+                         step += <span class="inblt">sqrt</span>(n); <br>
+                    <span class="int">if</span> (prev >= n) <br>
+                    <span class="int">return</span> -1; <br>
+                    } <br> <br>
+                    <span class="comm">/* Doing a linear search for x in block
+                       beginning with prev. */</span> <br>
+                       <span class="int">while</span> (arr[prev] &lt; x) <br>
+                       { <br>
+                        prev++; <br>
+                        <span class="comm">/* If we reached next block or end of
+                             array, element is not present. */</span> <br>
+                       <span class="int">if</span> (prev == min(step, n)) <br>
+                       <span class="int">return</span> -1; <br>
+                       } <br> <br>
+                       <span class="comm">/* If element is found */</span> <br>
+                       <span class="int">if</span> (arr[prev] == x) <br>
+                       <span class="int">return</span> prev; <br> <br>
+                       <span class="int">return</span> -1; <br>
+                    } <br>
+                    <br>
+                    <span class="int">int</span> main(<span class="int">void</span>) <br>
+                    { <br>
+                    <span class="int">int</span> arr[] = { 0, 1, 1, 2, 3, 5, 8, 13, 21,
+                        34, 55, 89, 144, 233, 377, 610 }; <br>
+                    <span class="int">int</span> x = 55; <br>
+                    <span class="int">int</span> n = <span class="int">sizeof</span>(arr) / <span
+                        class="int">sizeof</span>(arr[0]); <br>
+                    <br> 
+                    <span class="comm">/* Find the index of 'x' using Jump Search */</span> <br>
+                    <span class="int">int</span> index = jumpSearch(arr, x, n); <br> <br>
+                    <span class="comm">/* Print the index where 'x' is located */</span> <br>
+                   cout &lt;&lt; "<span class="int"> \nNumber </span>" &lt;&lt; x &lt;&lt; "<span class="int"> is at index </span>" &lt;&lt; index;<br>
+                    <span class="int">return</span> 0; <br>
+                    }
+                </div>
+                <h4>Output : </h4>
+                <div class="code upcentre">
+                    Number 55 is at index 10
+                </div>
+                <strong>Time Complexity :</strong> O(√n) <br>
+                <strong>Auxiliary Space :</strong> O(1) <br>
+                <strong>Important points: </strong> <br>
+                <ul class="jsearch">
+                    <li>Works only sorted arrays.</li>
+                    <li>The optimal size of a block to be jumped is (√n). This makes the time complexity of Jump Search
+                        O(√n).</li>
+                    <li>The time complexity of Jump Search is between Linear Search ( ( O(n) ) and Binary Search ( O
+                        (Log n) ).</li>
+                    <li>Binary Search is better than Jump Search, but Jump search has an advantage that we traverse back
+                        only once (Binary Search may require up to O(Log n) jumps, consider a situation where the
+                        element to be searched is the smallest element or smaller than the smallest). So in a system
+                        where binary search is costly, we use Jump Search.</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+            <div class="footer_row">
+                <div class="footer_col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Our Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">Algorithms</a></li>
+                        <li><a href="#">Data Structures</a></li>
+                        <li><a href="#">Previous Year Papers</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Support Us</h4>
+                    <ul>
+                        <li><a href="#">Write an Article</a></li>
+                        <li><a href="#">Write Interview Experience</a></li>
+                        <li><a href="#">Rate Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="scrollTopBtn" title="Scroll to Top" type="button" class="btn btn-success"
+            style="display: inline-block;">▲</button>
+    </footer>
+</body>
+<script src="common.js"></script>
+
+</html>
