@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exponential Search</title>
+    <link rel="stylesheet" href="expsearch.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="#">Home</a>
+        <a href="#">Previous year paper</a>
+        <a href="#">Algorithms</a>
+        <a href="#">Notes</a>
+        <a href="#" class="active">About us</a>
+        <input type="text" placeholder="Search Algorithm" />
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="main">
+        <div id="heading"><span>Exponential Search</span></div>
+        <div id="container">
+            <div id="box1">
+                <p>
+                    We Know, linear search and binary search
+                    <br>
+                    Exponential search involves two steps: <br>
+                <ol class="expsearch">
+                    <li>Find range where element is present</li>
+                    <li>Do Binary Search in above found range.</li>
+                </ol> <br>
+                <strong>How to find the range where element may be present? </strong> <br>
+                The idea is to start with subarray size 1, compare its last element with x, then try size 2, then 4 and
+                so on until last element of a subarray is not greater. <br>
+                Once we find an index i (after repeated doubling of i), we know that the element must be present between
+                i/2 and i (Why i/2? because we could not find a greater value in previous iteration)
+                <br> Given below are the implementations of above steps.
+                <br>
+                <div class="code upcentre">
+                    <span class="comm">/* C++ program to find an element x in a
+                        sorted array using Exponential search. */</span> <br>
+                    #include &lt;bits/stdc++.h&gt; <br>
+                    <span class="int">using namespace</span> std; <br> <br>
+                    <span class="int">int</span> jumpSearch(<span class="int">int</span> arr[], <span
+                        class="int">int</span>
+                    x, <span class="int">int</span> n) <br>
+                    { <br>
+                    <span class="comm">/* Finding block size to be jumped */</span> <br>
+                    <span class="int">int</span> step = <span class="inblt">sqrt</span>(n); <br>
+                    <span class="comm">/* Finding the block where element is
+                        present (if it is present) */</span> <br>
+                    <span class="int">int</span> prev = 0; <br>
+                    <span class="int">while</span> (arr[min(step, n)-1] &lt; x) <br>
+                    { <br>
+                    prev = step; <br>
+                    step += <span class="inblt">sqrt</span>(n); <br>
+                    <span class="int">if</span> (prev >= n) <br>
+                    <span class="int">return</span> -1; <br>
+                    } <br> <br>
+                    <span class="comm">/* Doing a linear search for x in block
+                        beginning with prev. */</span> <br>
+                    <span class="int">while</span> (arr[prev] &lt; x) <br>
+                    { <br>
+                    prev++; <br>
+                    <span class="comm">/* If we reached next block or end of
+                        array, element is not present. */</span> <br>
+                    <span class="int">if</span> (prev == min(step, n)) <br>
+                    <span class="int">return</span> -1; <br>
+                    } <br> <br>
+                    <span class="comm">/* If element is found */</span> <br>
+                    <span class="int">if</span> (arr[prev] == x) <br>
+                    <span class="int">return</span> prev; <br> <br>
+                    <span class="int">return</span> -1; <br>
+                    } <br>
+                    <br>
+                    <span class="int">int</span> main(<span class="int">void</span>) <br>
+                    { <br>
+                    <span class="int">int</span> arr[] = { 2, 3, 4, 10, 40 }; <br>
+                    <span class="int">int</span> x = 10; <br>
+                    <span class="int">int</span> n = <span class="int">sizeof</span>(arr) / <span
+                        class="int">sizeof</span>(arr[0]); <br>
+                    <br>
+                    <span class="comm">/* Find the index of 'x' using Exponential Search */</span> <br>
+                    <span class="int">int</span> result = exponentialSearch(arr, n, x); <br> <br>
+                    <span class="comm">/* Print the index where 'x' is located */</span> <br>
+                    cout &lt;&lt; "<span class="int"> \nNumber </span>" &lt;&lt; x &lt;&lt; "<span class="int"> is at
+                        index </span>" &lt;&lt; result;<br>
+                    <span class="int">return</span> 0; <br>
+                    }
+                </div>
+                <h4>Output : </h4>
+                <div class="code upcentre">
+                    Number 10 is at index 3
+                </div>
+                <strong>Time Complexity :</strong> O(Log n) <br>
+                <strong>Auxiliary Space :</strong>The above implementation of Binary Search is recursive and requires
+                O(Log n) space. With iterative Binary Search, we need only O(1) space. <br>
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+            <div class="footer_row">
+                <div class="footer_col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Our Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">Algorithms</a></li>
+                        <li><a href="#">Data Structures</a></li>
+                        <li><a href="#">Previous Year Papers</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Support Us</h4>
+                    <ul>
+                        <li><a href="#">Write an Article</a></li>
+                        <li><a href="#">Write Interview Experience</a></li>
+                        <li><a href="#">Rate Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer_col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="scrollTopBtn" title="Scroll to Top" type="button" class="btn btn-success"
+            style="display: inline-block;">▲</button>
+    </footer>
+</body>
+<script src="common.js"></script>
+
+</html>
