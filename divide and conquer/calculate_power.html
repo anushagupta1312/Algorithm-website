@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Divide and Conquer</title>
+    <link rel="stylesheet" href="calculate_power.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" >Home</a>
+      <a href="#" >Previous year paper</a>
+      <a href="#" class="active">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Write a program to calculate pow(x,n)</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+            Given two integers x and n, write a function to compute x^n. We may
+            assume that x and n are small and overflow doesn’t happen.
+          </p>
+      </div>
+      <div class="img">
+          <img src="../images/calculate_power.JPG" alt="">
+      </div>
+      <div class="head">
+          <h4>Examples : </h4>
+      </div>
+      <div class="algo">
+          <p>
+            Input : x = 2, n = 3 <br>
+            Output : 8 <br><br> 
+            
+            Input : x = 7, n = 2 <br>
+            Output : 49 <br>
+          </p>
+      </div>
+      <div class="algo">
+          <p>
+            // C++ program for the above approach <br><br>
+            #include < bits/stdc++.h >  <br><br>
+            using namespace std; <br><br>
+             
+            int power(int x, int y) <br><br>
+            { <br><br>
+                int result = 1; <br><br>
+                while (y > 0) { <br><br>
+                    if (y % 2 == 0) // y is even <br><br>
+                    { <br><br>
+                        x = x * x; <br><br>
+                        y = y / 2; <br><br>
+                    } <br><br>
+                    else // y isn't even <br><br>
+                    { <br><br>
+                        result = result * x; <br><br>
+                        y = y - 1; <br><br>
+                    } <br><br>
+                } <br><br>
+                return result; <br><br>
+            } <br><br>
+             
+            // Driver Code <br><br>
+            int main() <br><br>
+            { <br><br>
+                int x = 2; <br><br>
+                int y = 3; <br><br>
+             
+                cout << (power(x, y)); <br><br>
+                return 0; <br><br>
+            } <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output</h4> <br>
+           <h5>8</h5> <br>
+           <h5>Auxiliary Space: O(1)</h5> 
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="../backtracking/navbar.js"></script>
+  </body>
+</html>

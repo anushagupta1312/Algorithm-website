@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Divide and Conquer</title>
+    <link rel="stylesheet" href="count_inversion_in_array.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#" class="active">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Count Inversions in an array | Set 1 (Using Merge Sort)</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          Inversion Count for an array indicates – how far (or close) the array
+          is from being sorted. If the array is already sorted, then the
+          inversion count is 0, but if the array is sorted in the reverse order,
+          the inversion count is the maximum. Formally speaking, two elements
+          a[i] and a[j] form an inversion if a[i] > a[j] and i < j
+        </p>
+      </div>
+      <div class="head">
+        <h4>Example:</h4>
+      </div>
+      <div class="algo">
+        <p>
+          Input: arr[] = {8, 4, 2, 1} <br /><br />
+          Output: 6 <br /><br />
+
+          Explanation: Given array has six inversions: <br /><br />
+          (8, 4), (4, 2), (8, 2), (8, 1), (4, 1), (2, 1). <br /><br />
+
+          Input: arr[] = {3, 1, 2} <br /><br />
+          Output: 2 <br /><br />
+
+          Explanation: Given array has two inversions: <br /><br />
+          (3, 1), (3, 2) <br /><br />
+        </p>
+      </div>
+      <div class="para1">
+        <li>
+          Approach: Suppose the number of inversions in the left half and right
+          half of the array (let be inv1 and inv2); what kinds of inversions are
+          not accounted for in Inv1 + Inv2? The answer is – the inversions that
+          need to be counted during the merge step. Therefore, to get the total
+          number of inversions that needs to be added are the number of
+          inversions in the left subarray, right subarray, and merge().
+        </li>
+        <br />
+        <br />
+        <li>
+          How to get the number of inversions in merge()? <br />
+          In merge process, let i is used for indexing left sub-array and j for
+          right sub-array. At any step in merge(), if a[i] is greater than a[j],
+          then there are (mid – i) inversions. because left and right subarrays
+          are sorted, so all the remaining elements in left-subarray (a[i+1],
+          a[i+2] … a[mid]) will be greater than a[j]
+        </li>
+        <br />
+        <li>
+          Algorithm: <br />
+          <br />
+          1.The idea is similar to merge sort, divide the array into two equal
+          or almost equal halves in each step until the base case is reached.
+          <br /><br />
+          2.Create a function merge that counts the number of inversions when
+          two halves of the array are merged, create two indices i and j, i is
+          the index for the first half, and j is an index of the second half. if
+          a[i] is greater than a[j], then there are (mid – i) inversions.
+          because left and right subarrays are sorted, so all the remaining
+          elements in left-subarray (a[i+1], a[i+2] … a[mid]) will be greater
+          than a[j]. <br /><br />
+          3.Create a recursive function to divide the array into halves and find
+          the answer by summing the number of inversions is the first half, the
+          number of inversion in the second half and the number of inversions by
+          merging the two. <br /><br />
+          4.The base case of recursion is when there is only one element in the
+          given half. <br /><br />
+          5.Print the answer <br /><br />
+        </li>
+      </div>
+      <div class="head">
+        <h4>Implementation:</h4>
+      </div>
+      <div class="algo">
+        <p>
+          // C++ program to Count <br /><br />
+          // Inversions in an array <br /><br />
+          // using Merge Sort <br /><br />
+          #include < bits/stdc++.h > <br /><br />
+          using namespace std; <br /><br />
+
+          int _mergeSort(int arr[], int temp[], int left, int right);
+          <br /><br />
+          int merge(int arr[], int temp[], int left, int mid, <br /><br />
+          int right); <br /><br />
+
+          /* This function sorts the <br /><br />
+          input array and returns the <br /><br />
+          number of inversions in the array */ <br /><br />
+          int mergeSort(int arr[], int array_size) <br /><br />
+          { <br /><br />
+          int temp[array_size]; <br /><br />
+          return _mergeSort(arr, temp, 0, array_size - 1); <br /><br />
+          } <br /><br />
+
+          /* An auxiliary recursive function <br /><br />
+          that sorts the input array and <br /><br />
+          returns the number of inversions in the array. */ <br /><br />
+          int _mergeSort(int arr[], int temp[], int left, int right)
+          <br /><br />
+          { <br /><br />
+          int mid, inv_count = 0; <br /><br />
+          if (right > left) { <br /><br />
+          /* Divide the array into two parts and <br /><br />
+          call _mergeSortAndCountInv() <br /><br />
+          for each of the parts */ <br /><br />
+          mid = (right + left) / 2; <br /><br />
+
+          /* Inversion count will be sum of <br /><br />
+          inversions in left-part, right-part <br /><br />
+          and number of inversions in merging */ <br /><br />
+          inv_count += _mergeSort(arr, temp, left, mid); <br /><br />
+          inv_count += _mergeSort(arr, temp, mid + 1, right); <br /><br />
+
+          /*Merge the two parts*/ <br /><br />
+          inv_count += merge(arr, temp, left, mid + 1, right); <br /><br />
+          } <br /><br />
+          return inv_count; <br /><br />
+          } <br /><br />
+
+          /* This funt merges two sorted arrays <br /><br />
+          and returns inversion count in the arrays.*/ <br /><br />
+          int merge(int arr[], int temp[], int left, int mid, int right)
+          <br /><br />
+          { <br /><br />
+          int i, j, k; <br /><br />
+          int inv_count = 0; <br /><br />
+
+          i = left; /* i is index for left subarray*/ <br /><br />
+          j = mid; /* j is index for right subarray*/ <br /><br />
+          k = left; /* k is index for resultant merged subarray*/ <br /><br />
+          while ((i <= mid - 1) && (j <= right)) { <br /><br />
+          if (arr[i] <= arr[j]) { <br /><br />
+          temp[k++] = arr[i++]; <br /><br />
+          } <br /><br />
+          else { <br /><br />
+          temp[k++] = arr[j++]; <br /><br />
+
+          /* this is tricky -- see above <br /><br />
+          explanation/diagram for merge()*/ <br /><br />
+          inv_count = inv_count + (mid - i); <br /><br />
+          } <br /><br />
+          } <br /><br />
+
+          /* Copy the remaining elements of left subarray (if there are any) to
+          temp*/ <br /><br />
+          while (i <= mid - 1) <br /><br />
+          temp[k++] = arr[i++]; <br /><br />
+
+          /* Copy the remaining elements of right subarray (if there are any) to
+          temp*/ <br /><br />
+          while (j <= right) <br /><br />
+          temp[k++] = arr[j++]; <br /><br />
+
+          /*Copy back the merged elements to original array*/ <br /><br />
+          for (i = left; i <= right; i++) <br /><br />
+          arr[i] = temp[i]; <br /><br />
+
+          return inv_count; <br /><br />
+          } <br /><br />
+
+          // Driver code <br /><br />
+          int main() <br /><br />
+          { <br /><br />
+          int arr[] = { 1, 20, 6, 4, 5 }; <br /><br />
+          int n = sizeof(arr) / sizeof(arr[0]); <br /><br />
+          int ans = mergeSort(arr, n); <br /><br />
+          cout << " Number of inversions are " << ans; <br /><br />
+          return 0; <br /><br />
+          } <br /><br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Output:</h4>
+        <br />
+        <h5>Number of inversions are 5</h5>
+        <br />
+      </div>
+      <div class="head">
+        <h4>Complexity Analysis:</h4>
+      </div>
+      <div class="para1">
+        <li>
+          Time Complexity: O(n log n), The algorithm used is divide and conquer,
+          So in each level, one full array traversal is needed, and there are
+          log n levels, so the time complexity is O(n log n).
+        </li> <br>
+        <li>Space Complexity: O(n), Temporary array.</li> <br>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="../backtracking/navbar.js"></script>
+  </body>
+</html>

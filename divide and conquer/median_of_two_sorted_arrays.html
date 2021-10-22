@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Divide and Conquer</title>
+    <link rel="stylesheet" href="median_of_two_sorted_arrays.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" >Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#" class="active">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Median of two sorted arrays of same size</span>
+    </div>
+    <div class="main">
+      <div class="para1">
+        <p>
+          There are 2 sorted arrays A and B of size n each. Write an algorithm
+          to find the median of the array obtained after merging the above 2
+          arrays(i.e. array of length 2n). The complexity should be O(log(n)).
+        </p>
+      </div>
+      <div class="img">
+        <img src="../images/median_of_two_sorted_arrays.JPG" alt="" />
+      </div>
+      <div class="head">
+        <h4>Algorithm :</h4>
+      </div>
+      <div class="algo">
+        <p>
+          1) Calculate the medians m1 and m2 of the input arrays ar1[]
+          <br /><br />
+          and ar2[] respectively. <br /><br />
+          2) If m1 and m2 both are equal then we are done. <br /><br />
+          return m1 (or m2) <br /><br />
+          3) If m1 is greater than m2, then median is present in one
+          <br /><br />
+          of the below two subarrays. <br /><br />
+          a) From first element of ar1 to m1 (ar1[0...|_n/2_|]) <br /><br />
+          b) From m2 to last element of ar2 (ar2[|_n/2_|...n-1]) <br /><br />
+          4) If m2 is greater than m1, then median is present in one
+          <br /><br />
+          of the below two subarrays. <br /><br />
+          a) From m1 to last element of ar1 (ar1[|_n/2_|...n-1]) <br /><br />
+          b) From first element of ar2 to m2 (ar2[0...|_n/2_|]) <br /><br />
+          5) Repeat the above process until size of both the subarrays
+          <br /><br />
+          becomes 2. <br /><br />
+          6) If size of the two arrays is 2 then use below formula to get
+          <br /><br />
+          the median. <br /><br />
+          Median = (max(ar1[0], ar2[0]) + min(ar1[1], ar2[1]))/2 <br /><br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Examples :</h4>
+      </div>
+      <div class="algo">
+        <p>
+          ar1[] = {1, 12, 15, 26, 38} <br /><br />
+          ar2[] = {2, 13, 17, 30, 45} <br /><br />
+        </p>
+      </div>
+      <div class="para1">
+        <p>
+          For above two arrays m1 = 15 and m2 = 17 For the above ar1[] and
+          ar2[], m1 is smaller than m2. So median is present in one of the
+          following two subarrays.
+        </p>
+      </div>
+      <div class="algo">
+          <p>
+            [15, 26, 38] and [2, 13, 17]
+          </p>
+      </div>
+      <div class="para1">
+          <p>
+            Let us repeat the process for above two subarrays:  
+          </p>
+      </div>
+      <div class="algo">
+          <p>
+            m1 = 26 m2 = 13.
+          </p>
+      </div>
+      <div class="para1">
+          <p>
+            m1 is greater than m2. So the subarrays become  
+          </p>
+      </div>
+      <div class="algo">
+          <p>
+            [15, 26] and [13, 17] <br><br>
+            Now size is 2, so median = (max(ar1[0], ar2[0]) + min(ar1[1], ar2[1]))/2 <br><br>
+                                   = (max(15, 13) + min(26, 17))/2  <br><br>
+                                   = (15 + 17)/2 <br><br>
+                                   = 16 <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Implementation : </h4>
+      </div>
+      <div class="algo">
+          <p>
+            // A divide and conquer based <br><br>
+            // efficient solution to find <br><br>
+            // median of two sorted arrays <br><br>
+            // of same size. <br><br>
+            #include< bits/stdc++.h > <br><br>
+            using namespace std; <br><br>
+             
+            /* to get median of a <br><br>
+               sorted array */ <br><br>
+            int median(int [], int); <br><br>
+             
+            /* This function returns median <br><br>
+               of ar1[] and ar2[]. <br><br>
+            Assumptions in this function: <br><br>
+                Both ar1[] and ar2[] are <br><br>
+                sorted arrays <br><br>
+                Both have n elements */ <br><br>
+            int getMedian(int ar1[], <br><br>
+                          int ar2[], int n) <br><br>
+            { <br><br>
+                /* return -1 for <br><br>
+                   invalid input */ <br><br>
+                if (n <= 0) <br><br>
+                    return -1; <br><br>
+                if (n == 1) <br><br>
+                    return (ar1[0] +
+                            ar2[0]) / 2; <br><br>
+                if (n == 2) <br><br>
+                    return (max(ar1[0], ar2[0]) +
+                            min(ar1[1], ar2[1])) / 2; <br><br>
+             
+                /* get the median of <br><br>
+                   the first array */ <br><br>
+                int m1 = median(ar1, n); <br><br>
+                 
+                /* get the median of
+                   the second array */ <br><br>
+                int m2 = median(ar2, n); <br><br>
+             
+                /* If medians are equal then
+                   return either m1 or m2 */ <br><br>
+                if (m1 == m2) <br><br>
+                    return m1; <br><br>
+             
+                /* if m1 < m2 then median must <br><br>
+                   exist in ar1[m1....] and <br><br>
+                            ar2[....m2] */ <br><br>
+                if (m1 < m2) <br><br>
+                { <br><br>
+                    if (n % 2 == 0) <br><br>
+                        return getMedian(ar1 + n / 2 - 1,
+                                         ar2, n - n / 2 + 1); <br><br>
+                    return getMedian(ar1 + n / 2,
+                                     ar2, n - n / 2); <br><br>
+                } <br><br>
+             
+                /* if m1 > m2 then median must <br><br>
+                   exist in ar1[....m1] and <br><br>
+                            ar2[m2...] */ <br><br>
+                if (n % 2 == 0) <br><br>
+                    return getMedian(ar2 + n / 2 - 1,
+                                     ar1, n - n / 2 + 1); <br><br>
+                return getMedian(ar2 + n / 2,
+                                 ar1, n - n / 2); <br><br>
+            } <br><br>
+             
+            /* Function to get median
+               of a sorted array */ <br><br>
+            int median(int arr[], int n) <br><br>
+            { <br><br>
+                if (n % 2 == 0) <br><br>
+                    return (arr[n / 2] +
+                            arr[n / 2 - 1]) / 2; <br><br>
+                else <br><br>
+                    return arr[n / 2]; <br><br>
+            } <br><br>
+             
+            // Driver code <br><br>
+            int main() <br><br>
+            { <br><br>
+                int ar1[] = {1, 2, 3, 6}; <br><br>
+                int ar2[] = {4, 6, 8, 10}; <br><br>
+                int n1 = sizeof(ar1) /
+                         sizeof(ar1[0]); <br><br>
+                int n2 = sizeof(ar2) /
+                         sizeof(ar2[0]); <br><br>
+                if (n1 == n2) <br><br>
+                    cout << "Median is "
+                         << getMedian(ar1, ar2, n1); <br><br>
+                else <br><br>
+                    cout << "Doesn't work for arrays "
+                         << "of unequal size"; <br><br>
+                return 0; <br><br>
+            } <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output : </h4> <br>
+          <h5>Median is 5</h5> <br>
+          <h5>Time Complexity : O(logn) </h5> <br>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="../backtracking/navbar.js"></script>
+  </body>
+</html>
