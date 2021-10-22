@@ -58,9 +58,9 @@
                     #include &lt;bits/stdc++.h&gt; <br>
                     <span class="int">using namespace</span> std; <br> <br>
                     <span class="comm">/* Function to perform Ternary Search */</span> <br>
-                    <span class="int">int</span> ternarySearch(<span class="int">int</span> ar[], <span
+                    <span class="int">int</span> ternarySearch( <span
                         class="int">int</span>
-                    l, <span class="int">int</span> r, <span class="int">int</span> key) <br>
+                    l, <span class="int">int</span> r, <span class="int">int</span> key , <span class="int">int</span> ar[]) <br>
                     { <br>
                     <span class="int">while</span> (r >= l) { <br>
                         <span class="comm">/* Find the mid1 and mid2 */</span> <br>
@@ -75,10 +75,16 @@
                             check in which region it is present
                             then repeat the Search operation
                             in that region */</span> <br> <br>
-                        <span class="int">if</span>(arr[m] < x) <br>
-                            l = m + 1; <br> <br>
-                            <span class="comm">/* If x is smaller, ignore right half */</span> <br>
-                            <span class="int">else</span> <br> r = m - 1; <br>
+                        <span class="int">if</span>(key &lt; ar[mid1]) <br>
+                        r = mid1 - 1; <br>
+                        <span class="comm">/* The key lies in between l and mid1 */</span> <br> <br>
+                        <span class="int"> else if</span>(key &gt; ar[mid2]) <br>
+                        l = mid2 + 1;<br>
+                            <span class="comm">/* The key lies in between mid2 and r */</span> <br> <br>
+                            <span class="int">else {</span> <br> l = mid1 + 1; <br>
+                                r = mid2 - 1;  <br>
+                            <span class="comm">/* The key lies in between mid1 and mid2 */</span> <br>
+                            } <br>
                             } <br> <br>
                             <span class="comm">/* if we reach here, then element was
                                 not present */</span> <br>
@@ -86,14 +92,31 @@
                             } <br> <br> <br>
                             <span class="int">int</span> main(<span class="int">void</span>) <br>
                             { <br>
-                            <span class="int">int</span> arr[] = { 2, 3, 4, 10, 40 }; <br>
-                            <span class="int">int</span> x = 10; <br>
-                            <span class="int">int</span> n = <span class="int">sizeof</span>(arr) / <span
-                                class="int">sizeof</span>(arr[0]); <br>
-                            <span class="int">int</span> result = binarySearch(arr, 0, n - 1, x); <br>
-                            (result == -1) <br>
-                            ? cout &lt;&lt; "<span class="int">Element is not present in array</span>" <br>
-                            : cout &lt;&lt; "<span class="int">Element is present at index </span>" &lt;&lt; result;
+                                <span class="int">int</span> l, r, p, key; <br>
+                            <span class="int">int</span> ar[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; <br> <br>
+                                <span class="comm">// Starting index</span> <br>
+                                l = 0; <br><br>
+                                <span class="comm">// length of array</span> <br>
+                                r = 9; <br>
+                                <span class="comm">/* Checking for 5
+                                     Key to be searched in the array */</span> <br>
+                                     key = 5; <br> <br>
+                                     <span class="comm">/*  Search the key using ternarySearch */</span> <br>
+                             p = ternarySearch(l, r, key, ar); <br> <br>
+                             <span class="comm">// Print the result</span>
+                            <br>
+                             cout &lt;&lt; "<span class="int"> Index of </span>" &lt;&lt; key
+                             &lt;&lt; "<span class="int"> is </span>" &lt;&lt; p &lt;&lt; endl;
+                            <br>
+                                <span class="comm">/* Checking for 50
+                                     Key to be searched in the array */</span> <br>
+                                     key = 50; <br> <br>
+                                     <span class="comm">/*  Search the key using ternarySearch */</span>
+                             p = ternarySearch(l, r, key, ar); <br> <br>
+                             <span class="comm">// Print the result</span>
+                            <br>
+                             cout &lt;&lt; "<span class="int"> Index of </span>" &lt;&lt; key
+                             &lt;&lt; "<span class="int"> is </span>" &lt;&lt; p &lt;&lt; endl;
                             <br>
                             <span class="int">return</span> 0; <br>
                             }
