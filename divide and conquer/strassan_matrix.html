@@ -1,1 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Divide and Conquer</title>
+    <link rel="stylesheet" href="strassan_matrix.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#">Home</a>
+      <a href="#">Previous year paper</a>
+      <a href="#" class="active">Algorithms</a>
+      <a href="#">Notes</a>
+      <a href="#">About us</a>
+      <input type="text" placeholder="Search Algorithm" />
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="heading">
+      <span>Strassen’s Matrix Multiplication</span>
+    </div>
+    <div class="main">
+      <div class="head">
+        <h4>Introduction</h4>
+      </div>
+      <div class="para1">
+        <p>
+          Strassen in 1969 which gives an overview that how we can find the
+          multiplication of two 2*2 dimension matrix by the brute-force
+          algorithm. But by using divide and conquer technique the overall
+          complexity for multiplication two matrices is reduced. This happens by
+          decreasing the total number if multiplication performed at the
+          expenses of a slight increase in the number of addition. <br /><br />
+        </p>
+      </div>
+      <div class="para1">
+        <p>
+          For multiplying the two 2*2 dimension matrices Strassen's used some
+          formulas in which there are seven multiplication and eighteen
+          addition, subtraction, and in brute force algorithm, there is eight
+          multiplication and four addition. The utility of Strassen's formula is
+          shown by its asymptotic superiority when order n of matrix reaches
+          infinity. Let us consider two matrices A and B, n*n dimension, where n
+          is a power of two. It can be observed that we can contain four n/2*n/2
+          submatrices from A, B and their product C. C is the resultant matrix
+          of A and B. <br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Procedure of Strassen matrix multiplication</h4>
+      </div>
+      <div class="para1">
+        <p>
+          There are some procedures: <br /><br />
+
+          1. Divide a matrix of order of 2*2 recursively till we get the matrix
+          of 2*2. <br />
+          2. Use the previous set of formulas to carry out 2*2 matrix
+          multiplication. <br />
+          3. In this eight multiplication and four additions, subtraction are
+          performed. <br />
+          4. Combine the result of two matrixes to find the final product or
+          final matrix. <br />
+        </p>
+      </div>
+      <div class="head">
+        <h4>Formulas for Stassen’s matrix multiplication</h4>
+      </div>
+      <div class="para1">
+        <p>
+          In Strassen’s matrix multiplication there are seven multiplication and
+          four addition, subtraction in total.
+        </p>
+      </div>
+      <div class="algo">
+          <p>
+            1.	D1 =  (a11 + a22) (b11 + b22) <br><br>
+            2.	D2 =  (a21 + a22).b11 <br><br>
+            3.	D3 =  (b12 – b22).a11 <br><br>
+            4.	D4 =  (b21 – b11).a22 <br><br>
+            5.	D5 =  (a11 + a12).b22 <br><br>
+            6.	D6 =  (a21 – a11) . (b11 + b12) <br><br>
+            7.	D7 =  (a12 – a22) . (b21 + b22) <br><br>
+        
+            C11 = d1 + d4 – d5 + d7 <br><br>
+            C12 = d3 + d5 <br><br>
+            C21 = d2 + d4 <br><br>
+            C22 = d1 + d3 – d2 – d6 <br><br>
+          </p>
+      </div>
+      <div class="head">
+          <h4>Algorithm for Strassen’s matrix multiplication</h4>
+          <h5>Algorithm Strassen(n, a, b, d)</h5>
+      </div>
+      <div class="algo">
+          <p>
+            begin  <br><br>
+            If n = threshold then compute <br><br>
+                C = a * b is a conventional matrix. <br><br>
+            Else <br><br>
+                Partition a into four sub matrices  a11, a12, a21, a22. <br><br>
+                Partition b into four sub matrices b11, b12, b21, b22. <br><br>
+                Strassen ( n/2, a11 + a22, b11 + b22, d1) <br><br>
+                Strassen ( n/2, a21 + a22, b11, d2) <br><br>
+                Strassen ( n/2, a11, b12 – b22, d3) <br><br>
+                Strassen ( n/2, a22, b21 – b11, d4) <br><br>
+                Strassen ( n/2, a11 + a12, b22, d5) <br><br>
+                Strassen (n/2, a21 – a11, b11 + b22, d6) <br><br>
+                Strassen (n/2, a12 – a22, b21 + b22, d7) <br><br>
+        
+                C = d1+d4-d5+d7     d3+d5 <br><br>
+                d2+d4           d1+d3-d2-d6   <br><br>
+                
+            end if <br><br>
+            
+            return (C) <br><br>
+        end. <br><br>
+          </p>
+      </div>
+      <div class="head">
+         <h4>Code for Strassen matrix multiplication</h4>
+      </div>
+      <div class="algo">
+          <p>
+            #include < stdio.h > <br><br>
+
+                int main() <br><br>
+                { <br><br>
+                    int a[2][2],b[2][2],c[2][2],i,j; <br><br>
+                    int m1,m2,m3,m4,m5,m6,m7; <br><br>
+                
+                    printf("Enter the 4 elements of first matrix: "); <br><br>
+                    for(i=0;i< 2;i++) <br><br>
+                        for(j=0;j< 2;j++) <br><br>
+                            scanf("%d",&a[i][j]); <br><br>
+                
+                    printf("Enter the 4 elements of second matrix: "); <br><br>
+                    for(i=0;i< 2;i++) <br><br>
+                        for(j=0;j< 2;j++) <br><br>
+                            scanf("%d",&b[i][j]); <br><br>
+                
+                    printf("\nThe first matrix is\n"); <br><br>
+                    for(i=0;i< 2;i++) <br><br>
+                    { <br><br>
+                        printf("\n"); <br><br>
+                        for(j=0;j< 2;j++) <br><br>
+                            printf("%d\t",a[i][j]); <br><br>
+                    } <br><br>
+                
+                    printf("\nThe second matrix is\n"); <br><br>
+                    for(i=0;i< 2;i++) <br><br>
+                    { <br><br>
+                        printf("\n"); <br><br>
+                        for(j=0;j< 2;j++) <br><br>
+                            printf("%d\t",b[i][j]); <br><br>
+                    } <br><br>
+                
+                    m1= (a[0][0] + a[1][1])*(b[0][0]+b[1][1]); <br><br>
+                    m2= (a[1][0]+a[1][1])*b[0][0]; <br><br>
+                    m3= a[0][0]*(b[0][1]-b[1][1]); <br><br>
+                    m4= a[1][1]*(b[1][0]-b[0][0]); <br><br>
+                    m5= (a[0][0]+a[0][1])*b[1][1]; <br><br>
+                    m6= (a[1][0]-a[0][0])*(b[0][0]+b[0][1]); <br><br>
+                    m7= (a[0][1]-a[1][1])*(b[1][0]+b[1][1]); <br><br>
+                
+                    c[0][0]=m1+m4-m5+m7; <br><br>
+                    c[0][1]=m3+m5; <br><br>
+                    c[1][0]=m2+m4; <br><br>
+                    c[1][1]=m1-m2+m3+m6; <br><br>
+                
+                    printf("\nAfter multiplication using \n"); <br><br>
+                    for(i=0;i< 2;i++) <br><br>
+                    { <br><br>
+                        printf("\n"); <br><br>
+                        for(j=0;j< 2;j++) <br><br>
+                            printf("%d\t",c[i][j]); <br><br>
+                    } <br><br>
+                
+                    return 0; <br><br>
+                } <br><br>
+                
+          </p>
+      </div>
+      <div class="head">
+          <h4>Output:</h4>
+      </div>
+      <div class="algo">
+          <p>
+            Enter the 4 elements of first matrix: <br><br>
+            5 6 1 7 <br><br>
+            Enter the 4 element of second matrix: <br><br>
+            6 2 8 7 <br><br>    
+            The first matrix  is <br><br>
+            5       6 <br><br>
+            1       7 <br><br>
+            The second matrix is <br><br>
+            6       2 <br><br>
+            8      7 <br><br>
+            After multiplication  <br><br>
+            78         52 <br><br>
+            62         51 <br><br>
+          </p>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="footer_div">
+          <div class="footer_row">
+            <div class="footer_col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Our Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Learn</h4>
+              <ul>
+                <li><a href="#">Algorithms</a></li>
+                <li><a href="#">Data Structures</a></li>
+                <li><a href="#">Previous Year Papers</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Support Us</h4>
+              <ul>
+                <li><a href="#">Write an Article</a></li>
+                <li><a href="#">Write Interview Experience</a></li>
+                <li><a href="#">Rate Us</a></li>
+              </ul>
+            </div>
+            <div class="footer_col">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollTopBtn"
+          title="Scroll to Top"
+          type="button"
+          class="btn btn-success"
+          style="display: inline-block"
+        >
+          ▲
+        </button>
+      </footer>
+
+    <script src="../backtracking/navbar.js"></script>
+  </body>
+</html>
 
