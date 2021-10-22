@@ -600,6 +600,7 @@ ul {
   margin-bottom: 0;
   padding-top: 20%;
   padding-bottom:5%;
+  text-shadow: 6px 6px grey;
 }
 .heading-para{
   margin-left: 10%;
@@ -615,7 +616,7 @@ ul {
       top: 20%;
       right: 6.5%;
       width: 28%;
-      height: 60%;
+      height: 65%;
 }
 .container{
   display: flex;
@@ -639,10 +640,17 @@ ul {
 .container-item{
   text-align: center;
   height: 100%;
+  box-shadow:10px 10px 15px #002236;
 
 }
+.container-item:hover{
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
+}
 .con-item-head{
-  color: black;
+  color: #002236;
+  text-shadow: 1px 1px lightblue;
   text-decoration: none;
   list-style: none;
   padding: 15px;
