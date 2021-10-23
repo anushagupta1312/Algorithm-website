@@ -43,56 +43,68 @@
                 <br> Given below are the implementations of above steps.
                 <br>
                 <div class="code upcentre">
-                    <span class="comm">/* C++ program to find an element x in a
+                     <span class="comm">/* C++ program to find an element x in a
                         sorted array using Exponential search. */</span> <br>
                     #include &lt;bits/stdc++.h&gt; <br>
                     <span class="int">using namespace</span> std; <br> <br>
-                    <span class="int">int</span> jumpSearch(<span class="int">int</span> arr[], <span
+                    <span class="comm">/* A recursive binary search function. It returns
+                         location of x in  given array arr[l..r] is
+                         present, otherwise -1 */</span> <br>
+                    <span class="int">int</span> binarySearch(<span class="int">int</span> arr[], <span
                         class="int">int</span>
-                    x, <span class="int">int</span> n) <br>
+                    l, <span class="int">int</span> r, <span class="int">int</span> x) <br>
                     { <br>
-                    <span class="comm">/* Finding block size to be jumped */</span> <br>
-                    <span class="int">int</span> step = <span class="inblt">sqrt</span>(n); <br>
-                    <span class="comm">/* Finding the block where element is
-                        present (if it is present) */</span> <br>
-                    <span class="int">int</span> prev = 0; <br>
-                    <span class="int">while</span> (arr[min(step, n)-1] &lt; x) <br>
-                    { <br>
-                    prev = step; <br>
-                    step += <span class="inblt">sqrt</span>(n); <br>
-                    <span class="int">if</span> (prev >= n) <br>
-                    <span class="int">return</span> -1; <br>
-                    } <br> <br>
-                    <span class="comm">/* Doing a linear search for x in block
-                        beginning with prev. */</span> <br>
-                    <span class="int">while</span> (arr[prev] &lt; x) <br>
-                    { <br>
-                    prev++; <br>
-                    <span class="comm">/* If we reached next block or end of
-                        array, element is not present. */</span> <br>
-                    <span class="int">if</span> (prev == min(step, n)) <br>
-                    <span class="int">return</span> -1; <br>
-                    } <br> <br>
-                    <span class="comm">/* If element is found */</span> <br>
-                    <span class="int">if</span> (arr[prev] == x) <br>
-                    <span class="int">return</span> prev; <br> <br>
-                    <span class="int">return</span> -1; <br>
-                    } <br>
-                    <br>
-                    <span class="int">int</span> main(<span class="int">void</span>) <br>
-                    { <br>
-                    <span class="int">int</span> arr[] = { 2, 3, 4, 10, 40 }; <br>
-                    <span class="int">int</span> x = 10; <br>
-                    <span class="int">int</span> n = <span class="int">sizeof</span>(arr) / <span
-                        class="int">sizeof</span>(arr[0]); <br>
-                    <br>
-                    <span class="comm">/* Find the index of 'x' using Exponential Search */</span> <br>
-                    <span class="int">int</span> result = exponentialSearch(arr, n, x); <br> <br>
-                    <span class="comm">/* Print the index where 'x' is located */</span> <br>
-                    cout &lt;&lt; "<span class="int"> \nNumber </span>" &lt;&lt; x &lt;&lt; "<span class="int"> is at
-                        index </span>" &lt;&lt; result;<br>
-                    <span class="int">return</span> 0; <br>
-                    }
+                    <span class="int">if</span> (l <= r) { <br>
+                        <span class="int">int</span> mid = l + (r - l) / 2; <br> <br>
+                        <span class="comm">/* Check if x is present at mid */</span> <br>
+                        <span class="int">if</span>(arr[mid] == x) <br>
+                        <span class="int">return</span> mid; <br> <br>
+                        <span class="comm">/* If x greater, ignore left half */</span> <br>
+                        <span class="int">if</span>(arr[mid] < x) <br>
+                            <span class="int">return</span> binarySearch(arr, l, mid-1, x); <br> <br>
+                            <span class="comm">/* If x is smaller, ignore right half */</span> <br>
+                            <span class="int">return</span> binarySearch(arr, mid+1, r, x); <br>
+                            } <br> <br>
+                            <span class="comm">/* if we reach here, then element was
+                                not present */</span> <br>
+                            <span class="int">return</span> -1; <br>
+                            } <br> <br> 
+                            <span class="comm"> /*Returns position of first occurrence of
+                                 x in array */</span> <br>
+                            <span class="int">int</span> exponentialSearch(<span class="int">int</span> arr[], <span
+                                class="int">int</span>
+                            n, <span class="int">int</span> x) <br>
+                            { <br>
+                            <span class="comm">/* If x is present at first location itself */</span> <br>
+                            <span class="int">if</span> (arr[0] == x) <br>
+                            <span class="int">return</span> 0; <br> <br>
+                            <span class="comm">/* Find range for binary search by
+                                 repeated doubling */</span> <br>
+                            <span class="int">int</span> i = 1; <br>
+                            <span class="int">while</span> (i < n && arr[i] <= x) <br>
+                            i = i*2; <br>
+                            <br>
+                            <span class="comm">/* Call binary search for the found range. */</span> <br>
+                            <span class="int">return</span> binarySearch(arr, i/2,
+                            min(i, n-1), x); <br>
+                             } <br>
+                           
+                            <br>
+                            <span class="int">int</span> main(<span class="int">void</span>) <br>
+                            { <br>
+                            <span class="int">int</span> arr[] = { 2, 3, 4, 10, 40 }; <br>
+                            <span class="int">int</span> x = 10; <br>
+                            <span class="int">int</span> n = <span class="int">sizeof</span>(arr) / <span
+                                class="int">sizeof</span>(arr[0]); <br>
+                            <br>
+                            <span class="comm">/* Find the index of 'x' using Exponential Search */</span> <br>
+                            <span class="int">int</span> result = exponentialSearch(arr, n, x); <br> <br>
+                            <span class="comm">/* Print the index where 'x' is located */</span> <br>
+                            cout &lt;&lt; "<span class="int"> \nNumber </span>" &lt;&lt; x &lt;&lt; "<span class="int">
+                                is at
+                                index </span>" &lt;&lt; result;<br>
+                            <span class="int">return</span> 0; <br>
+                            }
                 </div>
                 <h4>Output : </h4>
                 <div class="code upcentre">
