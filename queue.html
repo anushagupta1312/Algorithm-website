@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Queues</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="#" class="active">Home</a>
+    <a href="#">Previous year paper</a>
+    <a href="#">Algorithms</a>
+    <a href="#">Notes</a>
+    <a href="#">About us</a>
+    <input type="text" placeholder="Search Algorithm" />
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+  <div class="second-nav">
+      <div class="dropdown">
+        <button class="dropbtn">Data Structure
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+        <a href="#">Array</a>
+        <a href="#">String</a>
+        <a href="#">Matrix</a>
+        <a href="#">Linked List</a>
+        <a href="#">Stack</a>
+        <a href="#">Queue</a>
+        <a href="#">Binary Tree</a>
+        <a href="#">Binary Search Tree</a>
+        <a href="#">Heap</a>
+        <a href="#">Hashing</a>
+        <a href="#">Graph</a>
+        </div>
+      </div>
+
+
+      <div class="dropdown">
+        <button class="dropbtn">Advanced Data Structure
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+        <a href="#">Trie</a>
+        <a href="#">Disjoint Sets</a>
+        <a href="#">Segment Tree</a>
+        <a href="#">Self Balancing Tree</a>
+        </div>
+      </div>
+
+
+      <div class="dropdown">
+        <button class="dropbtn">Algorithms
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+        <a href="#">Analysis of Algorithm</a>
+        <a href="#">Searching Algorithm</a>
+        <a href="#">Sorting Algorithm</a>
+        <a href="#">Graph</a>
+        <a href="#">Pattern-Searching</a>
+        <a href="#">Mathematical</a>
+        <a href="#">Bitwise</a>
+        <a href="#">Greedy</a>
+        <a href="#">Dynamic Programming</a>
+        <a href="#">Divide and Conquer</a>
+        <a href="#">Backtracking</a>
+        <a href="#">Branch & Bound</a>
+        </div>
+      </div>
+  </div>
+
+
+  <div class="container">
+    <div class="item left-side">
+      <img class="left-side-image" src="images/datastr.png" alt="">
+      <h3>Quick Links</h3>
+      <h2 class="left-heading"><a class="left-side-heading" href="#">Data Structure</a></h2>
+      <ul>
+        <li class="leftls"><a class="left-side-list" href="#">Array</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">String</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Matrix</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Linked List</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Stack</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Queue</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Binary Tree</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Binary Search Tree</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Heap</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Hashing</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Graph</a></li>
+      </ul>
+      <h2 class="left-heading"><a class="left-side-heading" href="#">Advanced Data Structure</a></h2>
+      <ul>
+        <li class="leftls"><a class="left-side-list" href="#">Trie</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Disjoint Sets</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Segment Tree</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Self Balancing Tree</a></li>
+        <hr>
+      </ul>
+      <h2 class="left-heading"><a class="left-side-heading" href="#">Algorithms</a></h2>
+      <ul>
+        <li class="leftls"><a class="left-side-list" href="#">Analysis of Algorithm</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Searching Algorithm</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Sorting Algorithm</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Graph</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Pattern Searching</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Mathematical</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Bitwise</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Greedy</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Dynamic Programming</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Divide and Conquer</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Backtracking</a></li>
+        <hr>
+        <li class="leftls"><a class="left-side-list" href="#">Branch & Bound</a></li>
+        <hr>
+      </ul>
+    </div>
+
+  <div class="item middle">
+    <h1>Queue</h1>
+    <p>A Queue is a linear structure which follows a particular order in which the operations are performed. The order is First In First Out (FIFO). A good example of a queue is any queue of consumers for a resource where the consumer that came first is served first. The difference between stacks and queues is in removing. In a stack we remove the item the most recently added; in a queue, we remove the item the least recently added.</p>
+    <img class="array-img" src="images/maxresdefault.jpg" alt="">
+    <br>
+    <h2>Operations on Queue</h2>
+    <strong>There are two fundamental operations performed on a Queue:</strong>
+    <ul style="list-style-type:circle">
+      <li>
+        <strong>Enqueue: </strong>The enqueue operation is used to insert the element at the rear end of the queue. It returns void.
+      </li>
+      <li>
+        <strong>Dequeue: </strong> The dequeue operation performs the deletion from the front-end of the queue. It also returns the element which has been removed from the front-end. It returns an integer value. The dequeue operation can also be designed to void.
+      </li>
+      <li>
+        <strong>Peek: </strong>This is the third operation that returns the element, which is pointed by the front pointer in the queue but does not delete it.
+      </li>
+      <li>
+        <strong>Queue overflow (isfull): </strong>When the Queue is completely full, then it shows the overflow condition.
+      </li>
+      <li>
+        <strong>Queue underflow (isempty): </strong>When the Queue is empty, i.e., no elements are in the Queue then it throws the underflow condition.
+      </li>
+    </ul>
+    <br>
+    <h2>Types of Queue</h2>
+    <h3>There are four types of Queues:</h3>
+    <ol>
+      <li>
+        <strong>Linear Queue: </strong><p>In Linear Queue, an insertion takes place from one end while the deletion occurs from another end. The end at which the insertion takes place is known as the rear end, and the end at which the deletion takes place is known as front end. It strictly follows the FIFO rule. The linear Queue can be represented, as shown in the below figure:</p>
+        <img class="array-img" src="images/ds-types-of-queues3.png" alt="">
+        <p>In the above figure, we can observe that the front pointer points to the next element, and the element which was previously pointed by the front pointer was deleted.
+
+<br>The major drawback of using a linear Queue is that insertion is done only from the rear end. If the first three elements are deleted from the Queue, we cannot insert more elements even though the space is available in a Linear Queue. In this case, the linear Queue shows the overflow condition as the rear is pointing to the last element of the Queue.</p>
+      </li>
+      <li>
+        <strong>Circular Queue: </strong><p>In Circular Queue, all the nodes are represented as circular. It is similar to the linear Queue except that the last element of the queue is connected to the first element. It is also known as Ring Buffer as all the ends are connected to another end. The circular queue can be represented as:</p>
+        <img class="array-img" src="images/ds-types-of-queues4.png" alt="">
+        <p>The drawback that occurs in a linear queue is overcome by using the circular queue. If the empty space is available in a circular queue, the new element can be added in an empty space by simply incrementing the value of rear.
+<br>
+<strong>To know more about circular queue:</strong><a href="https://www.javatpoint.com/circular-queue">Click Here</a></p>
+      </li>
+      <li>
+        <strong>Priority Queue: </strong><p>A priority queue is another special type of Queue data structure in which each element has some priority associated with it. Based on the priority of the element, the elements are arranged in a priority queue. If the elements occur with the same priority, then they are served according to the FIFO principle.
+
+In priority Queue, the insertion takes place based on the arrival while the deletion occurs based on the priority. The priority Queue can be shown as:
+<br>
+The above figure shows that the highest priority element comes first and the elements of the same priority are arranged based on FIFO structure.</p>
+
+<strong>To know more about priority queue:</strong><a href="https://www.javatpoint.com/ds-priority-queue">Click Here</a>
+      </li>
+      <li>
+        <strong>Deque: </strong>Both the Linear Queue and Deque are different as the linear queue follows the FIFO principle whereas, deque does not follow the FIFO principle. In Deque, the insertion and deletion can occur from both ends.
+        <br>
+        <strong>To know more about Deque:</strong><a href="https://www.javatpoint.com/ds-deque">Click Here</a>
+      </li>
+    </ol>
+    <br>
+    <h2>Array Implementation Of Queue</h2>
+    <p>We can easily represent queue by using linear arrays. There are two variables i.e. front and rear, that are implemented in the case of every queue. Front and rear variables point to the position from where insertions and deletions are performed in a queue. Initially, the value of front and queue is -1 which represents an empty queue. Array representation of a queue containing 5 elements along with the respective values of front and rear, is shown in the following figure.
+</p>
+<img class="array-img" src="images/array-representation-of-queue.png" alt="">
+<h3>Insert any element in a queue</h3>
+<h3>ALGORITHM</h3>
+<br>
+<div class="structure">
+  <ul style="list-style-type:circle">
+  <li>
+    <strong>Step 1: </strong><p>IF REAR = MAX - 1 <br>
+Write OVERFLOW <br>
+Go to step <br>
+[END OF IF]</p>
+  </li>
+  <li>
+    <strong>Step 2: </strong><p> IF FRONT = -1 and REAR = -1 <br>
+SET FRONT = REAR = 0 <br>
+ELSE <br>
+SET REAR = REAR + 1 <br>
+[END OF IF]</p>
+  </li>
+  <li>
+    <strong>Step 3: </strong><p>Set QUEUE[REAR] = NUM</p>
+  </li>
+  <li>
+    <strong>Step 4: </strong><p>EXIT</p>
+  </li>
+</ul></div>
+<h3>Delete an element from the queue</h3>
+<h3>ALGORITHM</h3>
+<br>
+<div class="structure">
+  <ul style="list-style-type:circle">
+    <li>
+      <strong>Step 1: </strong><p>IF FRONT = -1 or FRONT > REAR <br>
+Write UNDERFLOW <br>
+ELSE <br>
+SET VAL = QUEUE[FRONT] <br>
+SET FRONT = FRONT + 1 <br>
+[END OF IF]</p>
+    </li>
+    <li>
+      <strong>Step 2: </strong><p>EXIT</p>
+    </li>
+  </ul>
+
+</div>
+<br>
+<h2>Drawbacks of Array Implementatin</h2>
+<p>Although, the technique of creating a queue is easy, but there are some drawbacks of using this technique to implement a queue.</p>
+<ul style="list-style-type:circle">
+  <li>
+    <strong>Memory wastage : </strong>The space of the array, which is used to store queue elements, can never be reused to store the elements of that queue because the elements can only be inserted at front end and the value of front might be so high so that, all the space before that, can never be filled.
+  </li>
+  <li>
+    <strong>Deciding the array size: </strong><p>
+      On of the most common problem with array implementation is the size of the array which requires to be declared in advance. Due to the fact that, the queue can be extended at runtime depending upon the problem, the extension in the array size is a time taking process and almost impossible to be performed at runtime since a lot of reallocations take place. Due to this reason, we can declare the array large enough so that we can store queue elements as enough as possible but the main problem with this declaration is that, most of the array slots (nearly half) can never be reused. It will again lead to memory wastage.
+    </p>
+  </li>
+</ul>
+<h2>Linked List Implementation Of Queue</h2>
+<p>The storage requirement of linked representation of a queue with n elements is o(n) while the time requirement for operations is o(1).
+<br>
+In a linked queue, each node of the queue consists of two parts i.e. data part and the link part. Each element of the queue points to its immediate next element in the memory.
+<br>
+In the linked queue, there are two pointers maintained in the memory i.e. front pointer and rear pointer. The front pointer contains the address of the starting element of the queue while the rear pointer contains the address of the last element of the queue.
+
+</p>
+<img class="array-img" src="images/linked-list-implementation-of-queue.png" alt="">
+<br>
+<h3>Insert Operation</h3>
+<h3>ALGORITHM</h3>
+<br>
+<div class="structure">
+  <ul style="list-style-type:circle">
+    <li>
+      <strong>Step 1: </strong><p> Allocate the space for the new node PTR</p>
+    </li>
+    <li>
+      <strong>Step 2: </strong><p>SET PTR -> DATA = VAL</p>
+    </li>
+    <li>
+      <strong>Step 3:
+      </strong>
+      <p> IF FRONT = NULL <br>
+SET FRONT = REAR = PTR <br>
+SET FRONT -> NEXT = REAR -> NEXT = NULL <br>
+ELSE <br>
+SET REAR -> NEXT = PTR <br>
+SET REAR = PTR <br>
+SET REAR -> NEXT = NULL <br>
+[END OF IF]</p>
+    </li>
+    <li>
+      <strong>Step 4:</strong><p>END</p>
+    </li>
+  </ul>
+</div>
+<br>
+<h3>Deletion</h3>
+<p>Deletion operation removes the element that is first inserted among all the queue elements. Firstly, we need to check either the list is empty or not. The condition front == NULL becomes true if the list is empty, in this case , we simply write underflow on the console and make exit.
+<br>
+Otherwise, we will delete the element that is pointed by the pointer front. For this purpose, copy the node pointed by the front pointer into the pointer ptr. Now, shift the front pointer, point to its next node and free the node pointed by the node ptr. This is done by using the following statements.</p>
+<h3>ALGORITHM</h3>
+<br>
+<div class="structure">
+  <ul style="list-style-type:circle">
+    <li>
+      <strong>Step 1: </strong><p>IF FRONT = NULL <br>
+Write " Underflow " <br>
+Go to Step 5 <br>
+[END OF IF]</p>
+    </li>
+    <li>
+      <strong>Step 2: </strong><p>SET PTR = FRONT</p>
+    </li>
+    <li>
+      <strong>Step 3: </strong><p>SET FRONT = FRONT -> NEXT</p>
+    </li>
+    <li>
+      <strong>Step 4: </strong><p>FREE PTR</p>
+    </li>
+    <li>
+      <strong>Step 5: </strong><p>END</p>
+    </li>
+  </ul>
+</div>
+<br>
+
+</div>
+
+<div class="item right-side">
+
+</div>
+<div class="item bottom practice-prob">
+
+
+  <h2 class="practice-prob-head"> Practice Problems On Queues</h2>
+
+  <ul>
+    <li>
+      <a href="https://www.geeksforgeeks.org/check-queue-can-sorted-another-queue-using-stack/">Check if a queue can be sorted into another queue using a stack</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/program-page-replacement-algorithms-set-2-fifo/">Program for Page Replacement Algorithms | Set 2 (FIFO)</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/">Sliding Window Maximum (Maximum of all subarrays of size k)</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/find-the-largest-number-multiple-of-3/">Find the largest multiple of 3 | Set 1 (Using Queue)</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/interesting-method-generate-binary-numbers-1-n/">An Interesting Method to Generate Binary Numbers from 1 to n</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/sum-minimum-maximum-elements-subarrays-size-k/">Sum of minimum and maximum elements of all subarrays of size k.</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/first-negative-integer-every-window-size-k/">First negative integer in every window of size k</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/minimum-time-required-so-that-all-oranges-become-rotten/">Minimum time required to rot all oranges</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/queue-based-approach-for-first-non-repeating-character-in-a-stream/">Queue based approach for first non-repeating character in a stream</a>
+    </li>
+    <li>
+      <a href="https://www.geeksforgeeks.org/reversing-first-k-elements-queue/">Reversing the first K elements of a Queue</a>
+    </li>
+  </ul>
+<div class="more-prob">
+
+  <a href="#">More problems>>></a>
+</div>
+  </div>
+</div>
+
+
+
+
+<footer class="footer">
+<div class="footer_div">
+  <div class="footer_row">
+    <div class="footer_col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Our Service</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer_col">
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="#">Algorithms</a></li>
+        <li><a href="#">Data Structures</a></li>
+        <li><a href="#">Previous Year Papers</a></li>
+      </ul>
+    </div>
+    <div class="footer_col">
+      <h4>Support Us</h4>
+      <ul>
+        <li><a href="#">Write an Article</a></li>
+        <li><a href="#">Write Interview Experience</a></li>
+        <li><a href="#">Rate Us</a></li>
+      </ul>
+    </div>
+    <div class="footer_col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#"><i class="fa fa-facebook-f"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<button id="scrollTopBtn" title="Scroll to Top" type="button" class="btn btn-success" style="display: inline-block">
+  ▲
+</button>
+</footer>
+
+</body>
+
+</html>
