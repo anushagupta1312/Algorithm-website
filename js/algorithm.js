@@ -34,6 +34,8 @@ setInterval(() => {
     quote1.innerHTML = `"${data.content}"" —${data.author}`
   })
   },60*1000*60);
+
+  
   mybutton = document.getElementById("scrollTopBtn");
   window.onscroll = function() {scrollFunction()};
 
