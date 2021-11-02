@@ -124,8 +124,9 @@ body {
 
 .employee {
   width: 18%;
-  margin: 25px 0px 0px 85px;
-
+  margin: 25px 0px 13px 85px;
+  /* padding-left: 6rem; */
+  /* padding-bottom: 1rem; */
   height: 555px;
   text-align: center;
 }
@@ -209,6 +210,16 @@ body {
 
 /* responsive css for about us */
 
+@media (max-width: 1435px) {
+  .employee p {
+    padding-left: 5rem;
+  }
+}
+@media (max-width: 560px) {
+  .employee p {
+    padding-left: 2rem;
+  }
+}
 @media (max-width: 531px) {
   #aboutintro h3 {
     margin-left: 10px;

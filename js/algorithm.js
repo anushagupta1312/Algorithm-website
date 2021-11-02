@@ -34,3 +34,5 @@ setInterval(() => {
     quote1.innerHTML = `"${data.content}"" —${data.author}`
   })
   },60*1000*60);
+  function getBackToBeginning() { window.scrollTo(0, 0);
+  }
