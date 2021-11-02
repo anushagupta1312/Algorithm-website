@@ -34,5 +34,15 @@ setInterval(() => {
     quote1.innerHTML = `"${data.content}"" —${data.author}`
   })
   },60*1000*60);
+  mybutton = document.getElementById("scrollTopBtn");
+  window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
   function getBackToBeginning() { window.scrollTo(0, 0);
   }
