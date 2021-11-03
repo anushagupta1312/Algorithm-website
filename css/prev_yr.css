@@ -4,7 +4,9 @@
     box-sizing: border-box;
     
 }
-
+html{
+  font-size: 10px;
+}
 
 .topnav {
     background-color: rgb(45 200 45);
@@ -46,29 +48,30 @@
     font-size: 17px;
     border-radius: 11px;
   }
+  /*my css*/
   .top-section{
      background-color: #0B0B45;
-      height: 90vh;
+      height: 90%;
       width: 100%;
       display: flex; 
-      padding-top: 20px;
+      padding-top: 2.0rem;
       
       /*background: url('../images/bluebg.jpg') no-repeat;
       background-size: cover;*/
   }
   .quote{
     color: white;
-      font-size: 70px;
-      padding: 20px;
+      font-size: 5vw;
+      padding: 2rem;
       font-family: 'Festive', cursive;
     }
     .text-sec{
         font-family: 'IM Fell English SC', serif;
-        font-size: 25px;
+        font-size: 2.5vw;
         color: white;
     }
   .left{
-      width: 70%;
+      width: 80%;
       text-align: center;
       justify-content: center;
   }
@@ -78,27 +81,33 @@
     }
   
   .right img{
-      width:350px;
-      height:400px;
-     
+    width: 90%;
+    height: auto;
      
   }
   .btn{
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 30px;
+    margin: 3.0rem;
+    
   }
   .btn a{
     background-color: whitesmoke;
     text-decoration: none;
-    border-radius: 50px;
+    border-radius: 5.0rem;
     display: block;
-    padding: 20px;
+    padding: 2.0rem;
     text-align: center;
-    letter-spacing: 2px;
+    letter-spacing: .2rem;
     color: black;
     font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 2vw;
+  }
+
+  .btn a:hover{
+    color:white;
+    background-color: black;
   }
 
  .container{
@@ -110,19 +119,19 @@
  } 
 
  .card{
-     box-shadow: 8px 8px 15px black;
-     width: 350px;
-     height: 570px;
-     margin: 20px;
-     border-radius: 10px;
+     box-shadow: .8rem .8rem 1.5rem black;
+     width: 35.0rem;
+     height: 57.0rem;
+     margin: 2.0rem;
+     border-radius: 1.0rem;
  }
  .cardimg{
      
-     height: 250px;
-     margin-bottom: 15px;
-     border-top-left-radius: 10px;
-     border-top-right-radius: 10px;
-     margin: 5px;
+     height: 25.0rem;
+     margin-bottom: 1.5rem;
+     border-top-left-radius: 1.0rem;
+     border-top-right-radius: 1.0rem;
+     margin: .5rem;
      
  }
      
@@ -136,7 +145,7 @@
      background-size: 100%;
  }
  .cardhead{
-    padding: 10px;
+    padding: 1.0rem;
  }
  .card:hover{
    background-color: rgb(65 65 65);
@@ -151,8 +160,8 @@
  }
  .heading{
   font-family: 'Oswald', sans-serif;
-  font-size: 45px;
-  margin-left: 10px;
+  font-size: 4.5rem;
+  margin-left: 1.0rem;
   
  }
  .sem1{
@@ -173,25 +182,27 @@
 }
 
  .card-sem{
-  box-shadow: 8px 8px 15px black;
+  box-shadow: .8rem .8rem 1.5rem black;
     background: white;
-    width: 200px;
-    height: 220px;
-    margin: 20px;
-    border-radius: 10px;
+    width: 20.0rem;
+    height: 22.0rem;
+    margin: 2.0rem;
+    border-radius: 1.0rem;
     
  }
  .cardtext{
-   margin: 10px;
+   margin: 1.0rem;
+   font-size: 1.4rem;
  }
  .cardbtn a{
    background-color: black;
    color: white;
    display: block;
-   padding: 15px 20px;
+   padding: 1.5rem 2rem;
    text-align: center;
    text-decoration: none;
-   margin: 0px 30px 0px 30px;
+   margin: .0rem 2.0rem 0rem 2.0rem;
+   font-size: 1.4rem;
  }
  .card-sem:hover{
   background-color: rgb(120 120 120);
@@ -206,13 +217,13 @@
    
  }
  .cardhead{
-  font-size: 20px;
+  font-size: 2.0rem;
   font-family: 'Oswald', sans-serif;
  }
 
  .branch a{
    text-decoration: none;
-   font-size: 20px;
+   font-size: 2.0rem;
    font-family: 'Oswald', sans-serif;
    color: #27520e ;
  }
@@ -223,9 +234,9 @@
  }
 
  hr{
-     border:2px solid gray;
+     border:.2rem solid gray;
  }
- @media (min-width: 961px) {
+ /*@media (min-width: 961px) {
   .right img{
     width: 400px;
   }
@@ -258,7 +269,7 @@
     width: 280px;
   }
   
-}
+}*/
  
 /* footer css */
   
