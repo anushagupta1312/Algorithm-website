@@ -106,10 +106,9 @@ body {
     background-color: #E6E6E6;
     color: black;
     display: block;
-    margin: auto;
     height: 100vh;
-    /* position: fixed;
-    top: 1vh; */
+    position: sticky;
+    top: 1vh;
   }
   /*Dont forget to add @media for mobile */
   #box1 #box1item li a
@@ -215,7 +214,7 @@ body {
       margin-bottom: 2rem;
       font-weight: bold;
       text-align: center;
-      font-size: 25px;
+      font-size: 2rem;
   }
   #comment
   {
@@ -257,17 +256,42 @@ body {
 a{
     color: black;
 }
+/* @media (max-width:1390px) {
+  #quote
+  {
+    font-size: 1.8rem;
+  }
+  #quote1
+  {
+    font-size: 1.8rem;
+  }
+} */
 @media (max-width:998px) {
   html {
         font-size: 55%;
   }
+  /* #quote
+  {
+    font-size: 1.5rem;
+  }
+  #quote1
+  {
+    font-size: 1.5rem;
+  } */
   
 }
 @media (max-width:768px) {
   html {
         font-size: 45%;
   }
-  
+  #quote
+  {
+    font-size: 1rem;
+  }
+  #quote1
+  {
+    font-size: 1rem;
+  }
 }
 
 .footer_div {

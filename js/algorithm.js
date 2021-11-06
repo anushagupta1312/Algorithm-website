@@ -48,3 +48,14 @@ function scrollFunction() {
 }
   function getBackToBeginning() { window.scrollTo(0, 0);
   }
+  
+  box3 = document.getElementById("box3");
+  window.onscroll = function() {scroll1Function()};
+
+function scroll1Function() {
+  if (document.body.scrollbottom < 20 || document.documentElement.scrollbottom < 20) {
+    box3.style.display = "none";
+  } else {
+    box3.style.display = "block";
+  }
+}
