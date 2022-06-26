@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Graph</title>
+  <title>String</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
@@ -150,89 +150,64 @@
 
 
       <div class="item middle">
-        <h1>Graph Data Stucture</h1>
-        <p>A graph is a pictorial representation of a set of objects where some pairs of objects are connected by links. The interconnected objects are represented by points termed as vertices, and the links that connect the vertices are called edges.
-          <br>
-          Formally, a graph is a pair of sets (V, E), where V is the set of vertices and E is the set of edges, connecting the pairs of vertices. Take a look at the following graph −</p>
-      <img class="array-img" src="../images/graph_basics.jpg" alt="">
-      <p>In the above graph,<br>
-
-        V = {a, b, c, d, e}<br>
-        
-        E = {ab, ac, bd, cd, de}</p>
-      <h2>Important Terminology</h2>
-      <p>
-       1. Vertex − Each node of the graph is represented as a vertex. In the following example, the labeled circle represents vertices. Thus, A to G are vertices. We can represent them using an array as shown in the following image. Here A can be identified by index 0. B can be identified using index 1 and so on.
+      <h1>String</h1>
+      <p>In programming, a String is used as a datatype just like int or float might be used; however, the difference here is that, String deals with textual kind of data. It can consist of alphabets, numbers, spaces and special characters. Strings are often enclosed in double quotation marks(“This is a String”). Strings can be thought of as a thread connecting various letters as shown below.</p>
+        <h2>C-strings</h2>
+        In C programming, the collection of characters is stored in the form of arrays. This is also supported in C++ programming. Hence it's called C-strings.
 <br>
-2.Edge − Edge represents a path between two vertices or a line between two vertices. In the following example, the lines from A to B, B to C, and so on represents edges. We can use a two-dimensional array to represent an array as shown in the following image. Here AB can be represented as 1 at row 0, column 1, BC as 1 at row 1, column 2 and so on, keeping other combinations as 0.
-<br>
-3.Adjacency − Two node or vertices are adjacent if they are connected to each other through an edge. In the following example, B is adjacent to A, C is adjacent to B, and so on.
-<br>
-4.Path − Path represents a sequence of edges between the two vertices. In the following example, ABCD represents a path from A to D.
-      </p>
-      <h2> Operations</h2>
-      Following are basic primary operations of a Graph −
-      <ul>
-        <li>Add Vertex − Adds a vertex to the graph.</li>
-        <li>Add Edge − Adds an edge between the two vertices of the graph.</li>
-        <li>Display Vertex − Displays a vertex of the graph.</li>
-      </ul>
-      <h2>DFS(Depth First Search)</h2>
-      <p>Because of the recursive nature, stack data structure can be used to implement the DFS algorithm</p>
-      <p>
-        The step by step process to implement the DFS traversal is given as follows -<br>
+C-strings are arrays of type char terminated with null character, that is, \0 (ASCII value of null character is 0).<br>
+<h3>Syntax</h3>
+char str[] = "C++";
+<h3>Alternative ways of defining a string</h3>
+<p>char str[4] = "C++";<br>
+     
+  char str[] = {'C','+','+','\0'};<br>
+  
+  char str[4] = {'C','+','+','\0'};</p>
+  <p class="structure">
+    #include <iostream><br>
 
-First, create a stack with the total number of vertices in the graph.<br>
-Now, choose any vertex as the starting point of traversal, and push that vertex into the stack.<br>
-After that, push a non-visited vertex (adjacent to the vertex on the top of the stack) to the top of the stack.<br>
-Now, repeat steps 3 and 4 until no vertices are left to visit from the vertex on the stack's top.<br>
-If no vertex is left, go back and pop a vertex from the stack.<br>
-Repeat steps 2, 3, and 4 until the stack is empty.<br>
-      </p>
-      <h3>Pseudocode</h3>
-      <p class="structure">
-        DFS(G,v)   ( v is the vertex where the search starts )    <br>
-        Stack S := {};   ( start with an empty stack )        <br>
-        for each vertex u, set visited[u] := false;        <br>
-        push S, v;        <br>
-        while (S is not empty) do    <br>    
-           u := pop S;        <br>
-           if (not visited[u]) then    <br>    
-              visited[u] := true;        <br>
-              for each unvisited neighbour w of uu     <br>    
-                 push S, w;        <br>
-           end if        <br>
-        end while        <br>
-     END DFS()      <br>
-      </p>
-
-      <h2>BFS(Breadth First Search)</h2>
-      <p>There are many ways to traverse the graph, but among them, BFS is the most commonly used approach. It is a recursive algorithm to search all the vertices of a tree or graph data structure. BFS puts every vertex of the graph into two categories - visited and non-visited. It selects a single node in a graph and, after that, visits all the nodes adjacent to the selected node.</p>
-      <p>The steps involved in the BFS algorithm to explore a graph are given as follows -</p>
-      <p class="structure">
-        Step 1: SET STATUS = 1 (ready state) for each node in G<br>
-
-Step 2: Enqueue the starting node A and set its STATUS = 2 (waiting state)<br>
-
-Step 3: Repeat Steps 4 and 5 until QUEUE is empty<br>
-
-Step 4: Dequeue a node N. Process it and set its STATUS = 3 (processed state).<br>
-
-Step 5: Enqueue all the neighbours of N that are in the ready state (whose STATUS = 1) and set<br>
-
-their STATUS = 2<br>
-
-(waiting state)<br>
-
-[END OF LOOP]<br>
-Step 6: EXIT<br>
-
-
-      </p>
-
-
+      using namespace std;<br>
       
-        </div>
+      int main () {<br>
+      
+         char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};<br>
+      
+         cout << "Greeting message: ";<br>
+         cout << greeting << endl;<br>
+      
+         return 0;<br>
+      }<br>
+  </p>
+  <h2>Library Function for String Using Manipulation</h2>
+  <p><strong>strcat</strong></p>
+  <p>This function is used for concatenation which means it combines two strings. Using this function, a specified source string is appended to the end of a specified destination string. On success, this function returns a reference to the destination string; on failure, it returns NULL.</p>
+  <p><strong>char *strcat(char *destination, const char *source) ;</strong></p>
+  <p><strong>strlen</strong></p>
+  <p>The length of a string is returned by this function, excluding the null character at the end. That is, it returns the string's character count minus 1 for the terminator.</p>
+    <p><strong>size_t strlen(const char *string);</strong></p>
+    <p><strong>strcpy</strong></p>
+    <p>strcpy copies a string from the source string to the destination string, including the null character terminator. The return value of this function is a reference to the destination string.</p>
+  <p><strong>char *strcpy(char *destination, const char *source) ;</strong></p>
+  <p><strong>strcmp</strong></p> 
+  <p>This function joins two strings together. It returns a value less than zero if the second string is greater. It returns a number greater than zero if the first string is greater than the second. It returns 0 if the strings are equivalent.</p> 
+<p><strong>int strcmp(const char *str1, const char *str2) ;</strong></p>  
+
+<h2>Arrays of String</h2>
+An Array of String is an array that stores a fixed number of values that are of the String data type.
+<br>
+Array of String in C/C++:
+<p><strong>char strarr[m][n]</strong></p>
+<h2>Passing String to Functions</h2>
+<p class="structure">
+  // Declaring a String<br>
+  char str[5]="Hello";<br>
+
+// Passing string to Function<br>
+  func(str);<br>
+</p>
+
+</div>
 
       <div class="item right-side">
 
@@ -240,38 +215,41 @@ Step 6: EXIT<br>
 
 
       <div class="item bottom practice-prob">
-          <h2 class="practice-prob-head"> Practice Problems On Graph</h2>
+          <h2 class="practice-prob-head"> Practice Problems On Strings</h2>
 
           <ul>
             <li>
-              <a href="https://www.geeksforgeeks.org/find-k-cores-graph/">Find K cores of an undirected Graph</a>
+              <a href="https://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/">Rearrange characters in a string such that no two adjacent are same</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/minimum-initial-vertices-traverse-whole-matrix-given-conditions/">Minimum initial vertices to traverse whole matrix with given conditions</a>
+              <a href="https://www.geeksforgeeks.org/program-check-input-integer-string/">Program to check if input is an integer or a string</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/count-number-trees-forest/">Count number of trees in a forest</a>
+              <a href="https://www.geeksforgeeks.org/program-find-initials-name/">Program to find the initials of a name</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/transpose-graph/">Transpose graph</a>
+              <a href="https://www.geeksforgeeks.org/count-words-whose-th-letter-either-1-th-th-i1-th-letter-given-word/">Count of words whose i-th letter is either (i-1)-th, i-th, or (i+1)-th letter of given word</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/bfs-using-stl-competitive-coding/">BFS using STL for competitive coding</a>
+              <a href="https://www.geeksforgeeks.org/count-strings-can-formed-using-b-c-given-constraints/">Count of strings that can be formed using a, b and c under given constraints</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/print-paths-given-source-destination-using-bfs/">Print all paths from a given source to a destination using BFS</a>
+              <a href="https://www.geeksforgeeks.org/print-all-distinct-characters-of-a-string-in-order-3-methods/">Print all distinct characters of a string in order (3 Methods)</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/delete-edge-minimize-subtree-sum-difference/">Delete Edge to minimize subtree sum difference</a>
+              <a href="https://www.geeksforgeeks.org/number-subsequences-form-ai-bj-ck/">Number of subsequences of the form a^i b^j c^k</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/minimum-steps-reach-end-array-constraints/">Minimum steps to reach end of array under constraints</a>
+              <a href="https://www.geeksforgeeks.org/printing-longest-common-subsequence-set-2-printing/">Printing Longest Common Subsequence | Set 2</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/assign-directions-to-edges-so-that-the-directed-graph-remains-acyclic/">Assign directions to edges so that the directed graph remains acyclic</a>
+              <a href="https://www.geeksforgeeks.org/print-shortest-common-supersequence/">Printing Shortest Common Supersequence</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/maximum-edges-can-added-dag-remains-dag/">Maximum edges that can be added to DAG so that is remains DAG</a>
+              <a href="https://www.geeksforgeeks.org/check-strings-rotations-not-set-2/">Check if strings are rotations of each other or not</a>
+            </li>
+            <li>
+              <a href="https://www.geeksforgeeks.org/reversing-an-equation/">Reversing an Equation</a>
             </li>
           </ul>
           <div class="more-prob">

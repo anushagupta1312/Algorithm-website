@@ -150,89 +150,8 @@
 
 
       <div class="item middle">
-        <h1>Graph Data Stucture</h1>
-        <p>A graph is a pictorial representation of a set of objects where some pairs of objects are connected by links. The interconnected objects are represented by points termed as vertices, and the links that connect the vertices are called edges.
-          <br>
-          Formally, a graph is a pair of sets (V, E), where V is the set of vertices and E is the set of edges, connecting the pairs of vertices. Take a look at the following graph −</p>
-      <img class="array-img" src="../images/graph_basics.jpg" alt="">
-      <p>In the above graph,<br>
-
-        V = {a, b, c, d, e}<br>
-        
-        E = {ab, ac, bd, cd, de}</p>
-      <h2>Important Terminology</h2>
-      <p>
-       1. Vertex − Each node of the graph is represented as a vertex. In the following example, the labeled circle represents vertices. Thus, A to G are vertices. We can represent them using an array as shown in the following image. Here A can be identified by index 0. B can be identified using index 1 and so on.
-<br>
-2.Edge − Edge represents a path between two vertices or a line between two vertices. In the following example, the lines from A to B, B to C, and so on represents edges. We can use a two-dimensional array to represent an array as shown in the following image. Here AB can be represented as 1 at row 0, column 1, BC as 1 at row 1, column 2 and so on, keeping other combinations as 0.
-<br>
-3.Adjacency − Two node or vertices are adjacent if they are connected to each other through an edge. In the following example, B is adjacent to A, C is adjacent to B, and so on.
-<br>
-4.Path − Path represents a sequence of edges between the two vertices. In the following example, ABCD represents a path from A to D.
-      </p>
-      <h2> Operations</h2>
-      Following are basic primary operations of a Graph −
-      <ul>
-        <li>Add Vertex − Adds a vertex to the graph.</li>
-        <li>Add Edge − Adds an edge between the two vertices of the graph.</li>
-        <li>Display Vertex − Displays a vertex of the graph.</li>
-      </ul>
-      <h2>DFS(Depth First Search)</h2>
-      <p>Because of the recursive nature, stack data structure can be used to implement the DFS algorithm</p>
-      <p>
-        The step by step process to implement the DFS traversal is given as follows -<br>
-
-First, create a stack with the total number of vertices in the graph.<br>
-Now, choose any vertex as the starting point of traversal, and push that vertex into the stack.<br>
-After that, push a non-visited vertex (adjacent to the vertex on the top of the stack) to the top of the stack.<br>
-Now, repeat steps 3 and 4 until no vertices are left to visit from the vertex on the stack's top.<br>
-If no vertex is left, go back and pop a vertex from the stack.<br>
-Repeat steps 2, 3, and 4 until the stack is empty.<br>
-      </p>
-      <h3>Pseudocode</h3>
-      <p class="structure">
-        DFS(G,v)   ( v is the vertex where the search starts )    <br>
-        Stack S := {};   ( start with an empty stack )        <br>
-        for each vertex u, set visited[u] := false;        <br>
-        push S, v;        <br>
-        while (S is not empty) do    <br>    
-           u := pop S;        <br>
-           if (not visited[u]) then    <br>    
-              visited[u] := true;        <br>
-              for each unvisited neighbour w of uu     <br>    
-                 push S, w;        <br>
-           end if        <br>
-        end while        <br>
-     END DFS()      <br>
-      </p>
-
-      <h2>BFS(Breadth First Search)</h2>
-      <p>There are many ways to traverse the graph, but among them, BFS is the most commonly used approach. It is a recursive algorithm to search all the vertices of a tree or graph data structure. BFS puts every vertex of the graph into two categories - visited and non-visited. It selects a single node in a graph and, after that, visits all the nodes adjacent to the selected node.</p>
-      <p>The steps involved in the BFS algorithm to explore a graph are given as follows -</p>
-      <p class="structure">
-        Step 1: SET STATUS = 1 (ready state) for each node in G<br>
-
-Step 2: Enqueue the starting node A and set its STATUS = 2 (waiting state)<br>
-
-Step 3: Repeat Steps 4 and 5 until QUEUE is empty<br>
-
-Step 4: Dequeue a node N. Process it and set its STATUS = 3 (processed state).<br>
-
-Step 5: Enqueue all the neighbours of N that are in the ready state (whose STATUS = 1) and set<br>
-
-their STATUS = 2<br>
-
-(waiting state)<br>
-
-[END OF LOOP]<br>
-Step 6: EXIT<br>
-
-
-      </p>
-
-
-      
-        </div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
 
       <div class="item right-side">
 
@@ -240,39 +159,10 @@ Step 6: EXIT<br>
 
 
       <div class="item bottom practice-prob">
-          <h2 class="practice-prob-head"> Practice Problems On Graph</h2>
+          <h2 class="practice-prob-head"> Practice Problems On Queues</h2>
 
           <ul>
-            <li>
-              <a href="https://www.geeksforgeeks.org/find-k-cores-graph/">Find K cores of an undirected Graph</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/minimum-initial-vertices-traverse-whole-matrix-given-conditions/">Minimum initial vertices to traverse whole matrix with given conditions</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/count-number-trees-forest/">Count number of trees in a forest</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/transpose-graph/">Transpose graph</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/bfs-using-stl-competitive-coding/">BFS using STL for competitive coding</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/print-paths-given-source-destination-using-bfs/">Print all paths from a given source to a destination using BFS</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/delete-edge-minimize-subtree-sum-difference/">Delete Edge to minimize subtree sum difference</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/minimum-steps-reach-end-array-constraints/">Minimum steps to reach end of array under constraints</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/assign-directions-to-edges-so-that-the-directed-graph-remains-acyclic/">Assign directions to edges so that the directed graph remains acyclic</a>
-            </li>
-            <li>
-              <a href="https://www.geeksforgeeks.org/maximum-edges-can-added-dag-remains-dag/">Maximum edges that can be added to DAG so that is remains DAG</a>
-            </li>
+
           </ul>
           <div class="more-prob">
 
