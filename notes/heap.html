@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Graph</title>
+  <title>Heap</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
@@ -150,87 +150,90 @@
 
 
       <div class="item middle">
-        <h1>Graph Data Stucture</h1>
-        <p>A graph is a pictorial representation of a set of objects where some pairs of objects are connected by links. The interconnected objects are represented by points termed as vertices, and the links that connect the vertices are called edges.
-          <br>
-          Formally, a graph is a pair of sets (V, E), where V is the set of vertices and E is the set of edges, connecting the pairs of vertices. Take a look at the following graph −</p>
-      <img class="array-img" src="../images/graph_basics.jpg" alt="">
-      <p>In the above graph,<br>
-
-        V = {a, b, c, d, e}<br>
-        
-        E = {ab, ac, bd, cd, de}</p>
-      <h2>Important Terminology</h2>
-      <p>
-       1. Vertex − Each node of the graph is represented as a vertex. In the following example, the labeled circle represents vertices. Thus, A to G are vertices. We can represent them using an array as shown in the following image. Here A can be identified by index 0. B can be identified using index 1 and so on.
-<br>
-2.Edge − Edge represents a path between two vertices or a line between two vertices. In the following example, the lines from A to B, B to C, and so on represents edges. We can use a two-dimensional array to represent an array as shown in the following image. Here AB can be represented as 1 at row 0, column 1, BC as 1 at row 1, column 2 and so on, keeping other combinations as 0.
-<br>
-3.Adjacency − Two node or vertices are adjacent if they are connected to each other through an edge. In the following example, B is adjacent to A, C is adjacent to B, and so on.
-<br>
-4.Path − Path represents a sequence of edges between the two vertices. In the following example, ABCD represents a path from A to D.
-      </p>
-      <h2> Operations</h2>
-      Following are basic primary operations of a Graph −
-      <ul>
-        <li>Add Vertex − Adds a vertex to the graph.</li>
-        <li>Add Edge − Adds an edge between the two vertices of the graph.</li>
-        <li>Display Vertex − Displays a vertex of the graph.</li>
-      </ul>
-      <h2>DFS(Depth First Search)</h2>
-      <p>Because of the recursive nature, stack data structure can be used to implement the DFS algorithm</p>
-      <p>
-        The step by step process to implement the DFS traversal is given as follows -<br>
-
-First, create a stack with the total number of vertices in the graph.<br>
-Now, choose any vertex as the starting point of traversal, and push that vertex into the stack.<br>
-After that, push a non-visited vertex (adjacent to the vertex on the top of the stack) to the top of the stack.<br>
-Now, repeat steps 3 and 4 until no vertices are left to visit from the vertex on the stack's top.<br>
-If no vertex is left, go back and pop a vertex from the stack.<br>
-Repeat steps 2, 3, and 4 until the stack is empty.<br>
-      </p>
-      <h3>Pseudocode</h3>
-      <p class="structure">
-        DFS(G,v)   ( v is the vertex where the search starts )    <br>
-        Stack S := {};   ( start with an empty stack )        <br>
-        for each vertex u, set visited[u] := false;        <br>
-        push S, v;        <br>
-        while (S is not empty) do    <br>    
-           u := pop S;        <br>
-           if (not visited[u]) then    <br>    
-              visited[u] := true;        <br>
-              for each unvisited neighbour w of uu     <br>    
-                 push S, w;        <br>
-           end if        <br>
-        end while        <br>
-     END DFS()      <br>
-      </p>
-
-      <h2>BFS(Breadth First Search)</h2>
-      <p>There are many ways to traverse the graph, but among them, BFS is the most commonly used approach. It is a recursive algorithm to search all the vertices of a tree or graph data structure. BFS puts every vertex of the graph into two categories - visited and non-visited. It selects a single node in a graph and, after that, visits all the nodes adjacent to the selected node.</p>
-      <p>The steps involved in the BFS algorithm to explore a graph are given as follows -</p>
-      <p class="structure">
-        Step 1: SET STATUS = 1 (ready state) for each node in G<br>
-
-Step 2: Enqueue the starting node A and set its STATUS = 2 (waiting state)<br>
-
-Step 3: Repeat Steps 4 and 5 until QUEUE is empty<br>
-
-Step 4: Dequeue a node N. Process it and set its STATUS = 3 (processed state).<br>
-
-Step 5: Enqueue all the neighbours of N that are in the ready state (whose STATUS = 1) and set<br>
-
-their STATUS = 2<br>
-
-(waiting state)<br>
-
-[END OF LOOP]<br>
-Step 6: EXIT<br>
-
-
-      </p>
-
-
+        <h1>Heap</h1>
+        <p>Heap data structure is a complete binary tree that satisfies the heap property.<br/>
+            <h2>Complete Binary Tree</h2>
+            <p>A complete binary tree is a binary tree in which all the levels except the last level, i.e., leaf node should be completely filled, and all the nodes should be left-justified.</p>
+            <img class="array-img" src="../images/heap-data-structure.png" alt="" width="45px" height="45px"></p><br>
+            <h2>Types of Heap</h2>
+            1.Max Heap->The node is always greater than its child node/s and the key of the root node is the largest among all other nodes. This property is also called max heap property.</p>
+            <p>The above tree is a max heap tree as it satisfies the property of the max heap. Now, let's see the array representation of the max heap.</p>
+            <img class="array-img" src="../images/heap-data-structure4.png" alt="">
+            
+            2.Min Heap->The node is always smaller than the child node/s and the key of the root node is the smallest among all other nodes. This property is also called min heap property.</p>
+            <p><p>In the above figure, 11 is the root node, and the value of the root node is less than the value of all the other nodes (left child or a right child).</p></p>
+            <img class="array-img" src="../images/heap-data-structure3.png" alt="">
+            <h2>Insertion in Max Heap</h2>
+            <p class="structure">
+                // algorithm to insert an element in the max heap.  <br>
+                insertHeap(A, n, value)<br>  
+                {  <br>
+                n=n+1; // n is incremented to insert the new element  <br>
+                A[n]=value; // assign new value at the nth position  <br>
+                i = n; // assign the value of n to i  <br>
+                // loop will be executed until i becomes 1.  <br> 
+                while(i>1)   <br>
+                {  <br>
+                parent= floor value of i/2; // Calculating the floor value of i/2  <br>
+                // Condition to check whether the value of parent is less than the given node or not   <br>
+                if(A[parent]&lt;A[i])   <br>
+                {  <br>
+                swap(A[parent], A[i]);<br>  
+                i = parent;  <br>
+                }  <br>
+                else<br>  
+                {  <br>
+                return;  <br>
+                }  
+                }  
+                }  
+            </p>
+            <h2>Heap Operations</h2>
+            <p>Some of the important operations performed on a heap are described below along with their algorithms.</p>
+            <h3>Heapify</h3>
+            <p>Heapify is the process of creating a heap data structure from a binary tree. It is used to create a Min-Heap or a Max-Heap.</p>
+            <h3>Algorithm to heapify the tree</h3>
+            <p class="structure">
+                MaxHeapify(A, n, i)  <br>
+{   <br>
+int largest =i;   <br>
+int l= 2i;   <br>
+int r= 2i+1;   <br>
+while(l&lt;=n && A[l]>A[largest])   <br>
+{   <br>
+largest=l;   <br>
+}   <br>
+while(r&lt;=n && A[r]>A[largest])   <br>
+{   <br>
+largest=r;   <br>
+}    <br>
+if(largest!=i)   <br>
+{   <br>
+swap(A[largest], A[i]);   <br>
+heapify(A, n, largest);   <br>
+}}   <br>
+            </p>
+            <h3>Delete Element from Heap</h3>
+            <p>Algorithm for deletion in Max Heap</p>
+            <p class="structure">
+                If nodeToBeDeleted is the leafNode<br>
+  remove the node<br>
+Else swap nodeToBeDeleted with the lastLeafNode<br>
+  remove noteToBeDeleted<br>
+   
+heapify the array<br>
+            </p>
+            <h3>Peek (Find max/min)</h3>
+            Peek operation returns the maximum element from Max Heap or minimum element from Min Heap without deleting the node.
+<p>
+For both Max heap and Min Heap</p>
+<p class="structure">
+    return rootNode
+</p>
+<h2>Heap Data Structure Applications</h2>
+1.Heap is used while implementing a priority queue.<br>
+2.Dijkstra's Algorithm<br>
+3.Heap Sort<br>
       
         </div>
 
@@ -240,38 +243,38 @@ Step 6: EXIT<br>
 
 
       <div class="item bottom practice-prob">
-          <h2 class="practice-prob-head"> Practice Problems On Graph</h2>
+          <h2 class="practice-prob-head"> Practice Problems On Heap</h2>
 
           <ul>
             <li>
-              <a href="https://www.geeksforgeeks.org/find-k-cores-graph/">Find K cores of an undirected Graph</a>
+                <a href="https://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/">K’th Largest Element in an array</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/minimum-initial-vertices-traverse-whole-matrix-given-conditions/">Minimum initial vertices to traverse whole matrix with given conditions</a>
+                <a href="https://www.geeksforgeeks.org/nearly-sorted-algorithm/">Sort an almost sorted array/</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/count-number-trees-forest/">Count number of trees in a forest</a>
+                <a href="https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-heap/">Check if a given Binary Tree is Heap</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/transpose-graph/">Transpose graph</a>
+                <a href="https://www.geeksforgeeks.org/merge-sort-tree-for-range-order-statistics/">Merge Sort Tree for Range Order Statistics</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/bfs-using-stl-competitive-coding/">BFS using STL for competitive coding</a>
+                <a href="https://www.geeksforgeeks.org/sort-numbers-stored-on-different-machines/">Sort numbers stored on different machines</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/print-paths-given-source-destination-using-bfs/">Print all paths from a given source to a destination using BFS</a>
+                <a href="https://www.geeksforgeeks.org/k-maximum-sum-combinations-two-arrays/">K maximum sum combinations from two arrays</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/delete-edge-minimize-subtree-sum-difference/">Delete Edge to minimize subtree sum difference</a>
+                <a href="https://www.geeksforgeeks.org/difference-maximum-sum-minimum-sum-n-m-elementsin-review/">Maximum difference between two subsets of m elements</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/minimum-steps-reach-end-array-constraints/">Minimum steps to reach end of array under constraints</a>
+                <a href="https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/">Height of a complete binary tree (or Heap) with N nodes</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/assign-directions-to-edges-so-that-the-directed-graph-remains-acyclic/">Assign directions to edges so that the directed graph remains acyclic</a>
+                <a href="https://www.geeksforgeeks.org/print-all-nodes-less-than-a-value-x-in-a-min-heap/">Print all nodes less than a value x in a Min Heap.</a>
             </li>
             <li>
-              <a href="https://www.geeksforgeeks.org/maximum-edges-can-added-dag-remains-dag/">Maximum edges that can be added to DAG so that is remains DAG</a>
+                <a href="https://www.geeksforgeeks.org/largest-triplet-product-stream/">Largest triplet product in a stream</a>
             </li>
           </ul>
           <div class="more-prob">
